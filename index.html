@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
     <style>
         /* --- GLOBAL SETTINGS --- */
@@ -17,262 +17,270 @@
         body {
             margin: 0;
             padding: 0;
-            /* DARKER BROWN BACKGROUND (Almost Black) */
-            background-color: #110500; 
-            /* WHITE TEXT (Off-white for readability) */
-            color: #E6E6E6; 
-            font-family: 'Space Mono', monospace;
+            /* LIGHTER DARK BROWN (Espresso Tone) */
+            background-color: #1f0b05; 
+            /* OFF-WHITE TEXT */
+            color: #F0F0F0; 
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 300; /* Light/Thin Text */
+            line-height: 1.6;
         }
 
         a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
-        
-        /* YELLOW ACCENT ONLY ON HOVER */
-        a:hover { 
-            color: #FFFFFF; 
-            text-shadow: 0 0 10px rgba(255,255,255,0.5);
-        }
+        a:hover { color: #FFFFFF; }
 
-        /* --- FIXED FRAME (Logo Left & Menu Right) --- */
-        .fixed-header {
-            position: fixed;
-            top: 0; left: 0; width: 100%;
-            padding: 40px 60px;
+        /* --- HEADER SECTION (Not fixed anymore, moves with page) --- */
+        .main-header {
+            width: 100%;
+            padding: 40px 60px; /* Spacious padding */
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            z-index: 100;
-            pointer-events: none; /* Let clicks pass through empty areas */
-            mix-blend-mode: difference; /* Ensures visibility over images */
+            align-items: center; /* Vertically center items */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Very subtle separator */
+            background-color: #1f0b05; /* Same as body */
         }
 
         .logo-container {
-            pointer-events: auto;
-            width: 150px; /* Adjust your logo size here */
+            width: 140px; /* Logo width */
+            opacity: 0.9;
         }
         
         .logo-img {
             width: 100%;
             height: auto;
             display: block;
-            /* Placeholder styling until you upload logo */
-            filter: grayscale(100%) brightness(200%); 
+            /* Logo Styling */
         }
 
+        /* --- HORIZONTAL MENU --- */
         .nav-menu {
-            pointer-events: auto;
             display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 15px;
+            flex-direction: row; /* Horizontal alignment */
+            gap: 40px; /* Space between links */
         }
 
         .nav-link {
-            font-family: 'Anton', sans-serif;
-            font-size: 1.2rem;
+            font-family: 'Open Sans', sans-serif; /* Clean font */
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 2px;
+            font-weight: 400;
+            color: #CCCCCC;
             position: relative;
+            padding-bottom: 5px;
         }
 
-        /* Minimal Yellow Accent Line on Hover */
+        /* Yellow Accent Line on Hover */
         .nav-link::after {
             content: '';
             position: absolute;
-            width: 0; height: 2px;
-            bottom: -5px; right: 0;
-            background-color: #DEBD00; /* THE ONLY YELLOW */
+            width: 0; height: 1px;
+            bottom: 0; left: 0;
+            background-color: #DEBD00; /* YELLOW */
             transition: width 0.3s;
         }
+        .nav-link:hover { color: #DEBD00; }
         .nav-link:hover::after { width: 100%; }
+
 
         /* --- MAIN CONTENT LAYOUT --- */
         main {
             padding: 0 60px;
+            max-width: 1600px; /* Prevent it from getting too wide on huge screens */
+            margin: 0 auto;
         }
 
         /* --- SECTION 1: HOME --- */
         .section-home {
-            height: 100vh;
+            height: 80vh; /* Slightly less than full screen to show content below */
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-        }
-
-        .hero-text {
+            flex-direction: column;
             text-align: center;
-            max-width: 600px;
         }
 
         .hero-title {
-            font-family: 'Anton';
-            font-size: 5vw;
+            font-family: 'Anton', sans-serif;
+            font-size: 6vw; /* Responsive huge size */
             margin: 0;
             line-height: 1;
-            opacity: 0.9;
+            letter-spacing: 1px;
+            color: #E6E6E6;
         }
 
         .hero-sub {
-            margin-top: 20px;
-            font-size: 1rem;
-            opacity: 0.6;
-            border-left: 2px solid #333; /* Dark gray line */
-            padding-left: 20px;
-            text-align: left;
-            margin-left: auto; margin-right: auto;
+            margin-top: 30px;
+            font-size: 1.1rem;
+            font-weight: 300; /* Thin font */
+            color: #999;
+            max-width: 500px;
         }
 
         /* --- SECTION 2: ARTISTS --- */
         .section-artists {
-            padding: 150px 0;
-            border-top: 1px solid #222;
+            padding: 100px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
 
         .section-header {
-            font-family: 'Anton';
-            font-size: 3rem;
-            margin-bottom: 50px;
-            color: #333; /* Very subtle section title */
+            font-family: 'Anton', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #DEBD00; /* Yellow Title */
+            letter-spacing: 1px;
         }
 
         .artists-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
+            grid-template-columns: repeat(3, 1fr); /* 3 Columns */
+            gap: 50px;
         }
 
         .artist-card {
-            border-bottom: 1px solid #333;
-            padding-bottom: 20px;
             cursor: pointer;
+            group: hover;
         }
 
         .artist-img-placeholder {
             width: 100%;
-            height: 400px; /* Portrait ratio */
-            background-color: #1a0f0a;
+            aspect-ratio: 3/4; /* Portrait */
+            background-color: #2a150e; /* Slightly lighter brown box */
             margin-bottom: 20px;
-            filter: grayscale(100%);
-            transition: filter 0.3s;
             display: flex; align-items: center; justify-content: center;
-            color: #333;
+            color: #555;
+            transition: transform 0.4s ease;
         }
         
         .artist-card:hover .artist-img-placeholder {
-            filter: grayscale(0%);
+            transform: translateY(-10px); /* Move up slightly on hover */
+            background-color: #381e15;
         }
 
         .artist-name {
-            font-family: 'Anton';
-            font-size: 1.5rem;
+            font-family: 'Anton', sans-serif;
+            font-size: 1.4rem;
             margin: 0;
+            letter-spacing: 1px;
         }
         .artist-role {
-            font-size: 0.8rem;
-            opacity: 0.5;
+            font-size: 0.9rem;
+            color: #888;
             margin-top: 5px;
+            font-weight: 300;
         }
 
         /* --- SECTION 3: WORKS --- */
         .section-works {
-            padding: 150px 0;
-            border-top: 1px solid #222;
+            padding: 100px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
 
         .works-list {
             display: flex;
             flex-direction: column;
-            gap: 100px;
+            gap: 120px;
         }
 
         .work-item {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
+            grid-template-columns: 1.2fr 0.8fr; /* Image wider than text */
+            gap: 60px;
+            align-items: start;
         }
 
-        /* Alternate layout for works (Left/Right) */
+        /* Alternate layout */
         .work-item:nth-child(even) {
-            direction: rtl; /* Image right, text left */
+            direction: rtl; /* Flip grid */
         }
         .work-item:nth-child(even) .work-info {
-            direction: ltr; /* Fix text direction back */
+            direction: ltr; /* Reset text direction */
         }
 
         .work-img {
             width: 100%;
             height: 500px;
-            background-color: #1a0f0a;
+            background-color: #2a150e;
             object-fit: cover;
         }
 
+        .work-info {
+            padding-top: 20px;
+        }
+
         .work-title {
-            font-family: 'Anton';
+            font-family: 'Anton', sans-serif;
             font-size: 2.5rem;
-            margin: 0 0 20px 0;
+            margin: 0 0 15px 0;
+            line-height: 1;
+        }
+
+        .work-desc {
+            font-weight: 300;
+            color: #CCC;
+            line-height: 1.8;
+            font-size: 1rem;
         }
 
         /* --- SECTION 4: CONTACT --- */
         .section-contact {
-            padding: 150px 0 50px 0;
-            border-top: 1px solid #222;
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            padding: 100px 0 50px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
         }
 
         .contact-big {
-            font-family: 'Anton';
-            font-size: 8vw;
-            line-height: 0.9;
-            text-transform: uppercase;
+            font-family: 'Anton', sans-serif;
+            font-size: 5rem;
+            line-height: 1;
+            color: #E6E6E6;
+            margin: 0;
         }
 
-        .contact-details {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            margin-top: 50px;
+        .contact-links a {
+            display: block;
             font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+        
+        .footer-copy {
+            margin-top: 50px;
+            font-size: 0.8rem;
+            color: #666;
+            border-top: 1px solid #333;
+            padding-top: 20px;
         }
 
-        .email-link {
-            border-bottom: 1px solid #333;
-            padding-bottom: 5px;
-        }
-        .email-link:hover {
-            border-color: #DEBD00; /* Yellow accent */
-        }
-
-        /* --- MOBILE --- */
+        /* --- MOBILE RESPONSIVE --- */
         @media (max-width: 768px) {
-            .fixed-header { padding: 20px; flex-direction: row; align-items: center; background: #110500; }
-            .logo-container { width: 100px; }
-            .nav-menu { display: none; } /* Hide menu for now or make hamburger later */
+            .main-header { padding: 20px; flex-direction: column; gap: 20px; }
+            .nav-menu { gap: 20px; font-size: 0.8rem; }
             
-            /* Simple mobile nav override */
-            .fixed-header::after {
-                content: 'MENU';
-                font-family: 'Anton';
-                pointer-events: auto;
-            }
-
-            main { padding: 20px; }
+            main { padding: 0 20px; }
+            
             .hero-title { font-size: 15vw; }
             .artists-grid { grid-template-columns: 1fr; }
-            .work-item { grid-template-columns: 1fr; gap: 20px; }
+            
+            .work-item { grid-template-columns: 1fr; gap: 30px; }
             .work-item:nth-child(even) { direction: ltr; }
             .work-img { height: 300px; }
-            .contact-details { grid-template-columns: 1fr; gap: 30px; }
+            
+            .contact-grid { grid-template-columns: 1fr; }
+            .contact-big { font-size: 3.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <header class="fixed-header">
+    <header class="main-header">
         <a href="#home" class="logo-container">
-            <img src="https://placehold.co/400x150/000000/FFF?text=ARDIYE+LOGO" alt="Ardiye Logo" class="logo-img">
+            <img src="https://placehold.co/400x150/1f0b05/DEBD00?text=ARDIYE" alt="Ardiye Logo" class="logo-img">
         </a>
 
         <nav class="nav-menu">
@@ -285,12 +293,10 @@
 
     <main>
         <section id="home" class="section-home">
-            <div class="hero-text">
-                <h1 class="hero-title">STORED IDEAS,<br>RAW PRODUCTIONS.</h1>
-                <div class="hero-sub">
-                    <p>/ An art initiative based in İzmir.</p>
-                    <p>/ Archives of the incomplete.</p>
-                </div>
+            <h1 class="hero-title">STORED IDEAS,<br>RAW PRODUCTIONS.</h1>
+            <div class="hero-sub">
+                An art initiative based in İzmir.<br>
+                Archives of the incomplete.
             </div>
         </section>
 
@@ -299,19 +305,19 @@
             
             <div class="artists-grid">
                 <div class="artist-card">
-                    <div class="artist-img-placeholder">[IMAGE]</div>
+                    <div class="artist-img-placeholder">PHOTO</div>
                     <h3 class="artist-name">NAME SURNAME</h3>
                     <p class="artist-role">Visual Artist</p>
                 </div>
                 
                 <div class="artist-card">
-                    <div class="artist-img-placeholder">[IMAGE]</div>
+                    <div class="artist-img-placeholder">PHOTO</div>
                     <h3 class="artist-name">NAME SURNAME</h3>
                     <p class="artist-role">Filmmaker</p>
                 </div>
 
                 <div class="artist-card">
-                    <div class="artist-img-placeholder">[IMAGE]</div>
+                    <div class="artist-img-placeholder">PHOTO</div>
                     <h3 class="artist-name">NAME SURNAME</h3>
                     <p class="artist-role">Sound Designer</p>
                 </div>
@@ -323,12 +329,14 @@
 
             <div class="works-list">
                 <div class="work-item">
-                    <div class="work-img"></div> <div class="work-info">
+                    <div class="work-img"></div>
+                    <div class="work-info">
                         <h3 class="work-title">LOST FREQUENCY</h3>
-                        <p>Video Art / 2024</p>
-                        <p style="opacity: 0.7; margin-top: 20px;">
+                        <p style="color:#DEBD00; margin-bottom:10px;">Video Art / 2024</p>
+                        <p class="work-desc">
                             An exploration of the unseen noise in the urban landscape. 
-                            Recorded over 40 days in abandoned industrial zones.
+                            Recorded over 40 days in abandoned industrial zones. 
+                            The piece questions the permanence of auditory memory.
                         </p>
                     </div>
                 </div>
@@ -337,9 +345,10 @@
                     <div class="work-img"></div> 
                     <div class="work-info">
                         <h3 class="work-title">SURFACE TENSION</h3>
-                        <p>Installation / 2025</p>
-                        <p style="opacity: 0.7; margin-top: 20px;">
+                        <p style="color:#DEBD00; margin-bottom:10px;">Installation / 2025</p>
+                        <p class="work-desc">
                             Mixed media installation focusing on the texture of decay.
+                            Using rust, concrete, and organic materials found in the warehouse.
                         </p>
                     </div>
                 </div>
@@ -347,25 +356,23 @@
         </section>
 
         <section id="contact" class="section-contact">
-            <div>
-                <h2 class="contact-big">GET IN<br>TOUCH</h2>
-            </div>
-            
-            <div class="contact-details">
+            <div class="contact-grid">
                 <div>
-                    <p style="opacity:0.5; margin-bottom:10px;">GENERAL INQUIRIES</p>
-                    <a href="mailto:info@ardiye.art" class="email-link">info@ardiye.art</a>
+                    <h2 class="contact-big">GET IN<br>TOUCH</h2>
                 </div>
                 
-                <div>
-                    <p style="opacity:0.5; margin-bottom:10px;">SOCIAL</p>
-                    <a href="#" style="margin-right: 20px;">Instagram</a>
+                <div class="contact-links">
+                    <p style="opacity:0.5; font-size:0.9rem; margin-bottom:10px;">GENERAL</p>
+                    <a href="mailto:info@ardiye.art">info@ardiye.art</a>
+                    
+                    <p style="opacity:0.5; font-size:0.9rem; margin-bottom:10px; margin-top:30px;">FOLLOW US</p>
+                    <a href="#">Instagram</a>
                     <a href="#">Vimeo</a>
                 </div>
+            </div>
 
-                <div style="grid-column: span 2; margin-top: 50px; opacity: 0.3; font-size: 0.9rem;">
-                    &copy; 2026 ARDIYE ART INITIATIVE. IZMIR.
-                </div>
+            <div class="footer-copy">
+                &copy; 2026 ARDIYE ART INITIATIVE. IZMIR.
             </div>
         </section>
     </main>
