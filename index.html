@@ -17,314 +17,132 @@
         body {
             margin: 0;
             padding: 0;
-            /* LIGHTER DARK BROWN (Espresso Tone) */
-            background-color: #1f0b05; 
-            /* OFF-WHITE TEXT */
+            background-color: #1f0b05; /* Espresso Brown */
             color: #F0F0F0; 
             font-family: 'Open Sans', sans-serif;
-            font-weight: 300; /* Light/Thin Text Global */
+            font-weight: 300;
             line-height: 1.6;
         }
 
         /* DEFAULT LINK STYLES */
         a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
         
-        /* GLOBAL HOVER: TURNS YELLOW */
-        a:hover { 
-            color: #DEBD00 !important; 
-        }
+        /* GLOBAL HOVER */
+        a:hover { color: #DEBD00 !important; }
 
-        /* --- HEADER SECTION (FIXED / STICKY) --- */
+        /* --- HEADER SECTION --- */
         .main-header {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%;
-            height: 120px;
-            padding: 0 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            
-            /* GLASS EFFECT */
-            background-color: rgba(31, 11, 5, 0.9);
-            backdrop-filter: blur(10px);
+            position: fixed; top: 0; left: 0; width: 100%; height: 120px;
+            padding: 0 60px; display: flex; justify-content: space-between; align-items: center; z-index: 1000;
+            background-color: rgba(31, 11, 5, 0.9); backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.3s ease;
         }
 
-        .logo-container {
-            width: 140px;
-            opacity: 1;
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo-img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
+        .logo-container { width: 140px; display: flex; align-items: center; }
+        .logo-img { width: 100%; height: auto; display: block; }
 
-        /* --- HORIZONTAL MENU --- */
-        .nav-menu {
-            display: flex;
-            flex-direction: row;
-            gap: 40px;
-        }
-
+        /* MENU (BOLD) */
+        .nav-menu { display: flex; gap: 40px; }
         .nav-link {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            /* CHANGED TO BOLD */
-            font-weight: 700; 
-            color: #CCCCCC;
-            position: relative;
-            padding-bottom: 5px;
+            font-family: 'Open Sans', sans-serif; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;
+            font-weight: 700; /* BOLD MENU */
+            color: #CCCCCC; position: relative; padding-bottom: 5px;
         }
-
-        /* Yellow Accent Line on Hover */
         .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0; height: 2px; /* Made slightly thicker for bold text */
-            bottom: 0; left: 0;
-            background-color: #DEBD00;
-            transition: width 0.3s;
+            content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0;
+            background-color: #DEBD00; transition: width 0.3s;
         }
         .nav-link:hover::after { width: 100%; }
 
+        /* --- MAIN CONTENT --- */
+        main { padding: 0 60px; max-width: 1600px; margin: 0 auto; padding-top: 140px; }
 
-        /* --- MAIN CONTENT LAYOUT --- */
-        main {
-            padding: 0 60px;
-            max-width: 1600px;
-            margin: 0 auto;
-            padding-top: 140px;
-        }
-
-        /* --- SECTION 1: HOME --- */
+        /* HOME */
         .section-home {
-            height: calc(100vh - 140px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            text-align: center;
+            height: calc(100vh - 140px); display: flex; align-items: center; justify-content: center;
+            flex-direction: column; text-align: center;
         }
-
         .hero-title {
-            font-family: 'Open Sans', sans-serif;
-            font-weight: 300; 
-            font-size: 6vw;
-            margin: 0;
-            line-height: 1;
-            letter-spacing: -2px;
-            color: #E6E6E6;
-            text-transform: uppercase;
+            font-family: 'Open Sans', sans-serif; font-weight: 300; font-size: 6vw; margin: 0;
+            line-height: 1; letter-spacing: -2px; color: #E6E6E6; text-transform: uppercase;
         }
-
         .hero-sub {
-            margin-top: 30px;
-            font-size: 1.1rem;
-            font-weight: 300;
-            color: #999;
-            max-width: 500px;
-            border-left: 1px solid #DEBD00;
-            padding-left: 20px;
+            margin-top: 30px; font-size: 1.1rem; font-weight: 300; color: #999; max-width: 500px;
+            border-left: 1px solid #DEBD00; padding-left: 20px;
         }
 
-        /* --- SECTION 2: ARTISTS --- */
-        .section-artists {
-            padding: 100px 0;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            scroll-margin-top: 120px;
-        }
-
+        /* ARTISTS */
+        .section-artists { padding: 100px 0; border-top: 1px solid rgba(255,255,255,0.1); scroll-margin-top: 120px; }
         .section-header {
-            font-family: 'Open Sans', sans-serif;
-            font-weight: 300;
-            font-size: 2.5rem;
-            margin-bottom: 60px;
-            color: #DEBD00;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            font-family: 'Open Sans', sans-serif; font-weight: 300; font-size: 2.5rem; margin-bottom: 60px;
+            color: #DEBD00; letter-spacing: 2px; text-transform: uppercase;
         }
-
-        .artists-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 50px;
-        }
-
-        .artist-card {
-            cursor: pointer;
-        }
-
+        .artists-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px; }
+        .artist-card { cursor: pointer; }
         .artist-img-placeholder {
-            width: 100%;
-            aspect-ratio: 3/4;
-            background-color: #2a150e;
-            margin-bottom: 20px;
-            display: flex; align-items: center; justify-content: center;
-            color: #555;
-            transition: transform 0.4s ease, border-color 0.3s;
-            border: 1px solid transparent;
+            width: 100%; aspect-ratio: 3/4; background-color: #2a150e; margin-bottom: 20px;
+            display: flex; align-items: center; justify-content: center; color: #555;
+            transition: transform 0.4s ease, border-color 0.3s; border: 1px solid transparent;
         }
-        
-        .artist-card:hover .artist-img-placeholder {
-            transform: translateY(-10px);
-            background-color: #381e15;
-            border-color: #DEBD00;
-        }
-
+        .artist-card:hover .artist-img-placeholder { transform: translateY(-10px); background-color: #381e15; border-color: #DEBD00; }
         .artist-name {
-            font-family: 'Open Sans', sans-serif;
-            font-weight: 400; 
-            text-transform: uppercase;
-            font-size: 1.2rem;
-            margin: 0;
-            letter-spacing: 1px;
-            transition: color 0.3s;
+            font-family: 'Open Sans', sans-serif; font-weight: 400; text-transform: uppercase;
+            font-size: 1.2rem; margin: 0; letter-spacing: 1px; transition: color 0.3s;
         }
-        
         .artist-card:hover .artist-name { color: #DEBD00; }
+        .artist-role { font-size: 0.9rem; color: #888; margin-top: 5px; font-weight: 300; }
 
-        .artist-role {
-            font-size: 0.9rem;
-            color: #888;
-            margin-top: 5px;
-            font-weight: 300;
-        }
-
-        /* --- SECTION 3: WORKS --- */
-        .section-works {
-            padding: 100px 0;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            scroll-margin-top: 120px;
-        }
-
-        .works-list {
-            display: flex;
-            flex-direction: column;
-            gap: 120px;
-        }
-
+        /* WORKS */
+        .section-works { padding: 100px 0; border-top: 1px solid rgba(255,255,255,0.1); scroll-margin-top: 120px; }
+        .works-list { display: flex; flex-direction: column; gap: 120px; }
+        
+        /* WORK ITEM (Grid Layout) */
         .work-item {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 60px;
-            align-items: start;
+            display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: start;
+            cursor: pointer; /* Clickable cursor */
         }
-
+        /* Alternate Layout */
         .work-item:nth-child(even) { direction: rtl; }
         .work-item:nth-child(even) .work-info { direction: ltr; }
 
         .work-img {
-            width: 100%;
-            height: 500px;
-            background-color: #2a150e;
-            object-fit: cover;
-            filter: grayscale(20%);
-            transition: filter 0.3s;
+            width: 100%; height: 500px; background-color: #2a150e; object-fit: cover;
+            filter: grayscale(20%); transition: filter 0.3s;
         }
-        
         .work-item:hover .work-img { filter: grayscale(0%); }
-
         .work-info { padding-top: 20px; }
-
         .work-title {
-            font-family: 'Open Sans', sans-serif;
-            font-weight: 300;
-            text-transform: uppercase;
-            font-size: 2.5rem;
-            margin: 0 0 15px 0;
-            line-height: 1;
-            color: #E6E6E6;
-            transition: color 0.3s;
+            font-family: 'Open Sans', sans-serif; font-weight: 300; text-transform: uppercase;
+            font-size: 2.5rem; margin: 0 0 15px 0; line-height: 1; color: #E6E6E6; transition: color 0.3s;
         }
-        
         .work-item:hover .work-title { color: #DEBD00; }
+        .work-desc { font-weight: 300; color: #CCC; line-height: 1.8; font-size: 1rem; }
 
-        .work-desc {
-            font-weight: 300;
-            color: #CCC;
-            line-height: 1.8;
-            font-size: 1rem;
-        }
-
-        /* --- SECTION 4: CONTACT --- */
-        .section-contact {
-            padding: 100px 0 50px 0;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            scroll-margin-top: 120px;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-        }
-
+        /* CONTACT */
+        .section-contact { padding: 100px 0 50px 0; border-top: 1px solid rgba(255,255,255,0.1); scroll-margin-top: 120px; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
         .contact-big {
-            font-family: 'Open Sans', sans-serif;
-            font-weight: 300;
-            text-transform: uppercase;
-            font-size: 5rem;
-            line-height: 1;
-            color: #E6E6E6;
-            margin: 0;
-            letter-spacing: -2px;
+            font-family: 'Open Sans', sans-serif; font-weight: 300; text-transform: uppercase;
+            font-size: 5rem; line-height: 1; color: #E6E6E6; margin: 0; letter-spacing: -2px;
         }
-
-        /* SOCIAL LINKS STYLING */
         .social-link {
-            display: inline-block;
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            font-weight: 300;
-            color: #CCCCCC;
-            border: none;
-            transition: all 0.3s ease;
+            display: inline-block; font-size: 1.2rem; margin-bottom: 15px; font-weight: 300;
+            color: #CCCCCC; border: none; transition: all 0.3s ease;
         }
-        
-        .social-link:hover {
-            color: #DEBD00 !important;
-            padding-left: 10px;
-            border: none;
-        }
-        
-        .footer-copy {
-            margin-top: 50px;
-            font-size: 0.8rem;
-            color: #666;
-            border-top: 1px solid #333;
-            padding-top: 20px;
-        }
+        .social-link:hover { color: #DEBD00 !important; padding-left: 10px; }
+        .footer-copy { margin-top: 50px; font-size: 0.8rem; color: #666; border-top: 1px solid #333; padding-top: 20px; }
 
-        /* --- MOBILE RESPONSIVE --- */
+        /* MOBILE */
         @media (max-width: 768px) {
-            .main-header { 
-                padding: 15px 20px; 
-                height: auto; 
-                flex-direction: column; 
-                gap: 15px; 
-                background-color: #1f0b05;
-            }
-            
+            .main-header { padding: 15px 20px; height: auto; flex-direction: column; gap: 15px; background-color: #1f0b05; }
             .nav-menu { gap: 20px; font-size: 0.8rem; flex-wrap: wrap; justify-content: center;}
-            
             main { padding: 0 20px; padding-top: 160px; }
-            
             .hero-title { font-size: 15vw; }
             .artists-grid { grid-template-columns: 1fr; }
-            
             .work-item { grid-template-columns: 1fr; gap: 30px; }
             .work-item:nth-child(even) { direction: ltr; }
             .work-img { height: 300px; }
-            
             .contact-grid { grid-template-columns: 1fr; }
             .contact-big { font-size: 3.5rem; }
         }
@@ -363,13 +181,11 @@
                     <h3 class="artist-name">NAME SURNAME</h3>
                     <p class="artist-role">Visual Artist</p>
                 </div>
-                
                 <div class="artist-card">
                     <div class="artist-img-placeholder">PHOTO</div>
                     <h3 class="artist-name">NAME SURNAME</h3>
                     <p class="artist-role">Filmmaker</p>
                 </div>
-
                 <div class="artist-card">
                     <div class="artist-img-placeholder">PHOTO</div>
                     <h3 class="artist-name">NAME SURNAME</h3>
@@ -382,7 +198,8 @@
             <h2 class="section-header">SELECTED WORKS</h2>
 
             <div class="works-list">
-                <div class="work-item">
+                
+                <a href="project-sample.html" class="work-item">
                     <div class="work-img"></div>
                     <div class="work-info">
                         <h3 class="work-title">LOST FREQUENCY</h3>
@@ -390,10 +207,10 @@
                         <p class="work-desc">
                             An exploration of the unseen noise in the urban landscape. 
                             Recorded over 40 days in abandoned industrial zones. 
-                            The piece questions the permanence of auditory memory.
+                            (Click to view details)
                         </p>
                     </div>
-                </div>
+                </a>
 
                 <div class="work-item">
                     <div class="work-img"></div> 
