@@ -1,150 +1,276 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="tr">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.3">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARDIYE | Sanat İnisiyatifi</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- TEMEL AYARLAR (RESET) --- */
+        * {
+            box-sizing: border-box;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #452200; /* KAHVE ZEMİN */
+            color: #F8F4E3; /* Kırık Beyaz Yazılar */
+            font-family: 'Space Mono', monospace;
+            overflow-y: hidden; /* Dikey kaydırmayı kapat */
+        }
+
+        /* --- YATAY AKIŞ KUTUSU (MAIN WRAPPER) --- */
+        .horizontal-scroll-wrapper {
+            display: flex;
+            flex-direction: row; /* Yan yana diz */
+            width: fit-content; /* İçerik kadar genişle */
+            height: 100vh;
+            overflow-x: auto; /* Yatay kaydırmaya izin ver */
+            scroll-behavior: smooth;
+        }
+
+        /* --- HER BÖLÜM (SECTION) İÇİN ORTAK AYARLAR --- */
+        section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 5vw;
+            border-right: 1px solid rgba(222, 189, 0, 0.1); /* Çok silik hardal çizgi */
+            position: relative;
+            min-width: 100vw; /* Her bölüm en az bir ekran genişliğinde */
+        }
+
+        /* --- BÖLÜM 1: GİRİŞ (INTRO) --- */
+        .intro-section {
+            min-width: 100vw;
+            align-items: flex-start;
+        }
+
+        h1.monolith-title {
+            font-family: 'Anton', sans-serif;
+            font-size: 25vh; /* Ekran yüksekliğinin %25'i kadar devasa */
+            color: #DEBD00; /* HARDAL RENGİ */
+            margin: 0;
+            line-height: 0.8;
+            letter-spacing: -5px;
+            text-transform: uppercase;
+        }
+
+        .manifesto-box {
+            margin-top: 50px;
+            border-left: 4px solid #DEBD00;
+            padding-left: 20px;
+            max-width: 500px;
+        }
+
+        .manifesto-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            opacity: 0.8;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            color: #DEBD00;
+            animation: blink 2s infinite;
+        }
+
+        /* --- BÖLÜM 2: ARŞİV (PROJELER) --- */
+        .archive-section {
+            min-width: 150vw; /* Bu bölüm daha geniş olsun, projeler sığsın */
+            flex-direction: row; /* Projeleri yan yana diz */
+            align-items: center;
+            gap: 100px; /* Projeler arası boşluk */
+            background-image: radial-gradient(#2e1500 10%, transparent 10%); /* Hafif doku */
+            background-size: 20px 20px;
+        }
+
+        .project-card {
+            position: relative;
+            width: 400px;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: scale(1.05); /* Üzerine gelince büyüsün */
+            z-index: 10;
+        }
+
+        /* Proje Görseli Yerine Geçecek Gri Kutu (Resim ekleyince burayı sileceğiz) */
+        .placeholder-img {
+            width: 100%;
+            height: 300px;
+            background-color: #2a1500;
+            border: 2px solid #DEBD00;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #DEBD00;
+            font-size: 0.8rem;
+        }
+
+        .project-info {
+            background-color: #452200;
+            padding: 15px;
+            border: 1px solid #DEBD00;
+            margin-top: -20px; /* Görselin üzerine binsin */
+            margin-left: 20px;
+            position: relative;
+            width: 90%;
+        }
+
+        .project-title {
+            color: #DEBD00;
+            font-family: 'Anton', sans-serif;
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        /* --- BÖLÜM 3: KÜNYE (CONTACT) --- */
+        .contact-section {
+            min-width: 100vw;
+            background-color: #0f0500; /* Biraz daha koyu bir kapanış */
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            font-size: 1.5rem;
+        }
+
+        .label {
+            color: #DEBD00;
+            display: block;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            opacity: 0.6;
+        }
+
+        a.contact-link {
+            color: #F8F4E3;
+            text-decoration: none;
+            border-bottom: 1px solid #DEBD00;
+            transition: color 0.3s;
+        }
+
+        a.contact-link:hover {
+            color: #DEBD00;
+            background-color: rgba(222, 189, 0, 0.1);
+        }
+
+        /* --- MOBİL UYUM (TELEFONLAR İÇİN) --- */
+        @media (max-width: 768px) {
+            .horizontal-scroll-wrapper {
+                flex-direction: column; /* Mobilde dikey aksın */
+                width: 100%;
+                height: auto;
+                overflow-x: hidden;
+                overflow-y: auto;
+            }
+            body { overflow-y: auto; }
+            section { min-width: 100%; height: auto; min-height: 100vh; border-right: none; border-bottom: 1px solid #5c3000; }
+            h1.monolith-title { font-size: 15vh; }
+            .archive-section { flex-direction: column; }
+            .project-card { width: 100%; }
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+
+        /* --- ANİMASYONLAR --- */
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="tr"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;ARDIYE | Sanat İnisiyatifi&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* TEMEL AYARLAR */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>body, html {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>overflow-y: hidden; /* Dikey scroll kapalı */</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Courier New', Courier, monospace; /* Daktilo fontu */</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: #452200; /* KAHVERENGİ ZEMİN */</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #F8F4E3; /* Kırık Beyaz Yazılar */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* YATAY AKIŞ KUTUSU */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.container {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>flex-direction: row; /* Yan yana diz */</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 300vw; /* 3 Ekran genişliğinde */</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 100vh;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>overflow-x: scroll; /* Yatay scroll açık */</p>
-<p class="p1"><span class="Apple-converted-space">            </span>scroll-behavior: smooth;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* GENEL BÖLÜM AYARLARI */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>section {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 100vw; /* Her bölüm tam ekran */</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 100vh;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>flex-shrink: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>flex-direction: column;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 50px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-sizing: border-box;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-right: 1px solid #5c3000; /* İnce ayırıcı çizgi */</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* 1. BÖLÜM: GİRİŞ */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>h1 {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 15vw; /* Devasa Başlık */</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>line-height: 0.8;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #DEBD00; /* HARDAL RENGİ */</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Arial Black', sans-serif; /* Blok Font */</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-transform: uppercase;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.manifesto {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>bottom: 50px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>left: 50px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 400px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-left: 2px solid #DEBD00;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding-left: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* 2. BÖLÜM: ARŞİV (PROJELER) */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.project-grid {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.project-card {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #2a1500;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 400px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 500px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid #DEBD00; /* Hardal Çerçeve */</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* 3. BÖLÜM: KÜNYE */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.contact-list {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>list-style: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 0;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.contact-list li {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.highlight { color: #DEBD00; }</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>a { color: #DEBD00; text-decoration: none; border-bottom: 1px solid #DEBD00;}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="container"&gt;</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="intro"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1&gt;ARDIYE&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="manifesto"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;/Sanat İnisiyatifi.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;/Depolanmış fikirler, ham üretimler.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;/İzmir.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;br&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p style="opacity:0.5"&gt;----&gt; (Kaydır)&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="projects"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 style="color:#DEBD00; font-size:3rem;"&gt;ARŞİV_&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="project-grid"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="project-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;[BURAYA GÖRSEL GELECEK]&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="project-card" style="margin-top:100px;"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;[PROJE 2]&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="contact"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 style="color:#DEBD00; font-size:3rem;"&gt;TEMAS_&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;ul class="contact-list"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;li&gt;&lt;span class="highlight"&gt;GENEL:&lt;/span&gt; info@ardiye.art&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;li&gt;&lt;span class="highlight"&gt;BASIN:&lt;/span&gt; press@ardiye.art&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;br&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;li&gt;&lt;a href="#"&gt;INSTAGRAM&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;li&gt;&lt;a href="#"&gt;VIMEO&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+
+    <div class="horizontal-scroll-wrapper">
+        
+        <section class="intro-section">
+            <h1 class="monolith-title">ARDIYE</h1>
+            <h1 class="monolith-title" style="color:transparent; -webkit-text-stroke: 2px #DEBD00; margin-top:-50px; opacity:0.3;">ARDIYE</h1>
+            
+            <div class="manifesto-box">
+                <p class="manifesto-text">
+                    / Bir sanat inisiyatifi.<br>
+                    / Depolanmış fikirler, ham üretimler.<br>
+                    / İzmir.
+                </p>
+            </div>
+
+            <div class="scroll-hint">
+                ----> KAYDIR
+            </div>
+        </section>
+
+        <section class="archive-section">
+            
+            <div class="project-card">
+                <div class="placeholder-img">
+                    [GÖRSEL: KAOTİK ŞEHİR - SEPYA]
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">KAYIP FREKANS</h3>
+                    <p>Video Art / 2024</p>
+                </div>
+            </div>
+
+            <div class="project-card" style="margin-top: 150px;"> <div class="placeholder-img">
+                    [GÖRSEL: PORTRE - GRENLİ]
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">YÜZEY</h3>
+                    <p>Fotoğraf Serisi / 2025</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="placeholder-img">
+                    [GÖRSEL: SOYUT - GLITCH]
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">DÖNGÜ</h3>
+                    <p>Kısa Film / Post-Prod</p>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="contact-section">
+            <h1 class="monolith-title" style="font-size: 10vh; margin-bottom:50px;">TEMAS</h1>
+            
+            <div class="contact-grid">
+                <div>
+                    <span class="label">GENEL İLETİŞİM</span>
+                    <a href="mailto:info@ardiye.art" class="contact-link">info@ardiye.art</a>
+                </div>
+                <div>
+                    <span class="label">KURUCULAR</span>
+                    <p>İsim Soyisim (Sanatçı)</p>
+                    <p>İsim Soyisim (Co-Founder)</p>
+                </div>
+                <div>
+                    <span class="label">SOSYAL</span>
+                    <a href="#" class="contact-link">INSTAGRAM -></a><br><br>
+                    <a href="#" class="contact-link">VIMEO -></a>
+                </div>
+                <div style="align-self: end;">
+                    <p style="font-size: 0.8rem; opacity: 0.5;">© 2026 ARDIYE.ART<br>İZMİR</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
 </body>
 </html>
