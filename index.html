@@ -125,44 +125,34 @@
         .work-desc { font-size: 1rem; color: var(--text-muted); max-width: 400px; }
         .work-item:nth-child(even) .work-desc { margin-left: auto; }
 
-        /* --- 9. CONTACT & FORM --- */
+        /* --- 9. CONTACT (CLEAN & MINIMAL) --- */
         .section-contact { min-height: 60vh; display: flex; flex-direction: column; justify-content: space-between; }
-        .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
-
-        /* Left Side */
-        .contact-info { display: flex; flex-direction: column; gap: 40px; }
+        
+        /* Layout: Just Left Info, no Grid */
+        .contact-content { display: flex; flex-direction: column; gap: 50px; align-items: flex-start; max-width: 600px; }
         
         .mail-btn {
-            font-size: 2rem; line-height: 1; font-weight: 300; color: var(--text-main);
-            display: inline-block; letter-spacing: 1px; width: fit-content;
-            border-bottom: 1px solid transparent; 
+            display: inline-block;
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 20px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
         }
-        .mail-btn:hover { color: var(--accent); padding-left: 10px; }
-
-        .footer-links { display: flex; flex-direction: column; gap: 15px; }
-        .footer-link { font-size: 1rem; color: var(--text-muted); width: fit-content; transition: color 0.3s;}
-        .footer-link:hover { color: var(--accent); padding-left: 10px; }
-
-        /* Right Side: Form */
-        .contact-form { display: flex; flex-direction: column; gap: 30px; }
-        .form-group { position: relative; }
-        .form-input {
-            width: 100%; background: transparent; border: none;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-            padding: 15px 0; color: #FFF; font-family: var(--font-body);
-            font-size: 1rem; transition: all 0.3s;
+        .mail-btn:hover { 
+            border-color: var(--accent);
+            color: var(--accent);
+            background: rgba(222, 189, 0, 0.05);
+            box-shadow: 0 0 20px rgba(222, 189, 0, 0.1);
+            padding-left: 50px; /* Slight movement */
         }
-        .form-input::placeholder { color: rgba(255,255,255,0.3); }
-        .form-input:focus { outline: none; border-bottom-color: var(--accent); }
-        textarea.form-input { resize: vertical; min-height: 100px; }
 
-        .form-btn {
-            background: transparent; border: 1px solid var(--text-muted);
-            color: var(--text-main); padding: 15px 40px; width: fit-content;
-            cursor: pointer; text-transform: uppercase; letter-spacing: 2px;
-            font-size: 0.8rem; font-weight: 700; transition: all 0.3s; margin-top: 10px;
-        }
-        .form-btn:hover { border-color: var(--accent); color: var(--accent); background-color: rgba(222, 189, 0, 0.05); }
+        .footer-links { display: flex; gap: 30px; margin-top: 20px; }
+        .footer-link { font-size: 1rem; color: var(--text-muted); transition: color 0.3s;}
+        .footer-link:hover { color: var(--accent); }
 
         .copyright {
             margin-top: 80px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05);
@@ -182,8 +172,7 @@
             .work-item:nth-child(even) .work-info { text-align: left; }
             .work-img-container { height: 350px; }
             .work-title { font-size: 2.5rem; }
-            .contact-layout { grid-template-columns: 1fr; gap: 60px; }
-            .mail-btn { font-size: 1.5rem; } 
+            .mail-btn { font-size: 1rem; padding: 15px 30px; } 
         }
     </style>
 </head>
@@ -221,7 +210,7 @@
                     Ardiye is not a gallery. We are a storage unit for the incomplete. We collect the raw, the unpolished, and the forgotten.
                 </div>
                 <div class="narrative-text">
-                    <p>Located in the industrial heart of İzmir, Ardiye functions as an archive for projects that were never meant to end. We provide a space where the process is valued over the result.</p>
+                    <p>Ardiye functions as an archive for projects that were never meant to end. We provide a space where the process is valued over the result.</p>
                     <p>Our residents do not aim for perfection; they aim for documentation. Here, every scratch, glitch, and noise is part of the inventory.</p>
                 </div>
             </div>
@@ -293,45 +282,23 @@
                 <h2 class="section-title">Contact</h2>
             </div>
             
-            <div class="contact-layout">
-                <div class="contact-info">
-                    <a href="mailto:info@ardiye.art" class="mail-btn uppercase">Email Us -></a>
-                    
-                    <p style="color:var(--text-muted); font-size: 0.95rem; line-height: 1.8;">
-                        Ardiye Art Initiative<br>
-                        Alsancak, Izmir TR<br><br>
-                        Open for collaborations and residency applications.
-                    </p>
+            <div class="contact-content">
+                <a href="mailto:info@ardiye.art" class="mail-btn">Email Us -></a>
+                
+                <p style="color:var(--text-muted); font-size: 0.95rem; line-height: 1.8;">
+                    Ardiye Art Initiative<br>
+                    Open for collaborations and residency applications.
+                </p>
 
-                    <div class="footer-links">
-                        <a href="#" class="footer-link uppercase">Instagram</a>
-                        <a href="#" class="footer-link uppercase">Vimeo</a>
-                    </div>
-                </div>
-
-                <div class="contact-form-wrapper">
-                    <form action="https://formspree.io/f/SENIN_FORM_ID_BURAYA" method="POST" class="contact-form">
-                        
-                        <div class="form-group">
-                            <input type="text" name="name" class="form-input" placeholder="Name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <input type="email" name="email" class="form-input" placeholder="Email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <textarea name="message" class="form-input" placeholder="Message" required></textarea>
-                        </div>
-
-                        <button type="submit" class="form-btn">Send Message</button>
-                    </form>
+                <div class="footer-links">
+                    <a href="#" class="footer-link uppercase">Instagram</a>
+                    <a href="#" class="footer-link uppercase">Vimeo</a>
                 </div>
             </div>
 
             <div class="copyright uppercase">
                 <span>&copy; 2026 Ardiye Art Initiative</span>
-                <span>Izmir, TR</span>
+                <span>All Rights Reserved</span>
             </div>
         </section>
     </main>
