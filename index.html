@@ -82,23 +82,14 @@
         }
         .hero-title .highlight { font-weight: 600; color: #FFF; display: block; }
         
-        /* --- 6. NARRATIVE SECTION (NEW) --- */
-        .narrative-content {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
-        }
-        .narrative-lead {
-            font-size: 1.5rem; color: #FFF; line-height: 1.5; font-weight: 400;
-        }
-        .narrative-text {
-            font-size: 1rem; color: var(--text-muted); font-weight: 300;
-        }
+        /* --- 6. NARRATIVE --- */
+        .narrative-content { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+        .narrative-lead { font-size: 1.5rem; color: #FFF; line-height: 1.5; font-weight: 400; }
+        .narrative-text { font-size: 1rem; color: var(--text-muted); font-weight: 300; }
         .narrative-text p { margin-bottom: 20px; }
 
-        /* --- 7. ARTISTS GRID (UPDATED to 2 COLUMNS) --- */
-        .artists-grid { 
-            display: grid; grid-template-columns: repeat(2, 1fr); /* 2 Columns */
-            gap: 6rem; /* More space between 2 items */
-        }
+        /* --- 7. ARTISTS GRID (2 COL) --- */
+        .artists-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6rem; }
         .artist-card { group: hover; cursor: pointer; }
         .artist-img-box {
             width: 100%; aspect-ratio: 4/5; background-color: var(--bg-card);
@@ -134,24 +125,47 @@
         .work-desc { font-size: 1rem; color: var(--text-muted); max-width: 400px; }
         .work-item:nth-child(even) .work-desc { margin-left: auto; }
 
-        /* --- 9. CONTACT & FOOTER (REVISED) --- */
+        /* --- 9. CONTACT & FORM --- */
         .section-contact { min-height: 60vh; display: flex; flex-direction: column; justify-content: space-between; }
-        .contact-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 60px; }
-        
-        /* UPDATED MAIL SIZE */
-        .big-link {
-            font-size: 2rem; /* Reduced Size */
-            line-height: 1; font-weight: 300; color: var(--text-main);
-            display: block; margin-bottom: 20px; letter-spacing: 1px;
-        }
-        .big-link:hover { color: var(--accent); }
+        .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
 
-        .footer-links { display: flex; flex-direction: column; gap: 15px; margin-top: 10px; }
+        /* Left Side */
+        .contact-info { display: flex; flex-direction: column; gap: 40px; }
+        
+        .mail-btn {
+            font-size: 2rem; line-height: 1; font-weight: 300; color: var(--text-main);
+            display: inline-block; letter-spacing: 1px; width: fit-content;
+            border-bottom: 1px solid transparent; 
+        }
+        .mail-btn:hover { color: var(--accent); padding-left: 10px; }
+
+        .footer-links { display: flex; flex-direction: column; gap: 15px; }
         .footer-link { font-size: 1rem; color: var(--text-muted); width: fit-content; transition: color 0.3s;}
         .footer-link:hover { color: var(--accent); padding-left: 10px; }
 
+        /* Right Side: Form */
+        .contact-form { display: flex; flex-direction: column; gap: 30px; }
+        .form-group { position: relative; }
+        .form-input {
+            width: 100%; background: transparent; border: none;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 15px 0; color: #FFF; font-family: var(--font-body);
+            font-size: 1rem; transition: all 0.3s;
+        }
+        .form-input::placeholder { color: rgba(255,255,255,0.3); }
+        .form-input:focus { outline: none; border-bottom-color: var(--accent); }
+        textarea.form-input { resize: vertical; min-height: 100px; }
+
+        .form-btn {
+            background: transparent; border: 1px solid var(--text-muted);
+            color: var(--text-main); padding: 15px 40px; width: fit-content;
+            cursor: pointer; text-transform: uppercase; letter-spacing: 2px;
+            font-size: 0.8rem; font-weight: 700; transition: all 0.3s; margin-top: 10px;
+        }
+        .form-btn:hover { border-color: var(--accent); color: var(--accent); background-color: rgba(222, 189, 0, 0.05); }
+
         .copyright {
-            margin-top: auto; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05);
+            margin-top: 80px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05);
             display: flex; justify-content: space-between; font-size: 0.8rem; color: #555;
         }
 
@@ -168,8 +182,8 @@
             .work-item:nth-child(even) .work-info { text-align: left; }
             .work-img-container { height: 350px; }
             .work-title { font-size: 2.5rem; }
-            .contact-grid { grid-template-columns: 1fr; }
-            .big-link { font-size: 1.5rem; } 
+            .contact-layout { grid-template-columns: 1fr; gap: 60px; }
+            .mail-btn { font-size: 1.5rem; } 
         }
     </style>
 </head>
@@ -279,17 +293,39 @@
                 <h2 class="section-title">Contact</h2>
             </div>
             
-            <div class="contact-grid">
-                <div>
-                    <a href="mailto:info@ardiye.art" class="big-link uppercase">info@ardiye.art</a>
-                    <p style="color:#666; max-width:400px; margin-top:30px; font-size: 0.9rem;">
-                        Open for collaborations, residency applications and press inquiries.
+            <div class="contact-layout">
+                <div class="contact-info">
+                    <a href="mailto:info@ardiye.art" class="mail-btn uppercase">Email Us -></a>
+                    
+                    <p style="color:var(--text-muted); font-size: 0.95rem; line-height: 1.8;">
+                        Ardiye Art Initiative<br>
+                        Alsancak, Izmir TR<br><br>
+                        Open for collaborations and residency applications.
                     </p>
+
+                    <div class="footer-links">
+                        <a href="#" class="footer-link uppercase">Instagram</a>
+                        <a href="#" class="footer-link uppercase">Vimeo</a>
+                    </div>
                 </div>
-                
-                <div class="footer-links">
-                    <a href="#" class="footer-link uppercase">Instagram</a>
-                    <a href="#" class="footer-link uppercase">Vimeo</a>
+
+                <div class="contact-form-wrapper">
+                    <form action="https://formspree.io/f/SENIN_FORM_ID_BURAYA" method="POST" class="contact-form">
+                        
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-input" placeholder="Name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" name="email" class="form-input" placeholder="Email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea name="message" class="form-input" placeholder="Message" required></textarea>
+                        </div>
+
+                        <button type="submit" class="form-btn">Send Message</button>
+                    </form>
                 </div>
             </div>
 
