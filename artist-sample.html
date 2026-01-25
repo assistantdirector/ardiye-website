@@ -10,91 +10,96 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* --- GLOBAL STYLES (Aynı) --- */
-        * { box-sizing: border-box; }
+        /* --- THEME CONFIG --- */
+        :root {
+            --bg-color: #1f0b05; --bg-card: #261008; --text-main: #F0F0F0;
+            --text-muted: #999999; --accent: #DEBD00; --pad-side: 60px;
+            --font-head: 'Anton', sans-serif; --font-body: 'Open Sans', sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
         body {
-            margin: 0; padding: 0;
-            background-color: #1f0b05; /* Espresso Brown */
-            color: #F0F0F0;
-            font-family: 'Open Sans', sans-serif;
-            font-weight: 300;
-            line-height: 1.6;
+            background-color: var(--bg-color); color: var(--text-main);
+            font-family: var(--font-body); font-weight: 300; line-height: 1.7;
         }
         a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
-        a:hover { color: #DEBD00 !important; }
 
         /* HEADER */
         .main-header {
-            position: fixed; top: 0; left: 0; width: 100%; height: 120px;
-            padding: 0 60px; display: flex; justify-content: space-between; align-items: center; z-index: 1000;
-            background-color: rgba(31, 11, 5, 0.9); backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: fixed; top: 0; left: 0; width: 100%; height: 100px;
+            padding: 0 var(--pad-side); display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; background: rgba(31, 11, 5, 0.85); backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
         }
-        .logo-container { width: 140px; display: block; }
-        .logo-img { width: 100%; height: auto; display: block; }
-        .nav-menu { display: flex; gap: 40px; }
-        .nav-link { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: #CCCCCC; }
-
-        /* --- ARTIST PAGE SPECIFIC --- */
-        main { padding: 140px 60px 60px 60px; max-width: 1200px; margin: 0 auto; }
-
-        /* Üst Bölüm: İsim ve Rol */
-        .artist-header {
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 40px; margin-bottom: 60px;
+        .logo-container img { width: 120px; display: block; opacity: 0.9; }
+        .nav-menu { display: flex; gap: 50px; }
+        .nav-link {
+            font-family: var(--font-body); font-size: 0.85rem; font-weight: 700; color: #BBBBBB;
+            position: relative; padding: 5px 0; text-transform: uppercase; letter-spacing: 2px;
         }
+        .nav-link::after {
+            content: ''; position: absolute; width: 0; height: 1px; bottom: 0; right: 0; 
+            background-color: var(--accent); transition: width 0.4s;
+        }
+        .nav-link:hover { color: var(--accent); }
+        .nav-link:hover::after { width: 100%; left: 0; right: auto; }
+
+        /* --- ARTIST SPECIFIC --- */
+        main { padding: 160px var(--pad-side) 80px var(--pad-side); max-width: 1400px; margin: 0 auto; }
+
+        .artist-header { border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 40px; margin-bottom: 60px; }
         .artist-name {
-            font-family: 'Open Sans', sans-serif; font-weight: 300; text-transform: uppercase;
-            font-size: 4rem; margin: 0; line-height: 1; color: #E6E6E6; letter-spacing: -1px;
+            font-family: var(--font-body); font-weight: 300; text-transform: uppercase;
+            font-size: 4rem; margin: 0; line-height: 1; letter-spacing: -1px; color: #E6E6E6;
         }
-        .artist-role {
-            margin-top: 15px; font-size: 1.2rem; color: #DEBD00; font-weight: 600; letter-spacing: 1px;
-        }
+        .artist-role { margin-top: 15px; font-size: 1.1rem; color: var(--accent); letter-spacing: 1px; }
 
-        /* Orta Bölüm: Fotoğraf ve Biyografi */
-        .artist-profile {
-            display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; align-items: start;
-        }
-        
+        .artist-profile { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start; }
         .artist-portrait {
-            width: 100%; aspect-ratio: 3/4; background-color: #2a150e;
-            object-fit: cover; border: 1px solid rgba(255,255,255,0.1);
+            width: 100%; aspect-ratio: 3/4; background-color: var(--bg-card);
+            object-fit: cover; filter: grayscale(100%); transition: filter 0.5s;
         }
+        .artist-portrait:hover { filter: grayscale(0%); }
 
-        .artist-bio { font-size: 1.1rem; color: #CCC; }
+        .artist-bio { font-size: 1.1rem; color: #CCC; font-weight: 300; }
         .artist-bio p { margin-bottom: 25px; }
 
-        .artist-links { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
-        .social-link { font-size: 0.9rem; margin-right: 20px; font-weight: 600; }
+        .artist-links { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); }
+        .social-link { font-size: 0.9rem; margin-right: 30px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;}
+        .social-link:hover { color: var(--accent); }
 
-        /* Alt Bölüm: Sanatçının İşleri */
-        .artist-works { margin-top: 100px; }
-        .small-header { font-size: 1.5rem; color: #DEBD00; margin-bottom: 30px; font-weight: 300; }
+        /* Mini Works List */
+        .artist-works { margin-top: 120px; }
+        .small-header { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px; }
         
-        .work-list-mini { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .mini-card { background-color: rgba(255,255,255,0.03); padding: 20px; transition: background 0.3s; }
-        .mini-card:hover { background-color: rgba(255,255,255,0.08); }
-        .mini-title { font-weight: 700; display: block; margin-bottom: 5px; }
-        .mini-type { font-size: 0.8rem; opacity: 0.6; }
+        .work-list-mini { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .mini-card { padding: 20px 0; border-top: 1px solid rgba(255,255,255,0.1); transition: border-color 0.3s; }
+        .mini-card:hover { border-top-color: var(--accent); }
+        
+        .mini-title { font-weight: 400; display: block; margin-bottom: 5px; font-size: 1.2rem; color: #EEE; }
+        .mini-card:hover .mini-title { color: var(--accent); }
+        .mini-type { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 
-        /* FOOTER NAV */
-        .footer-nav { margin-top: 80px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
-        .back-link { font-size: 1.2rem; }
+        /* Footer Nav */
+        .footer-nav { margin-top: 100px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05); }
+        .back-link { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); }
+        .back-link:hover { color: var(--accent); }
 
         @media (max-width: 768px) {
-            .main-header { padding: 20px; height: auto; flex-direction: column; }
-            main { padding: 180px 20px 40px 20px; }
+            :root { --pad-side: 20px; }
+            .main-header { height: 80px; padding: 0 20px; }
+            .nav-menu { display: none; }
             .artist-name { font-size: 3rem; }
             .artist-profile { grid-template-columns: 1fr; gap: 40px; }
-            .work-list-mini { grid-template-columns: 1fr; }
+            .work-list-mini { grid-template-columns: 1fr; gap: 20px; }
         }
     </style>
 </head>
 <body>
-
     <header class="main-header">
         <a href="index.html" class="logo-container">
-            <img src="https://placehold.co/400x150/1f0b05/DEBD00?text=ARDIYE" alt="Ardiye Logo" class="logo-img">
+            <img src="https://placehold.co/400x150/1f0b05/DEBD00?text=ARDIYE" alt="Ardiye Logo">
         </a>
         <nav class="nav-menu">
             <a href="index.html" class="nav-link">Home</a>
@@ -106,45 +111,42 @@
 
     <main>
         <div class="artist-header">
-            <h1 class="artist-name">CEMRE YILMAZ</h1>
-            <div class="artist-role">VISUAL ARTIST / FILMMAKER</div>
+            <h1 class="artist-name">Cemre Yılmaz</h1>
+            <div class="artist-role">Visual Artist / Filmmaker</div>
         </div>
 
         <div class="artist-profile">
             <img src="https://placehold.co/600x800/2a150e/555?text=PORTRAIT" alt="Artist Portrait" class="artist-portrait">
-
             <div class="artist-bio">
                 <p>Cemre Yılmaz (b. 1996, İzmir) works with video, sound, and installation to explore the relationship between urban memory and decay.</p>
                 <p>Her works often focus on abandoned spaces, using them as a canvas to question the temporality of human existence. She is a co-founder of Ardiye Initiative.</p>
                 <p>She has exhibited her works in various independent art spaces across Turkey and Europe.</p>
                 
                 <div class="artist-links">
-                    <a href="#" class="social-link">INSTAGRAM -></a>
-                    <a href="#" class="social-link">WEBSITE -></a>
+                    <a href="#" class="social-link">Instagram</a>
+                    <a href="#" class="social-link">Website</a>
                 </div>
             </div>
         </div>
 
         <div class="artist-works">
-            <h3 class="small-header">SELECTED WORKS @ ARDIYE</h3>
+            <h3 class="small-header">Selected Works @ Ardiye</h3>
             <div class="work-list-mini">
                 <a href="project-sample.html" class="mini-card">
-                    <span class="mini-title">LOST FREQUENCY</span>
+                    <span class="mini-title">Lost Frequency</span>
                     <span class="mini-type">Video Art / 2024</span>
                 </a>
                 
                 <div class="mini-card">
-                    <span class="mini-title">UNTITLED NO.4</span>
+                    <span class="mini-title">Untitled No.4</span>
                     <span class="mini-type">Photography / 2023</span>
                 </div>
             </div>
         </div>
 
         <div class="footer-nav">
-            <a href="index.html#artists" class="back-link"><- BACK TO ARTISTS</a>
+            <a href="index.html#artists" class="back-link">← Back to Residents</a>
         </div>
-
     </main>
-
 </body>
 </html>
