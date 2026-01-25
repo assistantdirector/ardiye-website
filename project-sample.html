@@ -10,14 +10,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* --- 1. THEME CONFIG --- */
+        /* --- CONFIG (MATCHING INDEX) --- */
         :root {
             --bg-color: #1f0b05; --bg-card: #261008; --text-main: #F0F0F0;
             --text-muted: #999999; --accent: #DEBD00; --pad-side: 60px;
             --font-head: 'Anton', sans-serif; --font-body: 'Open Sans', sans-serif;
         }
 
-        /* --- 2. BASE --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
         body {
@@ -34,19 +33,14 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
         }
         .logo-container img { width: 120px; display: block; opacity: 0.9; }
-        .nav-menu { display: flex; gap: 50px; }
+        .nav-menu { display: flex; gap: 40px; }
         .nav-link {
             font-family: var(--font-body); font-size: 0.85rem; font-weight: 700; color: #BBBBBB;
             position: relative; padding: 5px 0; text-transform: uppercase; letter-spacing: 2px;
         }
-        .nav-link::after {
-            content: ''; position: absolute; width: 0; height: 1px; bottom: 0; right: 0; 
-            background-color: var(--accent); transition: width 0.4s;
-        }
         .nav-link:hover { color: var(--accent); }
-        .nav-link:hover::after { width: 100%; left: 0; right: auto; }
 
-        /* --- PROJECT SPECIFIC --- */
+        /* PROJECT SPECIFIC */
         main { padding: 160px var(--pad-side) 80px var(--pad-side); max-width: 1400px; margin: 0 auto; }
 
         .project-header { margin-bottom: 60px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 40px; }
@@ -59,18 +53,14 @@
         }
         .meta-item span { color: var(--accent); font-weight: 600; margin-right: 8px; }
 
-        /* MEDIA */
         .project-media {
             width: 100%; height: 60vh; background-color: #0d0402;
             margin-bottom: 80px; display: flex; align-items: center; justify-content: center; overflow: hidden;
         }
         .media-placeholder { color: #444; letter-spacing: 2px; }
 
-        /* CONTENT */
         .project-content { display: grid; grid-template-columns: 1fr 2fr; gap: 80px; }
         .content-text { font-size: 1.1rem; color: #CCC; font-weight: 300; }
-        .content-text p { margin-bottom: 25px; }
-
         .credits-box { padding-right: 20px; }
         .credit-row {
             display: flex; justify-content: space-between; margin-bottom: 15px; 
@@ -78,13 +68,12 @@
         }
         .credit-label { color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-size: 0.75rem; }
 
-        /* FOOTER NAV */
         .project-footer {
             margin-top: 120px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05);
             display: flex; justify-content: space-between;
         }
         .back-link { font-size: 1.2rem; font-weight: 300; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
-        .back-link:hover { color: var(--accent); padding-right: 10px; }
+        .back-link:hover { color: var(--accent); }
 
         @media (max-width: 768px) {
             :root { --pad-side: 20px; }
@@ -92,7 +81,6 @@
             .nav-menu { display: none; }
             .project-title { font-size: 2.5rem; }
             .project-content { grid-template-columns: 1fr; gap: 40px; }
-            .project-meta { flex-wrap: wrap; gap: 20px; }
             .project-media { height: 35vh; }
         }
     </style>
@@ -104,6 +92,7 @@
         </a>
         <nav class="nav-menu">
             <a href="index.html" class="nav-link">Home</a>
+            <a href="index.html#narrative" class="nav-link">Narrative</a>
             <a href="index.html#artists" class="nav-link">Artists</a>
             <a href="index.html#works" class="nav-link">Works</a>
             <a href="index.html#contact" class="nav-link">Contact</a>
@@ -130,10 +119,8 @@
                 <div class="credit-row"><span class="credit-label">Sound</span> <span>Ardiye Team</span></div>
                 <div class="credit-row"><span class="credit-label">Location</span> <span>Old Factory, İzmir</span></div>
             </div>
-
             <div class="content-text">
                 <p>Lost Frequency is an exploration of the unseen noise in the urban landscape. Recorded over 40 days in abandoned industrial zones, the piece questions the permanence of auditory memory.</p>
-                <p>The visual language relies on glitch aesthetics and grainy textures to represent the decay of the physical space. As the viewer moves through the corridors of the factory, the sound becomes a guide, yet an unreliable one.</p>
             </div>
         </div>
 
