@@ -125,44 +125,36 @@
         .work-desc { font-size: 1rem; color: var(--text-muted); max-width: 400px; }
         .work-item:nth-child(even) .work-desc { margin-left: auto; }
 
-        /* --- 9. CONTACT (CENTERED & BOXED) --- */
-        .section-contact { min-height: 50vh; display: flex; flex-direction: column; }
+        /* --- 9. CONTACT (RESTORED LEFT ALIGNED) --- */
+        .section-contact { min-height: 50vh; display: flex; flex-direction: column; justify-content: space-between; }
         
-        .contact-center {
-            flex-grow: 1; /* Fills the space */
-            display: flex; flex-direction: column; 
-            align-items: center; justify-content: center;
-        }
-
-        /* THE EMAIL BOX */
-        .email-box {
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 30px 60px;
+        /* Container for left alignment */
+        .contact-content { display: flex; flex-direction: column; gap: 40px; align-items: flex-start; max-width: 600px; }
+        
+        /* ELEGANT MAIL BUTTON (Previous Design) */
+        .mail-btn {
+            display: inline-block;
+            padding: 10px 0;
             font-size: 1.8rem;
             font-weight: 300;
             color: var(--text-main);
-            letter-spacing: 4px;
+            letter-spacing: 2px;
             text-transform: uppercase;
             transition: all 0.4s ease;
-            position: relative;
         }
-        
-        .email-box:hover {
-            background-color: var(--accent);
-            color: #1f0b05; /* Dark text on hover */
-            border-color: var(--accent);
-            padding: 30px 80px; /* Expands slightly */
+        .mail-btn:hover { 
+            color: var(--accent);
+            padding-left: 15px; /* Slight movement right */
         }
 
+        .footer-links { display: flex; gap: 30px; margin-top: 20px; }
+        .footer-link { font-size: 1rem; color: var(--text-muted); transition: color 0.3s;}
+        .footer-link:hover { color: var(--accent); }
+
         .copyright {
-            margin-top: auto; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05);
-            display: flex; justify-content: space-between; align-items: flex-end;
-            font-size: 0.8rem; color: #555;
+            margin-top: 80px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex; justify-content: space-between; font-size: 0.8rem; color: #555;
         }
-        
-        .footer-socials { display: flex; gap: 20px; }
-        .footer-socials a { color: var(--text-muted); transition: color 0.3s; }
-        .footer-socials a:hover { color: var(--accent); }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
@@ -177,9 +169,8 @@
             .work-item:nth-child(even) .work-info { text-align: left; }
             .work-img-container { height: 350px; }
             .work-title { font-size: 2.5rem; }
-            
-            .email-box { font-size: 1.2rem; padding: 20px 40px; }
-            .copyright { flex-direction: column; gap: 20px; align-items: center; }
+            .mail-btn { font-size: 1.5rem; } 
+            .copyright { flex-direction: column; gap: 10px; align-items: flex-start; }
         }
     </style>
 </head>
@@ -289,18 +280,23 @@
                 <h2 class="section-title">Contact</h2>
             </div>
             
-            <div class="contact-center">
-                <a href="mailto:info@ardiye.art" class="email-box">
-                    Email Us
-                </a>
+            <div class="contact-content">
+                <a href="mailto:info@ardiye.art" class="mail-btn">Email Us -></a>
+                
+                <p style="color:var(--text-muted); font-size: 0.95rem; line-height: 1.8;">
+                    Ardiye Art Initiative<br>
+                    Open for collaborations and residency applications.
+                </p>
+
+                <div class="footer-links">
+                    <a href="#" class="footer-link uppercase">Instagram</a>
+                    <a href="#" class="footer-link uppercase">Vimeo</a>
+                </div>
             </div>
 
             <div class="copyright uppercase">
-                <div class="footer-socials">
-                    <a href="#">Instagram</a>
-                    <a href="#">Vimeo</a>
-                </div>
                 <span>&copy; 2026 Ardiye Art Initiative</span>
+                <span>All Rights Reserved</span>
             </div>
         </section>
     </main>
