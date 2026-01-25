@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
         /* --- GLOBAL SETTINGS --- */
@@ -78,7 +78,8 @@
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            font-weight: 400;
+            /* CHANGED TO BOLD */
+            font-weight: 700; 
             color: #CCCCCC;
             position: relative;
             padding-bottom: 5px;
@@ -88,7 +89,7 @@
         .nav-link::after {
             content: '';
             position: absolute;
-            width: 0; height: 1px;
+            width: 0; height: 2px; /* Made slightly thicker for bold text */
             bottom: 0; left: 0;
             background-color: #DEBD00;
             transition: width 0.3s;
@@ -115,13 +116,12 @@
         }
 
         .hero-title {
-            /* CHANGED TO UNBOLD (Light) */
             font-family: 'Open Sans', sans-serif;
             font-weight: 300; 
             font-size: 6vw;
             margin: 0;
             line-height: 1;
-            letter-spacing: -2px; /* Tighter spacing for elegance */
+            letter-spacing: -2px;
             color: #E6E6E6;
             text-transform: uppercase;
         }
@@ -144,7 +144,6 @@
         }
 
         .section-header {
-            /* CHANGED TO UNBOLD (Light) */
             font-family: 'Open Sans', sans-serif;
             font-weight: 300;
             font-size: 2.5rem;
@@ -183,7 +182,7 @@
 
         .artist-name {
             font-family: 'Open Sans', sans-serif;
-            font-weight: 400; /* Regular weight for names */
+            font-weight: 400; 
             text-transform: uppercase;
             font-size: 1.2rem;
             margin: 0;
@@ -270,7 +269,6 @@
         }
 
         .contact-big {
-            /* CHANGED TO UNBOLD (Light) */
             font-family: 'Open Sans', sans-serif;
             font-weight: 300;
             text-transform: uppercase;
@@ -281,21 +279,21 @@
             letter-spacing: -2px;
         }
 
-        /* SOCIAL LINKS STYLING (UPDATED) */
+        /* SOCIAL LINKS STYLING */
         .social-link {
             display: inline-block;
             font-size: 1.2rem;
             margin-bottom: 15px;
             font-weight: 300;
             color: #CCCCCC;
-            border: none; /* No underline by default */
+            border: none;
             transition: all 0.3s ease;
         }
         
         .social-link:hover {
-            color: #DEBD00 !important; /* Force Yellow */
-            padding-left: 10px; /* Slight movement to right */
-            border: none; /* No underline on hover */
+            color: #DEBD00 !important;
+            padding-left: 10px;
+            border: none;
         }
         
         .footer-copy {
