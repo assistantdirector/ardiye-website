@@ -10,65 +10,51 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* --- 1. CSS VARIABLES (THEME CONFIG) --- */
+        /* --- 1. THEME CONFIG --- */
         :root {
-            /* Renk Paleti */
             --bg-color: #1f0b05;       /* Espresso */
-            --bg-card: #261008;        /* Slightly Lighter Brown */
+            --bg-card: #261008;        /* Card Bg */
             --text-main: #F0F0F0;      /* Off-White */
             --text-muted: #999999;     /* Gray */
             --accent: #DEBD00;         /* Ardiye Gold */
-            
-            /* Spacing Standardı */
-            --pad-section: 120px;
-            --pad-side: 60px;
-            
-            /* Typography */
+            --pad-side: 60px;          /* Side Spacing */
             --font-head: 'Anton', sans-serif;
             --font-body: 'Open Sans', sans-serif;
         }
 
-        /* --- 2. RESET & BASE --- */
+        /* --- 2. BASE --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
-        html { 
-            scroll-behavior: smooth; 
-            font-size: 16px;
-        }
+        html { scroll-behavior: smooth; }
         
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
             font-family: var(--font-body);
             font-weight: 300;
-            line-height: 1.7; /* Okunabilirlik için artırıldı */
-            -webkit-font-smoothing: antialiased; /* Fontları pürüzsüzleştir */
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* CUSTOM SCROLLBAR (Chrome/Safari/Edge) */
+        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-color); }
         ::-webkit-scrollbar-thumb { background: #3d1f00; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-        /* TYPOGRAPHY UTILITIES */
         a { text-decoration: none; color: inherit; transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
-        
         h1, h2, h3 { font-weight: normal; margin: 0; }
-
         .uppercase { text-transform: uppercase; letter-spacing: 2px; }
-        .accent-text { color: var(--accent); }
 
-        /* --- 3. HEADER (REFACTORED) --- */
+        /* --- 3. HEADER --- */
         .main-header {
             position: fixed; top: 0; left: 0; width: 100%; height: 100px;
             padding: 0 var(--pad-side);
             display: flex; justify-content: space-between; align-items: center;
             z-index: 1000;
-            background: rgba(31, 11, 5, 0.85); /* Daha şeffaf */
-            backdrop-filter: blur(20px); /* Daha güçlü blur */
+            background: rgba(31, 11, 5, 0.85); /* Transparent */
+            backdrop-filter: blur(20px); /* Blur Effect */
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-            transition: height 0.3s ease;
         }
 
         .logo-container img { width: 120px; display: block; opacity: 0.9; transition: opacity 0.3s; }
@@ -76,138 +62,93 @@
 
         .nav-menu { display: flex; gap: 50px; }
         .nav-link {
-            font-family: var(--font-body);
-            font-size: 0.85rem; 
-            font-weight: 700; 
-            color: #BBBBBB;
-            position: relative;
-            padding: 5px 0;
+            font-family: var(--font-body); font-size: 0.85rem; 
+            font-weight: 700; /* BOLD MENU */
+            color: #BBBBBB; position: relative; padding: 5px 0;
         }
-
-        /* Animated Underline Effect */
         .nav-link::after {
-            content: ''; position: absolute; width: 0; height: 1px; 
-            bottom: 0; right: 0; 
-            background-color: var(--accent); 
+            content: ''; position: absolute; width: 0; height: 2px; 
+            bottom: 0; right: 0; background-color: var(--accent); 
             transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         .nav-link:hover { color: var(--accent); }
         .nav-link:hover::after { width: 100%; left: 0; right: auto; }
 
-        /* --- 4. LAYOUT & SECTIONS --- */
-        main { 
-            padding: 0 var(--pad-side); 
-            max-width: 1800px; 
-            margin: 0 auto; 
-        }
+        /* --- 4. LAYOUT --- */
+        main { padding: 0 var(--pad-side); max-width: 1800px; margin: 0 auto; }
 
-        section {
-            padding: var(--pad-section) 0;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
+        section { padding: 120px 0; border-top: 1px solid rgba(255,255,255,0.05); }
         section:first-of-type { border-top: none; padding-top: 0; }
 
-        /* Section Header Style */
-        .section-header-wrapper {
-            margin-bottom: 80px;
-            display: flex; align-items: baseline; gap: 20px;
-        }
-        .section-number {
-            font-family: var(--font-head); color: var(--accent); font-size: 1.5rem; opacity: 0.5;
-        }
-        .section-title {
-            font-family: var(--font-body); font-weight: 300; font-size: 2.5rem; 
-            letter-spacing: 4px; color: var(--text-main);
-        }
+        .section-header-wrapper { margin-bottom: 80px; display: flex; align-items: baseline; gap: 20px; }
+        .section-number { font-family: var(--font-head); color: var(--accent); font-size: 1.5rem; opacity: 0.5; }
+        .section-title { font-family: var(--font-body); font-weight: 300; font-size: 2.5rem; letter-spacing: 4px; color: var(--text-main); }
 
-        /* --- 5. HERO SECTION --- */
+        /* --- 5. HERO --- */
         .section-home {
-            height: 100vh;
-            display: flex; flex-direction: column; 
+            height: 100vh; display: flex; flex-direction: column; 
             align-items: center; justify-content: center; text-align: center;
         }
-        
         .hero-title {
-            font-family: var(--font-body); font-weight: 300; font-size: 7vw;
-            line-height: 0.9; letter-spacing: -0.03em; color: #E0E0E0;
-            margin-bottom: 40px;
+            font-family: var(--font-body); font-weight: 300; font-size: 6vw;
+            line-height: 0.9; letter-spacing: -0.03em; color: #E0E0E0; margin-bottom: 40px;
         }
-        
-        .hero-title span { display: block; } /* Her satırı blok yap */
-        .hero-title .highlight { font-weight: 600; color: #FFF; }
-
+        .hero-title .highlight { font-weight: 600; color: #FFF; display: block; }
         .hero-sub {
             font-size: 1rem; color: var(--text-muted); 
             border-left: 2px solid var(--accent); padding-left: 25px;
             text-align: left; max-width: 400px;
         }
 
-        /* --- 6. CARDS & GRIDS (REFACTORED) --- */
-        
-        /* Artists Grid */
+        /* --- 6. ARTISTS GRID --- */
         .artists-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4rem; }
+        .artist-card { group: hover; cursor: pointer; }
         
-        .artist-card { group: hover; }
         .artist-img-box {
-            width: 100%; aspect-ratio: 4/5; 
-            background-color: var(--bg-card);
+            width: 100%; aspect-ratio: 4/5; background-color: var(--bg-card);
             margin-bottom: 25px; overflow: hidden; position: relative;
         }
         .artist-placeholder {
             width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
-            color: #444; font-size: 0.8rem; background-color: #150803;
-            transition: transform 0.6s ease;
+            color: #444; font-size: 0.8rem; background-color: #150803; transition: transform 0.6s ease;
         }
         .artist-card:hover .artist-placeholder { transform: scale(1.05); }
         
         .artist-meta { padding-left: 10px; border-left: 1px solid transparent; transition: border-color 0.3s; }
         .artist-card:hover .artist-meta { border-left-color: var(--accent); }
-        
         .artist-name { font-size: 1.1rem; letter-spacing: 2px; font-weight: 400; color: #FFF; }
         .artist-role { font-size: 0.85rem; color: var(--text-muted); margin-top: 5px; }
 
-
-        /* Works List (Asymmetric Grid) */
+        /* --- 7. WORKS LIST --- */
         .works-list { display: flex; flex-direction: column; gap: 150px; }
-        
         .work-item {
             display: grid; grid-template-columns: 1.5fr 1fr; gap: 80px; align-items: center;
             cursor: pointer; opacity: 0.9; transition: opacity 0.3s;
         }
         .work-item:hover { opacity: 1; }
-        .work-item:nth-child(even) { direction: rtl; } /* Zig-zag layout */
+        .work-item:nth-child(even) { direction: rtl; }
         .work-item:nth-child(even) .work-info { direction: ltr; text-align: right; }
 
-        .work-img-container {
-            width: 100%; height: 550px; overflow: hidden;
-            background-color: var(--bg-card);
-        }
+        .work-img-container { width: 100%; height: 550px; overflow: hidden; background-color: var(--bg-card); }
         .work-placeholder {
             width: 100%; height: 100%; background-color: #150803;
             filter: grayscale(100%); transition: all 0.6s ease;
         }
         .work-item:hover .work-placeholder { filter: grayscale(0%); transform: scale(1.03); }
 
-        .work-title {
-            font-size: 3.5rem; line-height: 1; letter-spacing: -1px; margin-bottom: 20px;
-            font-weight: 300;
-        }
-        .work-meta { 
-            color: var(--accent); font-weight: 700; font-size: 0.8rem; letter-spacing: 2px; 
-            margin-bottom: 30px; display: block;
-        }
+        .work-title { font-size: 3.5rem; line-height: 1; letter-spacing: -1px; margin-bottom: 20px; font-weight: 300; }
+        .work-meta { color: var(--accent); font-weight: 700; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 30px; display: block; }
         .work-desc { font-size: 1rem; color: var(--text-muted); max-width: 400px; }
-        .work-item:nth-child(even) .work-desc { margin-left: auto; } /* Sağa yasla */
+        .work-item:nth-child(even) .work-desc { margin-left: auto; }
 
-
-        /* --- 7. FOOTER & CONTACT --- */
+        /* --- 8. CONTACT (FIXED SIZE) --- */
         .section-contact { min-height: 80vh; display: flex; flex-direction: column; justify-content: space-between; }
-        
         .contact-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 60px; }
         
+        /* FIXED: Font size reduced to prevent overflow */
         .big-link {
-            font-size: 5vw; line-height: 1; font-weight: 300; color: var(--text-main);
-            display: block; margin-bottom: 20px; letter-spacing: -2px;
+            font-size: 3.5rem; line-height: 1; font-weight: 300; color: var(--text-main);
+            display: block; margin-bottom: 20px; letter-spacing: -1px; word-break: break-all;
         }
         .big-link:hover { color: var(--accent); }
 
@@ -220,25 +161,20 @@
             display: flex; justify-content: space-between; font-size: 0.8rem; color: #555;
         }
 
-        /* --- 8. RESPONSIVE --- */
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            :root { --pad-side: 20px; --pad-section: 80px; }
-            
+            :root { --pad-side: 20px; }
             .main-header { height: 80px; }
-            .nav-menu { display: none; } /* Mobilde menüyü gizle (İleride Hamburger eklenebilir) */
-            
+            .nav-menu { display: none; }
             .hero-title { font-size: 14vw; margin-top: 60px; }
-            
             .artists-grid { grid-template-columns: 1fr; gap: 60px; }
-            
             .work-item { grid-template-columns: 1fr; gap: 30px; }
             .work-item:nth-child(even) { direction: ltr; }
             .work-item:nth-child(even) .work-info { text-align: left; }
             .work-img-container { height: 350px; }
             .work-title { font-size: 2.5rem; }
-            
             .contact-grid { grid-template-columns: 1fr; }
-            .big-link { font-size: 3rem; }
+            .big-link { font-size: 2rem; } /* Mobile font size fix */
         }
     </style>
 </head>
@@ -248,7 +184,6 @@
         <a href="#home" class="logo-container">
             <img src="https://placehold.co/400x150/1f0b05/DEBD00?text=ARDIYE" alt="Ardiye Logo">
         </a>
-
         <nav class="nav-menu uppercase">
             <a href="#home" class="nav-link">Home</a>
             <a href="#artists" class="nav-link">Artists</a>
@@ -260,7 +195,7 @@
     <main>
         <section id="home" class="section-home">
             <h1 class="hero-title uppercase">
-                <span>Stored Ideas,</span>
+                Stored Ideas,<br>
                 <span class="highlight">Raw Productions.</span>
             </h1>
             <div class="hero-sub">
@@ -367,6 +302,5 @@
             </div>
         </section>
     </main>
-
 </body>
 </html>
