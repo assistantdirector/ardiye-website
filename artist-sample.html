@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* --- THEME CONFIG --- */
+        /* --- CONFIG (MATCHING INDEX) --- */
         :root {
             --bg-color: #1f0b05; --bg-card: #261008; --text-main: #F0F0F0;
             --text-muted: #999999; --accent: #DEBD00; --pad-side: 60px;
@@ -33,19 +33,14 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
         }
         .logo-container img { width: 120px; display: block; opacity: 0.9; }
-        .nav-menu { display: flex; gap: 50px; }
+        .nav-menu { display: flex; gap: 40px; }
         .nav-link {
             font-family: var(--font-body); font-size: 0.85rem; font-weight: 700; color: #BBBBBB;
             position: relative; padding: 5px 0; text-transform: uppercase; letter-spacing: 2px;
         }
-        .nav-link::after {
-            content: ''; position: absolute; width: 0; height: 1px; bottom: 0; right: 0; 
-            background-color: var(--accent); transition: width 0.4s;
-        }
         .nav-link:hover { color: var(--accent); }
-        .nav-link:hover::after { width: 100%; left: 0; right: auto; }
 
-        /* --- ARTIST SPECIFIC --- */
+        /* ARTIST SPECIFIC */
         main { padding: 160px var(--pad-side) 80px var(--pad-side); max-width: 1400px; margin: 0 auto; }
 
         .artist-header { border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 40px; margin-bottom: 60px; }
@@ -63,25 +58,19 @@
         .artist-portrait:hover { filter: grayscale(0%); }
 
         .artist-bio { font-size: 1.1rem; color: #CCC; font-weight: 300; }
-        .artist-bio p { margin-bottom: 25px; }
-
         .artist-links { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); }
         .social-link { font-size: 0.9rem; margin-right: 30px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;}
         .social-link:hover { color: var(--accent); }
 
-        /* Mini Works List */
         .artist-works { margin-top: 120px; }
         .small-header { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px; }
-        
         .work-list-mini { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
         .mini-card { padding: 20px 0; border-top: 1px solid rgba(255,255,255,0.1); transition: border-color 0.3s; }
         .mini-card:hover { border-top-color: var(--accent); }
-        
         .mini-title { font-weight: 400; display: block; margin-bottom: 5px; font-size: 1.2rem; color: #EEE; }
         .mini-card:hover .mini-title { color: var(--accent); }
         .mini-type { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Footer Nav */
         .footer-nav { margin-top: 100px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05); }
         .back-link { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); }
         .back-link:hover { color: var(--accent); }
@@ -103,6 +92,7 @@
         </a>
         <nav class="nav-menu">
             <a href="index.html" class="nav-link">Home</a>
+            <a href="index.html#narrative" class="nav-link">Narrative</a>
             <a href="index.html#artists" class="nav-link">Artists</a>
             <a href="index.html#works" class="nav-link">Works</a>
             <a href="index.html#contact" class="nav-link">Contact</a>
@@ -119,8 +109,6 @@
             <img src="https://placehold.co/600x800/2a150e/555?text=PORTRAIT" alt="Artist Portrait" class="artist-portrait">
             <div class="artist-bio">
                 <p>Cemre Yılmaz (b. 1996, İzmir) works with video, sound, and installation to explore the relationship between urban memory and decay.</p>
-                <p>Her works often focus on abandoned spaces, using them as a canvas to question the temporality of human existence. She is a co-founder of Ardiye Initiative.</p>
-                <p>She has exhibited her works in various independent art spaces across Turkey and Europe.</p>
                 
                 <div class="artist-links">
                     <a href="#" class="social-link">Instagram</a>
@@ -136,11 +124,6 @@
                     <span class="mini-title">Lost Frequency</span>
                     <span class="mini-type">Video Art / 2024</span>
                 </a>
-                
-                <div class="mini-card">
-                    <span class="mini-title">Untitled No.4</span>
-                    <span class="mini-type">Photography / 2023</span>
-                </div>
             </div>
         </div>
 
