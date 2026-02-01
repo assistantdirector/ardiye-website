@@ -71,16 +71,48 @@
         .section-number { font-family: var(--font-head); color: var(--accent); font-size: 1.5rem; opacity: 0.5; }
         .section-title { font-family: var(--font-body); font-weight: 300; font-size: 2.2rem; letter-spacing: 3px; color: var(--text-main); }
 
-        /* --- 5. HERO --- */
+        /* --- 5. HERO (RE-SCALED V3) --- */
         .section-home {
             height: 100vh; display: flex; flex-direction: column; 
             align-items: center; justify-content: center; text-align: center;
         }
+        
         .hero-title {
-            font-family: var(--font-body); font-weight: 300; font-size: 6vw;
-            line-height: 0.9; letter-spacing: -0.03em; color: #E0E0E0; margin-bottom: 30px;
+            /* Container reset */
+            margin-bottom: 40px;
         }
-        .hero-title .highlight { font-weight: 600; color: #FFF; display: block; }
+
+        /* Top Line: Medium Size */
+        .top-line {
+            font-size: 2.2rem; 
+            font-weight: 300;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+            line-height: 1.2;
+            display: block;
+        }
+
+        /* Highlight Line: Large & Gradient */
+        .highlight-gradient {
+            display: block;
+            font-size: 5rem; /* Balanced Big Size */
+            font-weight: 700;
+            margin-top: 10px;
+            letter-spacing: -1px; /* Tighter for punchy look */
+            line-height: 1;
+
+            /* Gradient Animation */
+            background: linear-gradient(to right, var(--accent) 0%, #FFFFAA 50%, var(--accent) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 6s linear infinite;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
         
         /* --- 6. NARRATIVE --- */
         .narrative-content { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
@@ -125,22 +157,15 @@
         .work-desc { font-size: 1rem; color: var(--text-muted); max-width: 400px; }
         .work-item:nth-child(even) .work-desc { margin-left: auto; }
 
-        /* --- 9. CONTACT (FINAL UI) --- */
+        /* --- 9. CONTACT --- */
         .section-contact { min-height: 60vh; display: flex; flex-direction: column; justify-content: space-between; }
         
-        /* Container aligned left but with spacing */
-        .contact-content { 
-            display: flex; flex-direction: column; 
-            gap: 40px; 
-            align-items: flex-start; /* Sola yaslı */
-            max-width: 600px; 
-            margin-top: 40px; /* Üstten boşluk */
-        }
+        .contact-content { display: flex; flex-direction: column; gap: 40px; align-items: flex-start; max-width: 600px; margin-top: 40px;}
         
-        /* Elegant Email Button */
+        /* Email Button */
         .mail-btn {
             display: inline-block;
-            border: 1px solid rgba(255,255,255,0.3); /* İnce Çerçeve */
+            border: 1px solid rgba(255,255,255,0.3);
             padding: 18px 50px;
             font-size: 1.2rem;
             font-weight: 600;
@@ -150,30 +175,22 @@
             transition: all 0.4s ease;
         }
         .mail-btn:hover { 
-            color: #1f0b05; /* Yazı koyu */
-            background-color: var(--accent); /* Arkaplan Sarı */
+            color: #1f0b05; 
+            background-color: var(--accent); 
             border-color: var(--accent);
         }
 
-        /* Social Row under the button */
-        .social-row {
-            display: flex; gap: 30px; 
-            padding-left: 5px; /* Hafif girinti */
-        }
+        /* Socials */
+        .social-row { display: flex; gap: 30px; padding-left: 5px; }
         .social-link {
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-muted);
-            transition: color 0.3s ease;
+            font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 2px; color: var(--text-muted); transition: color 0.3s ease;
         }
         .social-link:hover { color: var(--accent); }
 
         .copyright {
             margin-top: 80px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.05);
-            display: flex; justify-content: flex-end; /* Sağ alt köşe */
-            font-size: 0.8rem; color: #555;
+            display: flex; justify-content: flex-end; font-size: 0.8rem; color: #555;
         }
 
         /* --- RESPONSIVE --- */
@@ -181,7 +198,11 @@
             :root { --pad-side: 20px; }
             .main-header { height: 80px; }
             .nav-menu { display: none; }
-            .hero-title { font-size: 14vw; margin-top: 60px; }
+            
+            /* Mobile Hero */
+            .top-line { font-size: 1.5rem; }
+            .highlight-gradient { font-size: 3rem; }
+            
             .narrative-content { grid-template-columns: 1fr; gap: 40px; }
             .artists-grid { grid-template-columns: 1fr; gap: 60px; }
             .work-item { grid-template-columns: 1fr; gap: 30px; }
@@ -212,75 +233,12 @@
     </header>
 
     <main>
-    <section id="home" class="section-home v3">
-    <h1 class="hero-title uppercase">
-        <span class="top-line">Stored Ideas,</span><br>
-        <span class="highlight-gradient">Raw Productions.</span>
-    </h1>
-</section>
-
-<style>
-/* --- CSS: VARYASYON 3 (REVIZE EDİLMİŞ BOYUTLAR) --- */
-
-/* 1. Ana Başlık Kapsayıcısı için yeni ayarlar */
-.section-home.v3 .hero-title {
-    /* Orijinal devasa vw (viewport width) boyutunu eziyoruz */
-    font-size: unset; 
-    
-    /* Daha zarif bir başlangıç noktası */
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-/* 2. Üst Satır (Stored Ideas,) - Daha küçük ve sönük */
-.section-home.v3 .top-line {
-    font-size: 1.5rem; /* Desktop için zarif boyut */
-    font-weight: 300;
-    color: var(--text-muted); /* Gri ton */
-    letter-spacing: 0.1em; /* Harf aralığını açarak ferahlık verelim */
-    line-height: 1.4;
-}
-
-/* 3. Vurgulu Alt Satır (Raw Productions.) - Efektli ve daha büyük */
-.section-home.v3 .highlight-gradient {
-    display: block; /* Kendi satırına al */
-    font-size: 3rem; /* Üst satırın 2 katı büyüklükte */
-    font-weight: 700;
-    margin-top: 5px; /* Üst satırla aradaki mesafe */
-    letter-spacing: 0; /* Kalın fontta harf aralığını sıfırlayalım */
-    line-height: 1.1;
-
-    /* --- GRADYAN EFEKTİ (Aynı kalıyor) --- */
-    /* Sarı -> Parlak Sarı -> Sarı geçişi */
-    background: linear-gradient(to right, var(--accent), #FFFFAA, var(--accent));
-    background-size: 200% auto;
-    
-    /* Metni maske olarak kullan */
-    -webkit-background-clip: text;
-    background-clip: text;
-    
-    /* Metnin içini şeffaf yap */
-    -webkit-text-fill-color: transparent;
-    
-    /* Akış animasyonu */
-    animation: shine 5s linear infinite;
-}
-
-/* Animasyon Keyframe */
-@keyframes shine {
-    to { background-position: 200% center; }
-}
-
-/* --- MOBİL UYUM (Responsive Downscale) --- */
-@media (max-width: 768px) {
-    .section-home.v3 .top-line {
-        font-size: 1.2rem; /* Mobilde daha küçük */
-    }
-    .section-home.v3 .highlight-gradient {
-        font-size: 2.2rem; /* Mobilde daha küçük ama hala vurgulu */
-    }
-}
-</style>
+        <section id="home" class="section-home">
+            <h1 class="hero-title uppercase">
+                <span class="top-line">Stored Ideas,</span>
+                <span class="highlight-gradient">Raw Productions.</span>
+            </h1>
+        </section>
 
         <section id="narrative">
             <div class="section-header-wrapper uppercase">
@@ -290,7 +248,7 @@
             
             <div class="narrative-content">
                 <div class="narrative-lead">
-                    ardiyé an initiative that believes in collective art production and aims to express itself through the unifying power of art.
+                    Ardiye is not a gallery. We are a storage unit for the incomplete. We collect the raw, the unpolished, and the forgotten.
                 </div>
                 <div class="narrative-text">
                     <p>Ardiye functions as an archive for projects that were never meant to end. We provide a space where the process is valued over the result.</p>
