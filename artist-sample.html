@@ -17,7 +17,12 @@
             --font-head: 'Barlow Condensed', sans-serif; --font-body: 'Inter', sans-serif;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; cursor: none; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        /* RESTORE DEFAULT CURSOR */
+        html, body, a { cursor: default; }
+        a { cursor: pointer; }
+
         html { scroll-behavior: smooth; }
         body {
             background-color: var(--bg-color); color: var(--text-main);
@@ -30,18 +35,18 @@
         ::-webkit-scrollbar-thumb { background: #333; }
         ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-        a { text-decoration: none; color: inherit; transition: all 0.3s ease; cursor: none; }
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
 
-        /* OPTIMIZED CURSOR */
+        /* GHOST VISUAL */
         .cursor-outline {
             position: fixed; top: 0; left: 0; width: 30px; height: 30px;
-            border: 1px solid rgba(235, 203, 75, 0.6); border-radius: 50%;
+            border: 1px solid rgba(235, 203, 75, 0.5); border-radius: 50%;
             pointer-events: none; z-index: 9999; will-change: transform;
             transform: translate(-50%, -50%);
             transition: width 0.3s, height 0.3s, background-color 0.3s;
         }
         body.hovering .cursor-outline {
-            width: 60px; height: 60px; background-color: rgba(235, 203, 75, 0.1); border-color: var(--accent);
+            width: 50px; height: 50px; background-color: rgba(235, 203, 75, 0.05); border-color: var(--accent);
         }
 
         /* HEADER */
@@ -105,7 +110,6 @@
             .artist-name { font-size: 3.5rem; }
             .artist-profile { grid-template-columns: 1fr; gap: 40px; }
             .work-list-mini { grid-template-columns: 1fr; gap: 20px; }
-            * { cursor: auto; }
             .cursor-outline { display: none; }
         }
     </style>
@@ -172,7 +176,7 @@
         });
 
         function animateCursor() {
-            let speed = 0.15;
+            let speed = 0.2; // Smooth Trail
             outlineX += (mouseX - outlineX) * speed;
             outlineY += (mouseY - outlineY) * speed;
             cursorOutline.style.left = `${outlineX}px`;
