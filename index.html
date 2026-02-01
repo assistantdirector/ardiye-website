@@ -7,56 +7,88 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Manrope:wght@200;300;400;600&display=swap" rel="stylesheet">
 
     <style>
         /* --- 1. THEME CONFIG --- */
         :root {
-            --bg-color: #1f0b05;       
-            --bg-card: #261008;        
-            --text-main: #F0F0F0;      
-            --text-muted: #999999;     
-            --accent: #DEBD00;         
+            --bg-color: #1a0b08;       /* Derin Kahve/Siyah */
+            --bg-card: #24120e;        
+            --text-main: #F2F2F2;      
+            --text-muted: #999;     
+            --accent: #D4AF37;         /* Daha 'Gold' bir sarı tonu */
             --pad-side: 60px;          
-            --font-head: 'Anton', sans-serif;
-            --font-body: 'Open Sans', sans-serif;
+            
+            /* NEW TYPOGRAPHY SYSTEM */
+            --font-head: 'Italiana', serif; 
+            --font-body: 'Manrope', sans-serif;
         }
 
         /* --- 2. BASE --- */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; cursor: none; /* Hide default cursor */ }
+        
         html { scroll-behavior: smooth; }
+        
         body {
             background-color: var(--bg-color); color: var(--text-main);
-            font-family: var(--font-body); font-weight: 300; line-height: 1.6;
+            font-family: var(--font-body); font-weight: 300; line-height: 1.7;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
         /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-color); }
-        ::-webkit-scrollbar-thumb { background: #3d1f00; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: #3d1f00; }
         ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-        a { text-decoration: none; color: inherit; transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
-        h1, h2, h3 { font-weight: normal; margin: 0; font-family: var(--font-head); letter-spacing: 1px; }
-        .uppercase { text-transform: uppercase; letter-spacing: 2px; }
+        a { text-decoration: none; color: inherit; transition: all 0.4s ease; cursor: none; }
+        h1, h2, h3 { font-weight: normal; margin: 0; font-family: var(--font-head); }
+        .uppercase { text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- GHOST CURSOR STYLES --- */
+        .cursor-dot,
+        .cursor-outline {
+            position: fixed; top: 0; left: 0;
+            transform: translate(-50%, -50%); border-radius: 50%;
+            z-index: 9999; pointer-events: none;
+        }
+        .cursor-dot {
+            width: 8px; height: 8px; background-color: var(--accent);
+        }
+        .cursor-outline {
+            width: 40px; height: 40px;
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+        
+        /* Cursor Hover State */
+        body:hover .cursor-outline { opacity: 1; }
+        a:hover ~ .cursor-outline, 
+        button:hover ~ .cursor-outline,
+        .work-item:hover ~ .cursor-outline {
+            transform: translate(-50%, -50%) scale(1.5);
+            background-color: rgba(212, 175, 55, 0.1);
+            border-color: transparent;
+        }
 
         /* --- 3. HEADER --- */
         .main-header {
             position: fixed; top: 0; left: 0; width: 100%; height: 100px;
             padding: 0 var(--pad-side); display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000; background: rgba(31, 11, 5, 0.9); backdrop-filter: blur(20px);
+            z-index: 1000; background: rgba(26, 11, 8, 0.85); backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
         }
         .logo-container img { width: 120px; display: block; opacity: 0.9; transition: opacity 0.3s; }
         .logo-container:hover img { opacity: 1; }
-        .nav-menu { display: flex; gap: 40px; }
+        
+        .nav-menu { display: flex; gap: 45px; }
         .nav-link {
-            font-family: var(--font-body); font-size: 0.85rem; font-weight: 700; 
-            color: #BBBBBB; position: relative; padding: 5px 0;
+            font-family: var(--font-body); font-size: 0.85rem; font-weight: 500; 
+            color: #BBB; position: relative; padding: 5px 0; letter-spacing: 1px;
         }
         .nav-link::after {
-            content: ''; position: absolute; width: 0; height: 2px; bottom: 0; right: 0; 
+            content: ''; position: absolute; width: 0; height: 1px; bottom: 0; right: 0; 
             background-color: var(--accent); transition: width 0.4s;
         }
         .nav-link:hover { color: var(--accent); }
@@ -64,90 +96,93 @@
 
         /* --- 4. LAYOUT --- */
         main { padding: 0 var(--pad-side); max-width: 1600px; margin: 0 auto; }
-        section { padding: 100px 0; border-top: 1px solid rgba(255,255,255,0.05); }
+        section { padding: 120px 0; border-top: 1px solid rgba(255,255,255,0.05); }
         section:first-of-type { border-top: none; padding-top: 0; }
 
-        .section-header-wrapper { margin-bottom: 60px; display: flex; align-items: baseline; gap: 20px; }
-        .section-number { font-family: var(--font-head); color: var(--accent); font-size: 1.5rem; opacity: 0.5; }
-        .section-title { font-family: var(--font-body); font-weight: 300; font-size: 2.2rem; letter-spacing: 3px; color: var(--text-main); }
+        .section-header-wrapper { margin-bottom: 70px; display: flex; align-items: baseline; gap: 20px; }
+        .section-number { font-family: var(--font-head); color: var(--accent); font-size: 1.2rem; opacity: 0.7; }
+        .section-title { font-family: var(--font-head); font-size: 3rem; color: var(--text-main); line-height: 1; }
 
-        /* --- 5. HERO (COMPACT & GRADIENT) --- */
+        /* --- 5. HERO (ELEGANT) --- */
         .section-home {
-            /* Değişiklik: Yükseklik 50vh'ye düşürüldü */
-            height: 60vh; 
-            display: flex; flex-direction: column; 
+            height: 60vh; display: flex; flex-direction: column; 
             align-items: center; justify-content: center; text-align: center;
-            /* Header payı */
-            padding-top: 100px; 
+            padding-top: 100px;
         }
         
-        .hero-title {
-            /* Tek satır olduğu için marginleri sıfırladık */
-            margin: 0;
-        }
-
         .highlight-gradient {
             display: block;
-            font-family: var(--font-head); /* Anton Font */
-            font-size: 7vw; /* Büyük ve vurucu */
-            line-height: 1;
-            letter-spacing: 2px;
+            font-family: var(--font-head); 
+            font-size: 6vw; /* Responsive Elegant Size */
+            line-height: 1.1;
+            letter-spacing: -1px; /* Tighter for elegance */
             text-transform: uppercase;
-
-            /* RENKLİ GRADYAN EFEKTİ */
-            background: linear-gradient(to right, var(--accent) 0%, #FFFFAA 50%, var(--accent) 100%);
+            
+            /* Subtle Gold Shine */
+            background: linear-gradient(120deg, #F2F2F2 0%, #D4AF37 50%, #F2F2F2 100%);
             background-size: 200% auto;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: shine 5s linear infinite;
+            animation: shine 8s linear infinite;
         }
 
-        @keyframes shine {
-            to { background-position: 200% center; }
-        }
+        @keyframes shine { to { background-position: 200% center; } }
         
         /* --- 6. NARRATIVE --- */
-        .narrative-content { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-        .narrative-lead { font-family: var(--font-body); font-size: 1.4rem; color: #FFF; line-height: 1.4; font-weight: 400; }
-        .narrative-text { font-family: var(--font-body); font-size: 1rem; color: var(--text-muted); font-weight: 300; }
-        .narrative-text p { margin-bottom: 20px; }
+        .narrative-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: start; }
+        .narrative-lead { 
+            font-family: var(--font-head); font-size: 2rem; color: #FFF; line-height: 1.3; 
+        }
+        .narrative-text { font-size: 1.05rem; color: var(--text-muted); font-weight: 300; }
+        .narrative-text p { margin-bottom: 25px; }
 
-        /* --- 7. ARTISTS GRID --- */
-        .artists-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4rem; }
-        .artist-card { group: hover; cursor: pointer; }
+        /* --- 7. ARTISTS GRID (1:1 RATIO) --- */
+        .artists-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 5rem; }
+        
+        .artist-card { group: hover; cursor: none; } /* Cursor none for custom cursor */
+        
+        /* 1:1 ASPECT RATIO UPDATE */
         .artist-img-box {
-            width: 100%; aspect-ratio: 4/5; background-color: var(--bg-card);
-            margin-bottom: 20px; overflow: hidden; position: relative;
+            width: 100%; 
+            aspect-ratio: 1 / 1; /* SQUARE */
+            background-color: var(--bg-card);
+            margin-bottom: 25px; overflow: hidden; position: relative;
         }
         .artist-placeholder {
             width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
-            color: #444; font-size: 0.8rem; background-color: #150803; transition: transform 0.6s ease;
+            color: #444; font-family: var(--font-body); font-size: 0.8rem; letter-spacing: 2px;
+            transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
         }
         .artist-card:hover .artist-placeholder { transform: scale(1.05); }
-        .artist-meta { padding-left: 10px; border-left: 1px solid transparent; transition: border-color 0.3s; }
+        
+        .artist-meta { padding-left: 0; border-left: 2px solid transparent; transition: all 0.3s; padding-left: 15px;}
         .artist-card:hover .artist-meta { border-left-color: var(--accent); }
-        .artist-name { font-family: var(--font-head); font-size: 1.4rem; letter-spacing: 1px; font-weight: 400; color: #FFF; }
-        .artist-role { font-family: var(--font-body); font-size: 0.85rem; color: var(--text-muted); margin-top: 5px; }
+        
+        .artist-name { font-family: var(--font-head); font-size: 1.8rem; letter-spacing: 0; color: #FFF; margin-bottom: 5px; }
+        .artist-role { font-family: var(--font-body); font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 
         /* --- 8. WORKS LIST --- */
-        .works-list { display: flex; flex-direction: column; gap: 120px; }
+        .works-list { display: flex; flex-direction: column; gap: 140px; }
+        
         .work-item {
-            display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; align-items: center;
-            cursor: pointer; opacity: 0.9; transition: opacity 0.3s;
+            display: grid; grid-template-columns: 1.5fr 1fr; gap: 80px; align-items: center;
+            cursor: none; opacity: 0.85; transition: opacity 0.3s;
         }
         .work-item:hover { opacity: 1; }
         .work-item:nth-child(even) { direction: rtl; }
         .work-item:nth-child(even) .work-info { direction: ltr; text-align: right; }
-        .work-img-container { width: 100%; height: 500px; overflow: hidden; background-color: var(--bg-card); }
+        
+        .work-img-container { width: 100%; height: 550px; overflow: hidden; background-color: var(--bg-card); }
         .work-placeholder {
-            width: 100%; height: 100%; background-color: #150803;
-            filter: grayscale(100%); transition: all 0.6s ease;
+            width: 100%; height: 100%; background-color: #2a150e;
+            filter: grayscale(100%); transition: all 0.8s ease;
         }
         .work-item:hover .work-placeholder { filter: grayscale(0%); transform: scale(1.03); }
-        .work-title { font-family: var(--font-head); font-size: 3rem; line-height: 1; letter-spacing: 1px; margin-bottom: 20px; font-weight: 400; }
-        .work-meta { font-family: var(--font-body); color: var(--accent); font-weight: 700; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 25px; display: block; }
-        .work-desc { font-family: var(--font-body); font-size: 1rem; color: var(--text-muted); max-width: 400px; }
+        
+        .work-title { font-family: var(--font-head); font-size: 3.5rem; line-height: 1; margin-bottom: 20px; }
+        .work-meta { color: var(--accent); font-weight: 600; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 25px; display: block; }
+        .work-desc { font-size: 1rem; color: var(--text-muted); max-width: 450px; }
         .work-item:nth-child(even) .work-desc { margin-left: auto; }
 
         /* --- 9. CONTACT --- */
@@ -155,35 +190,32 @@
         
         .contact-content { display: flex; flex-direction: column; gap: 40px; align-items: flex-start; max-width: 600px; margin-top: 40px; }
         
-        /* Email Button */
+        /* Elegant Mail Button */
         .mail-btn {
             display: inline-block;
-            border: 1px solid rgba(255,255,255,0.3);
-            padding: 18px 50px;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 15px 40px;
             font-family: var(--font-body);
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--text-main);
+            font-size: 1.1rem;
             letter-spacing: 3px;
             text-transform: uppercase;
             transition: all 0.4s ease;
         }
         .mail-btn:hover { 
-            color: #1f0b05; background-color: var(--accent); border-color: var(--accent);
+            color: #1a0b08; background-color: var(--accent); border-color: var(--accent);
         }
 
-        /* Socials */
-        .social-row { display: flex; gap: 30px; padding-left: 5px; }
+        .social-row { display: flex; gap: 30px; padding-left: 2px; }
         .social-link {
-            font-family: var(--font-body); font-size: 0.85rem; font-weight: 600; 
-            text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); 
+            font-family: var(--font-body); font-size: 0.85rem; font-weight: 500; 
+            text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); 
             transition: color 0.3s ease;
         }
         .social-link:hover { color: var(--accent); }
 
         .copyright {
             margin-top: 80px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.05);
-            display: flex; justify-content: flex-end; font-family: var(--font-body); font-size: 0.8rem; color: #555;
+            display: flex; justify-content: flex-end; font-size: 0.8rem; color: #555;
         }
 
         /* --- RESPONSIVE --- */
@@ -192,24 +224,29 @@
             .main-header { height: 80px; }
             .nav-menu { display: none; }
             
-            .section-home { height: 50vh; padding-top: 80px; }
             .highlight-gradient { font-size: 13vw; }
             
             .narrative-content { grid-template-columns: 1fr; gap: 40px; }
             .artists-grid { grid-template-columns: 1fr; gap: 60px; }
-            .work-item { grid-template-columns: 1fr; gap: 30px; }
+            .work-item { grid-template-columns: 1fr; gap: 40px; }
             .work-item:nth-child(even) { direction: ltr; }
             .work-item:nth-child(even) .work-info { text-align: left; }
             .work-img-container { height: 350px; }
             .work-title { font-size: 2.5rem; }
             
-            .mail-btn { font-size: 1rem; padding: 15px 40px;} 
-            .social-row { gap: 20px; flex-wrap: wrap; }
+            .mail-btn { font-size: 1rem; padding: 15px 30px;} 
             .copyright { justify-content: center; }
+            
+            /* Disable custom cursor on mobile */
+            * { cursor: auto; }
+            .cursor-dot, .cursor-outline { display: none; }
         }
     </style>
 </head>
 <body>
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
 
     <header class="main-header">
         <a href="#home" class="logo-container">
@@ -232,7 +269,7 @@
         </section>
 
         <section id="narrative">
-            <div class="section-header-wrapper uppercase">
+            <div class="section-header-wrapper">
                 <span class="section-number">01</span>
                 <h2 class="section-title">Narrative</h2>
             </div>
@@ -249,7 +286,7 @@
         </section>
 
         <section id="artists">
-            <div class="section-header-wrapper uppercase">
+            <div class="section-header-wrapper">
                 <span class="section-number">02</span>
                 <h2 class="section-title">Residents</h2>
             </div>
@@ -259,7 +296,7 @@
                     <div class="artist-img-box">
                         <div class="artist-placeholder">PORTRAIT</div>
                     </div>
-                    <div class="artist-meta uppercase">
+                    <div class="artist-meta">
                         <div class="artist-name">Cemre Yılmaz</div>
                         <div class="artist-role">Visual Artist</div>
                     </div>
@@ -269,7 +306,7 @@
                     <div class="artist-img-box">
                         <div class="artist-placeholder">PORTRAIT</div>
                     </div>
-                    <div class="artist-meta uppercase">
+                    <div class="artist-meta">
                         <div class="artist-name">Deniz Eren</div>
                         <div class="artist-role">Filmmaker</div>
                     </div>
@@ -278,7 +315,7 @@
         </section>
 
         <section id="works">
-            <div class="section-header-wrapper uppercase">
+            <div class="section-header-wrapper">
                 <span class="section-number">03</span>
                 <h2 class="section-title">Selection</h2>
             </div>
@@ -290,7 +327,7 @@
                     </div>
                     <div class="work-info">
                         <span class="work-meta uppercase">Video Art — 2024</span>
-                        <h3 class="work-title uppercase">Lost Frequency</h3>
+                        <h3 class="work-title">Lost Frequency</h3>
                         <p class="work-desc">An exploration of the unseen noise in the urban landscape. Recorded over 40 days in abandoned industrial zones.</p>
                     </div>
                 </a>
@@ -301,7 +338,7 @@
                     </div>
                     <div class="work-info">
                         <span class="work-meta uppercase">Installation — 2025</span>
-                        <h3 class="work-title uppercase">Surface Tension</h3>
+                        <h3 class="work-title">Surface Tension</h3>
                         <p class="work-desc">Mixed media installation focusing on the texture of decay. Using rust, concrete, and organic materials found in the warehouse.</p>
                     </div>
                 </div>
@@ -309,7 +346,7 @@
         </section>
 
         <section id="contact" class="section-contact">
-            <div class="section-header-wrapper uppercase">
+            <div class="section-header-wrapper">
                 <span class="section-number">04</span>
                 <h2 class="section-title">Contact</h2>
             </div>
@@ -329,5 +366,25 @@
             </div>
         </section>
     </main>
+
+    <script>
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', function(e) {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            // Dot follows instantly
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            // Outline follows with delay/animation
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+    </script>
 </body>
 </html>
