@@ -23,7 +23,10 @@
         }
 
         /* --- 2. BASE --- */
-        * { box-sizing: border-box; margin: 0; padding: 0; cursor: none; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        /* DEFAULT CURSOR RESTORED */
+        html, body, a { cursor: default; }
+        a { cursor: pointer; } 
         
         html { scroll-behavior: smooth; }
         
@@ -39,28 +42,29 @@
         ::-webkit-scrollbar-thumb { background: #333; }
         ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-        a { text-decoration: none; color: inherit; transition: all 0.3s ease; cursor: none; }
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
         h1, h2, h3 { font-weight: normal; margin: 0; font-family: var(--font-head); text-transform: uppercase; }
         .uppercase { text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- OPTIMIZED GHOST CURSOR --- */
+        /* --- VISUAL GHOST EFFECT ONLY --- */
         .cursor-outline {
             position: fixed; top: 0; left: 0;
             width: 30px; height: 30px;
-            border: 1px solid rgba(235, 203, 75, 0.6);
+            border: 1px solid rgba(235, 203, 75, 0.5); /* Daha transparan */
             border-radius: 50%;
-            pointer-events: none; z-index: 9999;
-            /* Performance Optimization */
+            pointer-events: none; /* Tıklamayı engellemez */
+            z-index: 9999;
+            /* Performans için */
             will-change: transform; 
             transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
         }
         
-        /* Hover State */
+        /* Hover Effect: Halka büyür */
         body.hovering .cursor-outline {
-            width: 60px; height: 60px; /* Büyüme efekti */
-            background-color: rgba(235, 203, 75, 0.1);
+            width: 50px; height: 50px;
             border-color: var(--accent);
+            background-color: rgba(235, 203, 75, 0.05);
         }
 
         /* --- 3. HEADER --- */
@@ -118,7 +122,7 @@
         /* --- 7. ARTISTS GRID --- */
         .artists-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4rem; }
         
-        .artist-card { group: hover; cursor: none; }
+        .artist-card { group: hover; cursor: pointer; }
         
         .artist-img-box {
             width: 100%; aspect-ratio: 1 / 1; background-color: var(--bg-card);
@@ -141,7 +145,7 @@
         .works-list { display: flex; flex-direction: column; gap: 120px; }
         .work-item {
             display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; align-items: center;
-            cursor: none; opacity: 0.85; transition: opacity 0.3s;
+            cursor: pointer; opacity: 0.85; transition: opacity 0.3s;
         }
         .work-item:hover { opacity: 1; }
         .work-item:nth-child(even) { direction: rtl; }
@@ -157,9 +161,18 @@
         .work-desc { font-size: 1rem; color: var(--text-muted); max-width: 450px; line-height: 1.6; }
         .work-item:nth-child(even) .work-desc { margin-left: auto; }
 
-        /* --- 9. CONTACT --- */
-        .section-contact { min-height: 40vh; display: flex; flex-direction: column; padding-bottom: 60px; }
-        .contact-content { display: flex; flex-direction: column; gap: 25px; align-items: flex-start; max-width: 600px; margin-top: 0; }
+        /* --- 9. CONTACT (REFACTORED) --- */
+        .section-contact { 
+            /* Yükseklik dengelendi */
+            min-height: 40vh; 
+            display: flex; flex-direction: column; 
+            padding-bottom: 60px;
+        }
+        
+        .contact-content { 
+            display: flex; flex-direction: column; gap: 25px; 
+            align-items: flex-start; max-width: 600px; margin-top: 0; 
+        }
         
         .mail-btn {
             display: inline-block; border: 1px solid rgba(255,255,255,0.3); padding: 12px 40px;
@@ -196,7 +209,8 @@
             .work-title { font-size: 3rem; }
             .mail-btn { font-size: 1.5rem; padding: 12px 30px;} 
             .copyright { justify-content: center; }
-            * { cursor: auto; }
+            
+            /* Mobilde Visual Ghost iptal */
             .cursor-outline { display: none; }
         }
     </style>
@@ -324,21 +338,23 @@
         let outlineX = 0;
         let outlineY = 0;
 
+        // Gerçek mouse kordinatlarını al
         window.addEventListener('mousemove', function(e) {
             mouseX = e.clientX;
             mouseY = e.clientY;
         });
 
-        // Add hover classes for smooth scaling
+        // Hover durumlarını yakala
         hoverTargets.forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
         });
 
+        // Akıcı takip döngüsü (Lerp)
         function animateCursor() {
-            // Linear Interpolation (Lerp) for smooth delay
-            // 0.15 = speed (lower is slower/more laggy, higher is faster)
-            let speed = 0.15;
+            // 0.2 = Takip hızı. 1'e yaklaştıkça hızlanır (less ghost), 0'a yaklaştıkça yavaşlar (more ghost).
+            // Mouse normal hızda, halka peşinden gelir.
+            let speed = 0.2; 
             
             outlineX += (mouseX - outlineX) * speed;
             outlineY += (mouseY - outlineY) * speed;
