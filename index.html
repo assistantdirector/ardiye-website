@@ -12,20 +12,18 @@
     <style>
         /* --- 1. THEME CONFIG --- */
         :root {
-            --bg-color: #120a08;       /* Koyu Endüstriyel Kahve/Siyah */
+            --bg-color: #120a08;       
             --bg-card: #1c100c;        
             --text-main: #EEEEEE;      
             --text-muted: #888888;     
-            --accent: #EBCB4B;         /* Endüstriyel Sarı */
+            --accent: #EBCB4B;         
             --pad-side: 60px;          
-            
-            /* TYPOGRAPHY SYSTEM */
             --font-head: 'Barlow Condensed', sans-serif; 
             --font-body: 'Inter', sans-serif;
         }
 
         /* --- 2. BASE --- */
-        * { box-sizing: border-box; margin: 0; padding: 0; cursor: none; /* Hide Default Cursor */ }
+        * { box-sizing: border-box; margin: 0; padding: 0; cursor: none; }
         
         html { scroll-behavior: smooth; }
         
@@ -36,7 +34,6 @@
             overflow-x: hidden;
         }
 
-        /* Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-color); }
         ::-webkit-scrollbar-thumb { background: #333; }
@@ -46,21 +43,22 @@
         h1, h2, h3 { font-weight: normal; margin: 0; font-family: var(--font-head); text-transform: uppercase; }
         .uppercase { text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- GHOST CURSOR (NO DOT) --- */
+        /* --- OPTIMIZED GHOST CURSOR --- */
         .cursor-outline {
             position: fixed; top: 0; left: 0;
-            transform: translate(-50%, -50%); border-radius: 50%;
-            z-index: 9999; pointer-events: none;
             width: 30px; height: 30px;
             border: 1px solid rgba(235, 203, 75, 0.6);
-            transition: width 0.2s, height 0.2s, background-color 0.2s;
+            border-radius: 50%;
+            pointer-events: none; z-index: 9999;
+            /* Performance Optimization */
+            will-change: transform; 
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
         }
         
-        /* Cursor Hover State */
-        body:hover .cursor-outline { opacity: 1; }
-        a:hover ~ .cursor-outline, 
-        button:hover ~ .cursor-outline {
-            transform: translate(-50%, -50%) scale(1.8);
+        /* Hover State */
+        body.hovering .cursor-outline {
+            width: 60px; height: 60px; /* Büyüme efekti */
             background-color: rgba(235, 203, 75, 0.1);
             border-color: var(--accent);
         }
@@ -95,50 +93,35 @@
         .section-number { font-family: var(--font-head); color: var(--accent); font-size: 1.5rem; font-weight: 600; opacity: 0.8; }
         .section-title { font-family: var(--font-head); font-size: 3rem; color: var(--text-main); line-height: 1; letter-spacing: 1px; font-weight: 600; }
 
-        /* --- 5. HERO (RAW) --- */
+        /* --- 5. HERO --- */
         .section-home {
-            height: 50vh; /* Reduced Height */
-            display: flex; flex-direction: column; 
+            height: 50vh; display: flex; flex-direction: column; 
             align-items: center; justify-content: center; text-align: center;
             padding-top: 120px;
         }
         
         .highlight-gradient {
-            display: block;
-            font-family: var(--font-head); 
-            font-size: 8vw; /* Impactful size */
-            line-height: 0.9;
-            letter-spacing: -2px; 
-            font-weight: 800;
-            text-transform: uppercase;
-            
-            /* Industrial Steel/Gold Shine */
+            display: block; font-family: var(--font-head); 
+            font-size: 8vw; line-height: 0.9; letter-spacing: -2px; font-weight: 800; text-transform: uppercase;
             background: linear-gradient(135deg, #888 0%, #FFF 30%, #EBCB4B 50%, #FFF 70%, #888 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 4s linear infinite;
+            background-size: 200% auto; -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent; animation: shine 4s linear infinite;
         }
-
         @keyframes shine { to { background-position: 200% center; } }
         
         /* --- 6. NARRATIVE --- */
         .narrative-content { display: grid; grid-template-columns: 1.1fr 1fr; gap: 80px; align-items: start; }
-        .narrative-lead { 
-            font-family: var(--font-head); font-size: 2.2rem; color: #FFF; line-height: 1.2; font-weight: 600;
-        }
+        .narrative-lead { font-family: var(--font-head); font-size: 2.2rem; color: #FFF; line-height: 1.2; font-weight: 600; }
         .narrative-text { font-size: 1rem; color: var(--text-muted); font-weight: 300; line-height: 1.7; }
         .narrative-text p { margin-bottom: 20px; }
 
-        /* --- 7. ARTISTS GRID (1:1) --- */
+        /* --- 7. ARTISTS GRID --- */
         .artists-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4rem; }
         
         .artist-card { group: hover; cursor: none; }
         
         .artist-img-box {
-            width: 100%; aspect-ratio: 1 / 1; /* SQUARE */
-            background-color: var(--bg-card);
+            width: 100%; aspect-ratio: 1 / 1; background-color: var(--bg-card);
             margin-bottom: 20px; overflow: hidden; position: relative;
         }
         .artist-placeholder {
@@ -156,7 +139,6 @@
 
         /* --- 8. WORKS LIST --- */
         .works-list { display: flex; flex-direction: column; gap: 120px; }
-        
         .work-item {
             display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; align-items: center;
             cursor: none; opacity: 0.85; transition: opacity 0.3s;
@@ -164,57 +146,32 @@
         .work-item:hover { opacity: 1; }
         .work-item:nth-child(even) { direction: rtl; }
         .work-item:nth-child(even) .work-info { direction: ltr; text-align: right; }
-        
         .work-img-container { width: 100%; height: 500px; overflow: hidden; background-color: var(--bg-card); }
         .work-placeholder {
             width: 100%; height: 100%; background-color: #1a0f0c;
             filter: grayscale(100%); transition: all 0.6s ease;
         }
         .work-item:hover .work-placeholder { filter: grayscale(0%); transform: scale(1.02); }
-        
         .work-title { font-family: var(--font-head); font-size: 4rem; line-height: 0.9; margin-bottom: 20px; font-weight: 600; }
         .work-meta { color: var(--accent); font-family: var(--font-body); font-weight: 600; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 20px; display: block; }
         .work-desc { font-size: 1rem; color: var(--text-muted); max-width: 450px; line-height: 1.6; }
         .work-item:nth-child(even) .work-desc { margin-left: auto; }
 
-        /* --- 9. CONTACT (REVISED COMPACT) --- */
-        .section-contact { 
-            /* Boyut Küçültüldü ve Padding düzenlendi */
-            min-height: 40vh; 
-            display: flex; flex-direction: column; 
-            padding-bottom: 60px;
-        }
+        /* --- 9. CONTACT --- */
+        .section-contact { min-height: 40vh; display: flex; flex-direction: column; padding-bottom: 60px; }
+        .contact-content { display: flex; flex-direction: column; gap: 25px; align-items: flex-start; max-width: 600px; margin-top: 0; }
         
-        /* Content shifted UP and Compact */
-        .contact-content { 
-            display: flex; flex-direction: column; gap: 25px; 
-            align-items: flex-start; max-width: 600px; 
-            margin-top: 0; /* No extra margin */
-        }
-        
-        /* Email Button - More Industrial */
         .mail-btn {
-            display: inline-block;
-            border: 1px solid rgba(255,255,255,0.3);
-            padding: 12px 40px;
-            font-family: var(--font-head);
-            font-size: 1.8rem; /* Bigger font for impact */
-            font-weight: 600;
-            color: var(--text-main);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
+            display: inline-block; border: 1px solid rgba(255,255,255,0.3); padding: 12px 40px;
+            font-family: var(--font-head); font-size: 1.8rem; font-weight: 600; color: var(--text-main);
+            letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s ease;
         }
-        .mail-btn:hover { 
-            background-color: var(--accent); color: #000; border-color: var(--accent);
-        }
+        .mail-btn:hover { background-color: var(--accent); color: #000; border-color: var(--accent); }
 
-        /* Social Row */
         .social-row { display: flex; gap: 30px; padding-left: 2px; }
         .social-link {
             font-family: var(--font-body); font-size: 0.8rem; font-weight: 500; 
-            text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); 
-            transition: color 0.3s ease;
+            text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); transition: color 0.3s ease;
         }
         .social-link:hover { color: var(--accent); }
 
@@ -228,10 +185,8 @@
             :root { --pad-side: 20px; }
             .main-header { height: 80px; }
             .nav-menu { display: none; }
-            
             .highlight-gradient { font-size: 14vw; }
             .section-home { height: 40vh; padding-top: 100px; }
-            
             .narrative-content { grid-template-columns: 1fr; gap: 40px; }
             .artists-grid { grid-template-columns: 1fr; gap: 60px; }
             .work-item { grid-template-columns: 1fr; gap: 40px; }
@@ -239,10 +194,8 @@
             .work-item:nth-child(even) .work-info { text-align: left; }
             .work-img-container { height: 350px; }
             .work-title { font-size: 3rem; }
-            
             .mail-btn { font-size: 1.5rem; padding: 12px 30px;} 
             .copyright { justify-content: center; }
-            
             * { cursor: auto; }
             .cursor-outline { display: none; }
         }
@@ -276,7 +229,6 @@
                 <span class="section-number">01</span>
                 <h2 class="section-title">Narrative</h2>
             </div>
-            
             <div class="narrative-content">
                 <div class="narrative-lead">
                     Ardiye is not a gallery. We are a storage unit for the incomplete. We collect the raw, the unpolished, and the forgotten.
@@ -293,7 +245,6 @@
                 <span class="section-number">02</span>
                 <h2 class="section-title">Residents</h2>
             </div>
-            
             <div class="artists-grid">
                 <a href="artist-sample.html" class="artist-card">
                     <div class="artist-img-box">
@@ -304,7 +255,6 @@
                         <div class="artist-role">Visual Artist</div>
                     </div>
                 </a>
-                
                 <div class="artist-card">
                     <div class="artist-img-box">
                         <div class="artist-placeholder">PORTRAIT</div>
@@ -322,7 +272,6 @@
                 <span class="section-number">03</span>
                 <h2 class="section-title">Selection</h2>
             </div>
-
             <div class="works-list">
                 <a href="project-sample.html" class="work-item">
                     <div class="work-img-container">
@@ -334,7 +283,6 @@
                         <p class="work-desc">An exploration of the unseen noise in the urban landscape. Recorded over 40 days in abandoned industrial zones.</p>
                     </div>
                 </a>
-
                 <div class="work-item">
                     <div class="work-img-container">
                         <div class="work-placeholder"></div>
@@ -353,17 +301,14 @@
                 <span class="section-number">04</span>
                 <h2 class="section-title">Contact</h2>
             </div>
-            
             <div class="contact-content">
                 <a href="mailto:info@ardiye.art" class="mail-btn">Email Us</a>
-                
                 <div class="social-row">
                     <a href="#" class="social-link">Instagram</a>
                     <a href="#" class="social-link">Vimeo</a>
                     <a href="#" class="social-link">LinkedIn</a>
                 </div>
             </div>
-
             <div class="copyright uppercase">
                 <span>&copy; 2026 Ardiye Art Initiative</span>
             </div>
@@ -372,16 +317,39 @@
 
     <script>
         const cursorOutline = document.querySelector('.cursor-outline');
+        const hoverTargets = document.querySelectorAll('a, button, .artist-card, .work-item');
+
+        let mouseX = 0;
+        let mouseY = 0;
+        let outlineX = 0;
+        let outlineY = 0;
+
         window.addEventListener('mousemove', function(e) {
-            const posX = e.clientX;
-            const posY = e.clientY;
-            
-            // Native animate for smooth lag
-            cursorOutline.animate({
-                left: `${posX}px`,
-                top: `${posY}px`
-            }, { duration: 500, fill: "forwards" });
+            mouseX = e.clientX;
+            mouseY = e.clientY;
         });
+
+        // Add hover classes for smooth scaling
+        hoverTargets.forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+        });
+
+        function animateCursor() {
+            // Linear Interpolation (Lerp) for smooth delay
+            // 0.15 = speed (lower is slower/more laggy, higher is faster)
+            let speed = 0.15;
+            
+            outlineX += (mouseX - outlineX) * speed;
+            outlineY += (mouseY - outlineY) * speed;
+
+            cursorOutline.style.left = `${outlineX}px`;
+            cursorOutline.style.top = `${outlineY}px`;
+
+            requestAnimationFrame(animateCursor);
+        }
+
+        animateCursor();
     </script>
 </body>
 </html>
