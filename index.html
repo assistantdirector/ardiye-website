@@ -7,187 +7,189 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
 
     <style>
         /* --- 1. THEME CONFIG --- */
         :root {
-            --bg-color: #1f0b05;       
-            --bg-card: #261008;        
-            --text-main: #F0F0F0;      
-            --text-muted: #999999;     
+            --bg-color: #1a0904;       /* Daha derin bir kahve/siyah */
+            --text-main: #EAEAEA;      /* Kırık beyaz */
+            --text-muted: #888888;     
             --accent: #DEBD00;         
             --pad-side: 60px;          
-            --font-head: 'Anton', sans-serif;
-            --font-body: 'Open Sans', sans-serif;
+            --font-head: 'Syne', sans-serif;       /* ARTISTIC HEADLINE */
+            --font-body: 'Space Grotesk', sans-serif; /* RAW BODY */
         }
 
         /* --- 2. BASE --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        
         html { scroll-behavior: smooth; }
         
         body {
             background-color: var(--bg-color); color: var(--text-main);
-            font-family: var(--font-body); font-weight: 300; line-height: 1.6;
+            font-family: var(--font-body); font-weight: 300; line-height: 1.5;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-color); }
-        ::-webkit-scrollbar-thumb { background: #3d1f00; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: #444; }
         ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-        a { text-decoration: none; color: inherit; transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
-        h1, h2, h3 { font-weight: normal; margin: 0; }
-        .uppercase { text-transform: uppercase; letter-spacing: 2px; }
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        h1, h2, h3 { font-weight: normal; margin: 0; font-family: var(--font-head); }
+        .uppercase { text-transform: uppercase; }
 
         /* --- 3. HEADER --- */
         .main-header {
             position: fixed; top: 0; left: 0; width: 100%; height: 100px;
             padding: 0 var(--pad-side); display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000; background: rgba(31, 11, 5, 0.85); backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            z-index: 1000; background: rgba(26, 9, 4, 0.9); backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-        .logo-container img { width: 120px; display: block; opacity: 0.9; transition: opacity 0.3s; }
-        .logo-container:hover img { opacity: 1; }
+        .logo-container img { width: 110px; display: block; opacity: 1; }
         
         .nav-menu { display: flex; gap: 40px; }
         .nav-link {
-            font-family: var(--font-body); font-size: 0.85rem; font-weight: 700; 
-            color: #BBBBBB; position: relative; padding: 5px 0;
-        }
-        .nav-link::after {
-            content: ''; position: absolute; width: 0; height: 2px; bottom: 0; right: 0; 
-            background-color: var(--accent); transition: width 0.4s;
+            font-family: var(--font-body); font-size: 0.8rem; font-weight: 600; 
+            color: #AAA; letter-spacing: 1px; text-transform: uppercase;
         }
         .nav-link:hover { color: var(--accent); }
-        .nav-link:hover::after { width: 100%; left: 0; right: auto; }
 
-        /* --- 4. LAYOUT & SECTIONS --- */
+        /* --- 4. LAYOUT --- */
         main { padding: 0 var(--pad-side); max-width: 1600px; margin: 0 auto; }
-        
         section { padding: 120px 0; border-top: 1px solid rgba(255,255,255,0.05); }
         section:first-of-type { border-top: none; padding-top: 0; }
 
-        .section-header-wrapper { margin-bottom: 80px; display: flex; align-items: baseline; gap: 20px; }
-        .section-number { font-family: var(--font-head); color: var(--accent); font-size: 1.5rem; opacity: 0.5; }
-        .section-title { font-family: var(--font-body); font-weight: 300; font-size: 2.5rem; letter-spacing: 4px; color: var(--text-main); }
+        .section-header-wrapper { margin-bottom: 70px; display: flex; align-items: baseline; gap: 15px; }
+        .section-number { font-family: var(--font-body); color: var(--accent); font-size: 1rem; font-weight: 600; }
+        .section-title { font-family: var(--font-head); font-weight: 800; font-size: 3rem; color: var(--text-main); line-height: 1; }
 
-        /* --- 5. HERO (V3 - Refined) --- */
+        /* --- 5. HERO (RE-BALANCED & ARTHOUSE) --- */
         .section-home {
             height: 100vh; display: flex; flex-direction: column; 
             align-items: center; justify-content: center; text-align: center;
         }
         
-        .hero-title { margin-bottom: 40px; }
+        /* Yeni, dengeli ve sanatsal başlık yapısı */
+        .hero-title {
+            display: flex; flex-direction: column; align-items: center; gap: 10px;
+        }
 
         .top-line {
-            font-size: 2.2rem; font-weight: 300; color: var(--text-muted);
-            letter-spacing: 0.05em; line-height: 1.2; display: block;
+            font-family: var(--font-body); /* Body font for contrast */
+            font-size: 1.5rem; 
+            font-weight: 300;
+            color: var(--text-muted);
+            letter-spacing: 0.2em; /* Geniş aralık */
+            text-transform: uppercase;
         }
 
-        .highlight-gradient {
-            display: block;
-            font-size: 5.5rem; /* Large & Impactful */
-            font-weight: 700;
-            margin-top: 10px;
-            letter-spacing: -2px;
+        .highlight-text {
+            font-family: var(--font-head);
+            font-size: 4.5rem; /* Dengeli büyüklük */
+            font-weight: 800; /* Extra Bold */
+            color: var(--text-main);
+            letter-spacing: -2px; /* Sıkı aralık */
             line-height: 1;
-            
-            /* Gradient Shine Effect */
-            background: linear-gradient(to right, var(--accent) 0%, #FFFFAA 50%, var(--accent) 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
+            text-transform: uppercase;
         }
 
-        @keyframes shine { to { background-position: 200% center; } }
-        
         /* --- 6. NARRATIVE --- */
-        .narrative-content { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-        .narrative-lead { font-size: 1.5rem; color: #FFF; line-height: 1.4; font-weight: 400; }
-        .narrative-text { font-size: 1rem; color: var(--text-muted); font-weight: 300; }
-        .narrative-text p { margin-bottom: 20px; }
+        .narrative-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: start; }
+        .narrative-lead { 
+            font-family: var(--font-head); font-size: 2rem; 
+            color: #FFF; line-height: 1.3; font-weight: 700; 
+        }
+        .narrative-text { font-size: 1.05rem; color: var(--text-muted); font-weight: 300; line-height: 1.7; }
+        .narrative-text p { margin-bottom: 25px; }
 
-        /* --- 7. ARTISTS GRID (2 Cols) --- */
-        .artists-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6rem; }
+        /* --- 7. ARTISTS GRID --- */
+        .artists-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 80px; }
         
-        .artist-card { group: hover; cursor: pointer; }
+        .artist-card { group: hover; cursor: pointer; transition: opacity 0.3s; }
+        .artist-card:hover { opacity: 0.8; }
+
         .artist-img-box {
-            width: 100%; aspect-ratio: 4/5; background-color: var(--bg-card);
+            width: 100%; aspect-ratio: 3.5/5; background-color: #220f08;
             margin-bottom: 25px; overflow: hidden; position: relative;
         }
         .artist-placeholder {
             width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
-            color: #444; font-size: 0.8rem; background-color: #150803; transition: transform 0.6s ease;
+            color: #444; font-family: var(--font-body); font-size: 0.8rem; letter-spacing: 2px;
         }
-        .artist-card:hover .artist-placeholder { transform: scale(1.05); }
         
-        .artist-meta { padding-left: 10px; border-left: 1px solid transparent; transition: border-color 0.3s; }
-        .artist-card:hover .artist-meta { border-left-color: var(--accent); }
-        
-        .artist-name { font-size: 1.2rem; letter-spacing: 2px; font-weight: 400; color: #FFF; }
-        .artist-role { font-size: 0.9rem; color: var(--text-muted); margin-top: 5px; }
+        .artist-name { 
+            font-family: var(--font-head); font-size: 1.8rem; font-weight: 700; 
+            color: #FFF; margin-bottom: 5px; text-transform: uppercase;
+        }
+        .artist-role { 
+            font-family: var(--font-body); font-size: 0.9rem; color: var(--text-muted); 
+            text-transform: uppercase; letter-spacing: 1px; 
+        }
 
         /* --- 8. WORKS LIST --- */
-        .works-list { display: flex; flex-direction: column; gap: 150px; }
+        .works-list { display: flex; flex-direction: column; gap: 140px; }
         
         .work-item {
             display: grid; grid-template-columns: 1.5fr 1fr; gap: 80px; align-items: center;
-            cursor: pointer; opacity: 0.9; transition: opacity 0.3s;
+            cursor: pointer; transition: opacity 0.3s;
         }
-        .work-item:hover { opacity: 1; }
+        .work-item:hover { opacity: 0.9; }
         .work-item:nth-child(even) { direction: rtl; }
         .work-item:nth-child(even) .work-info { direction: ltr; text-align: right; }
         
-        .work-img-container { width: 100%; height: 550px; overflow: hidden; background-color: var(--bg-card); }
-        .work-placeholder {
-            width: 100%; height: 100%; background-color: #150803;
-            filter: grayscale(100%); transition: all 0.6s ease;
-        }
-        .work-item:hover .work-placeholder { filter: grayscale(0%); transform: scale(1.03); }
+        .work-img-container { width: 100%; height: 500px; background-color: #220f08; }
+        .work-placeholder { width: 100%; height: 100%; }
         
-        .work-title { font-size: 3.5rem; line-height: 1; letter-spacing: -1px; margin-bottom: 20px; font-weight: 300; }
-        .work-meta { color: var(--accent); font-weight: 700; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 30px; display: block; }
-        .work-desc { font-size: 1rem; color: var(--text-muted); max-width: 400px; }
+        .work-meta { 
+            display: block; font-family: var(--font-body); color: var(--accent); 
+            font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 20px; font-weight: 600; text-transform: uppercase;
+        }
+        .work-title { 
+            font-family: var(--font-head); font-size: 3.5rem; line-height: 1; 
+            margin-bottom: 25px; font-weight: 800; text-transform: uppercase;
+        }
+        .work-desc { 
+            font-family: var(--font-body); font-size: 1rem; color: var(--text-muted); 
+            max-width: 400px; line-height: 1.6;
+        }
         .work-item:nth-child(even) .work-desc { margin-left: auto; }
 
-        /* --- 9. CONTACT (Minimal Left) --- */
-        .section-contact { min-height: 60vh; display: flex; flex-direction: column; justify-content: space-between; }
+        /* --- 9. CONTACT --- */
+        .section-contact { min-height: 50vh; display: flex; flex-direction: column; justify-content: space-between; }
         
-        .contact-content { display: flex; flex-direction: column; gap: 40px; align-items: flex-start; max-width: 600px; margin-top: 40px; }
+        .contact-content { display: flex; flex-direction: column; gap: 30px; align-items: flex-start; max-width: 600px; margin-top: 20px;}
         
-        /* Email Button */
+        /* New Minimal Button */
         .mail-btn {
             display: inline-block;
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 18px 50px;
-            font-size: 1.2rem;
+            border: 1px solid rgba(255,255,255,0.4);
+            padding: 15px 45px;
+            font-family: var(--font-body);
+            font-size: 1rem;
             font-weight: 600;
             color: var(--text-main);
             letter-spacing: 3px;
             text-transform: uppercase;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
         }
         .mail-btn:hover { 
-            color: #1f0b05; background-color: var(--accent); border-color: var(--accent);
+            background-color: var(--text-main); color: #000; border-color: var(--text-main);
         }
 
-        /* Socials */
-        .social-row { display: flex; gap: 30px; padding-left: 5px; }
+        .social-row { display: flex; gap: 30px; padding-left: 2px; }
         .social-link {
-            font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
-            letter-spacing: 2px; color: var(--text-muted); transition: color 0.3s ease;
+            font-family: var(--font-body); font-size: 0.85rem; font-weight: 600; 
+            text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); 
+            transition: color 0.3s ease;
         }
         .social-link:hover { color: var(--accent); }
 
         .copyright {
             margin-top: 80px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.05);
-            display: flex; justify-content: flex-end; font-size: 0.8rem; color: #555;
+            display: flex; justify-content: flex-end; font-family: var(--font-body); font-size: 0.75rem; color: #555;
         }
 
         /* --- RESPONSIVE --- */
@@ -196,9 +198,9 @@
             .main-header { height: 80px; }
             .nav-menu { display: none; }
             
-            .hero-title { margin-top: 60px; }
-            .top-line { font-size: 1.5rem; }
-            .highlight-gradient { font-size: 3rem; }
+            .hero-title { gap: 15px; }
+            .top-line { font-size: 1rem; letter-spacing: 0.15em;}
+            .highlight-text { font-size: 2.8rem; letter-spacing: -1px;}
             
             .narrative-content { grid-template-columns: 1fr; gap: 40px; }
             .artists-grid { grid-template-columns: 1fr; gap: 60px; }
@@ -208,8 +210,6 @@
             .work-img-container { height: 350px; }
             .work-title { font-size: 2.5rem; }
             
-            .mail-btn { font-size: 1rem; padding: 15px 40px;} 
-            .social-row { gap: 20px; flex-wrap: wrap; }
             .copyright { justify-content: center; }
         }
     </style>
@@ -220,7 +220,7 @@
         <a href="#home" class="logo-container">
             <img src="https://placehold.co/400x150/1f0b05/DEBD00?text=ARDIYE" alt="Ardiye Logo">
         </a>
-        <nav class="nav-menu uppercase">
+        <nav class="nav-menu">
             <a href="#home" class="nav-link">Home</a>
             <a href="#narrative" class="nav-link">Narrative</a>
             <a href="#artists" class="nav-link">Artists</a>
@@ -231,16 +231,16 @@
 
     <main>
         <section id="home" class="section-home">
-            <h1 class="hero-title uppercase">
+            <div class="hero-title">
                 <span class="top-line">Stored Ideas,</span>
-                <span class="highlight-gradient">Raw Productions.</span>
-            </h1>
+                <span class="highlight-text">Raw Productions.</span>
+            </div>
         </section>
 
         <section id="narrative">
-            <div class="section-header-wrapper uppercase">
+            <div class="section-header-wrapper">
                 <span class="section-number">01</span>
-                <h2 class="section-title">Narrative</h2>
+                <h2 class="section-title uppercase">Narrative</h2>
             </div>
             
             <div class="narrative-content">
@@ -255,9 +255,9 @@
         </section>
 
         <section id="artists">
-            <div class="section-header-wrapper uppercase">
+            <div class="section-header-wrapper">
                 <span class="section-number">02</span>
-                <h2 class="section-title">Residents</h2>
+                <h2 class="section-title uppercase">Residents</h2>
             </div>
             
             <div class="artists-grid">
@@ -265,28 +265,24 @@
                     <div class="artist-img-box">
                         <div class="artist-placeholder">PORTRAIT</div>
                     </div>
-                    <div class="artist-meta uppercase">
-                        <div class="artist-name">Cemre Yılmaz</div>
-                        <div class="artist-role">Visual Artist</div>
-                    </div>
+                    <div class="artist-name">Cemre Yılmaz</div>
+                    <div class="artist-role">Visual Artist</div>
                 </a>
                 
                 <div class="artist-card">
                     <div class="artist-img-box">
                         <div class="artist-placeholder">PORTRAIT</div>
                     </div>
-                    <div class="artist-meta uppercase">
-                        <div class="artist-name">Deniz Eren</div>
-                        <div class="artist-role">Filmmaker</div>
-                    </div>
+                    <div class="artist-name">Deniz Eren</div>
+                    <div class="artist-role">Filmmaker</div>
                 </div>
             </div>
         </section>
 
         <section id="works">
-            <div class="section-header-wrapper uppercase">
+            <div class="section-header-wrapper">
                 <span class="section-number">03</span>
-                <h2 class="section-title">Selection</h2>
+                <h2 class="section-title uppercase">Selection</h2>
             </div>
 
             <div class="works-list">
@@ -295,8 +291,8 @@
                         <div class="work-placeholder"></div>
                     </div>
                     <div class="work-info">
-                        <span class="work-meta uppercase">Video Art — 2024</span>
-                        <h3 class="work-title uppercase">Lost Frequency</h3>
+                        <span class="work-meta">Video Art — 2024</span>
+                        <h3 class="work-title">Lost Frequency</h3>
                         <p class="work-desc">An exploration of the unseen noise in the urban landscape. Recorded over 40 days in abandoned industrial zones.</p>
                     </div>
                 </a>
@@ -306,8 +302,8 @@
                         <div class="work-placeholder"></div>
                     </div>
                     <div class="work-info">
-                        <span class="work-meta uppercase">Installation — 2025</span>
-                        <h3 class="work-title uppercase">Surface Tension</h3>
+                        <span class="work-meta">Installation — 2025</span>
+                        <h3 class="work-title">Surface Tension</h3>
                         <p class="work-desc">Mixed media installation focusing on the texture of decay. Using rust, concrete, and organic materials found in the warehouse.</p>
                     </div>
                 </div>
@@ -315,9 +311,9 @@
         </section>
 
         <section id="contact" class="section-contact">
-            <div class="section-header-wrapper uppercase">
+            <div class="section-header-wrapper">
                 <span class="section-number">04</span>
-                <h2 class="section-title">Contact</h2>
+                <h2 class="section-title uppercase">Contact</h2>
             </div>
             
             <div class="contact-content">
