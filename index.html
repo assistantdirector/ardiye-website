@@ -27,7 +27,7 @@
         html { scroll-behavior: smooth; }
         body {
             background-color: var(--bg-color); color: var(--text-main);
-            font-family: var(--font-body); font-weight: 300; line-height: 1.6; /* Line-height tightened slightly */
+            font-family: var(--font-body); font-weight: 300; line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
 
@@ -64,8 +64,6 @@
 
         /* --- 4. LAYOUT --- */
         main { padding: 0 var(--pad-side); max-width: 1600px; margin: 0 auto; }
-        
-        /* REFACTORED PADDING: Slightly tighter sections */
         section { padding: 100px 0; border-top: 1px solid rgba(255,255,255,0.05); }
         section:first-of-type { border-top: none; padding-top: 0; }
 
@@ -85,12 +83,12 @@
         .hero-title .highlight { font-weight: 600; color: #FFF; display: block; }
         
         /* --- 6. NARRATIVE --- */
-        .narrative-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+        .narrative-content { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
         .narrative-lead { font-size: 1.4rem; color: #FFF; line-height: 1.4; font-weight: 400; }
         .narrative-text { font-size: 1rem; color: var(--text-muted); font-weight: 300; }
         .narrative-text p { margin-bottom: 20px; }
 
-        /* --- 7. ARTISTS GRID (2 COL) --- */
+        /* --- 7. ARTISTS GRID --- */
         .artists-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4rem; }
         .artist-card { group: hover; cursor: pointer; }
         .artist-img-box {
@@ -127,44 +125,49 @@
         .work-desc { font-size: 1rem; color: var(--text-muted); max-width: 400px; }
         .work-item:nth-child(even) .work-desc { margin-left: auto; }
 
-        /* --- 9. CONTACT (REFACTORED: CENTERED & COMPACT) --- */
-        .section-contact { min-height: 50vh; display: flex; flex-direction: column; }
+        /* --- 9. CONTACT (REFACTORED) --- */
+        .section-contact { min-height: 50vh; display: flex; flex-direction: column; justify-content: space-between; }
         
-        .contact-center {
-            flex-grow: 1; /* Fills vertical space */
-            display: flex; flex-direction: column; 
-            align-items: center; justify-content: center;
-            gap: 20px;
+        .contact-content { display: flex; flex-direction: column; gap: 40px; align-items: flex-start; max-width: 600px; }
+        
+        /* Email Button */
+        .mail-btn {
+            display: inline-block;
+            padding: 10px 0;
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: var(--text-main);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+            border-bottom: 1px solid transparent;
+        }
+        .mail-btn:hover { 
+            color: var(--accent);
+            padding-left: 15px; 
         }
 
-        /* COMPACT & ELEGANT BOX */
-        .email-box {
-            display: inline-block;
-            border: 1px solid rgba(255,255,255,0.3);
-            padding: 15px 40px; /* Reduced padding */
-            font-size: 1.2rem;  /* Reduced font size */
+        /* NEW SOCIAL ROW (Inside Contact) */
+        .social-row {
+            display: flex; gap: 30px; margin-top: -10px; /* Slight pull up closer to email */
+        }
+        .social-link {
+            font-size: 0.85rem;
             font-weight: 600;
-            color: var(--text-main);
-            letter-spacing: 3px;
             text-transform: uppercase;
-            transition: all 0.3s ease;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
         }
-        
-        .email-box:hover {
-            background-color: var(--accent);
-            color: #1f0b05; /* Dark text on hover */
-            border-color: var(--accent);
-        }
+        .social-link:hover { color: var(--accent); }
+
+        .address-text { color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; margin-top: 10px; }
 
         .copyright {
-            margin-top: auto; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.05);
-            display: flex; justify-content: space-between; align-items: flex-end;
+            margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex; justify-content: flex-start; 
             font-size: 0.8rem; color: #555;
         }
-        
-        .footer-socials { display: flex; gap: 20px; }
-        .footer-socials a { color: var(--text-muted); transition: color 0.3s; text-transform: uppercase; letter-spacing: 1px; font-size: 0.75rem;}
-        .footer-socials a:hover { color: var(--accent); }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
@@ -180,8 +183,8 @@
             .work-img-container { height: 350px; }
             .work-title { font-size: 2.5rem; }
             
-            .email-box { padding: 12px 30px; font-size: 1rem; }
-            .copyright { flex-direction: column; gap: 15px; align-items: center; }
+            .mail-btn { font-size: 1.5rem; } 
+            .social-row { gap: 20px; flex-wrap: wrap; }
         }
     </style>
 </head>
@@ -216,7 +219,7 @@
             
             <div class="narrative-content">
                 <div class="narrative-lead">
-                    Ardiye is not a gallery. We are a storage unit for the incomplete. We collect the raw, the unpolished, and the forgotten.
+                    ardiye is an initiative that believes in collective art production and aims to express itself through the unifying power of art.
                 </div>
                 <div class="narrative-text">
                     <p>Ardiye functions as an archive for projects that were never meant to end. We provide a space where the process is valued over the result.</p>
@@ -291,17 +294,22 @@
                 <h2 class="section-title">Contact</h2>
             </div>
             
-            <div class="contact-center">
-                <a href="mailto:info@ardiye.art" class="email-box">
-                    Email Us
-                </a>
+            <div class="contact-content">
+                <a href="mailto:info@ardiye.art" class="mail-btn">Email Us -></a>
+                
+                <div class="social-row">
+                    <a href="#" class="social-link">Instagram</a>
+                    <a href="#" class="social-link">Vimeo</a>
+                    <a href="#" class="social-link">LinkedIn</a>
+                </div>
+
+                <p class="address-text">
+                    Ardiye Art Initiative<br>
+                    Open for collaborations and residency applications.
+                </p>
             </div>
 
             <div class="copyright uppercase">
-                <div class="footer-socials">
-                    <a href="#">Instagram</a>
-                    <a href="#">Vimeo</a>
-                </div>
                 <span>&copy; 2026 Ardiye Art Initiative</span>
             </div>
         </section>
