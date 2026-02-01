@@ -212,48 +212,34 @@
     </header>
 
     <main>
-       <section id="home" class="section-home v4">
+       <section id="home" class="section-home v5">
     <h1 class="hero-title uppercase">
-        <span class="small-line">Stored Ideas,</span><br>
-        <span class="big-line">Raw Productions.</span>
+        Stored Ideas,<br>
+        <span class="highlight-block">Raw Productions.</span>
     </h1>
 </section>
 
 <style>
-/* CSS: VARYASYON 4 */
-.section-home.v4 .hero-title {
-    /* Orijinal boyutu eziyoruz */
-    font-size: 1rem; /* Sıfırlama */
-}
-
-.section-home.v4 .small-line {
-    display: block;
-    font-size: 4vw; /* Daha küçük */
-    font-weight: 300;
-    color: var(--text-muted);
-    letter-spacing: 0.1em;
-    margin-bottom: 0; /* Aralığı kapatalım */
-}
-
-.section-home.v4 .big-line {
-    display: block;
-    font-size: 10vw; /* Çok daha büyük */
-    font-weight: 800; /* En kalın */
-    color: var(--accent); /* Ana renk */
-    line-height: 0.9;
-    letter-spacing: -0.04em; /* Sıkı harfler */
+/* CSS: VARYASYON 5 */
+.section-home.v5 .highlight-block {
+    font-weight: 700;
+    color: #1f0b05; /* Metin rengi koyu */
+    background-color: var(--accent); /* Arka plan sarı */
     
-    /* Dramatik, uzun gölge */
-    text-shadow: 
-        4px 4px 0px #3d1f00,
-        8px 8px 0px rgba(61, 31, 0, 0.5),
-        12px 12px 0px rgba(61, 31, 0, 0.2);
+    /* Kutuyu metnin etrafına sarmala */
+    display: inline-block; 
+    padding: 0.1em 0.3em; /* Biraz nefes payı */
+    margin-top: 0.1em;
+    
+    /* Hafif eğiklik ve gölge ile derinlik */
+    transform: skew(-10deg);
+    box-shadow: 10px 10px 0px rgba(222, 189, 0, 0.2);
 }
 
-/* Mobilde boyutları ayarlayalım */
-@media (max-width: 768px) {
-    .section-home.v4 .small-line { font-size: 6vw; }
-    .section-home.v4 .big-line { font-size: 14vw; }
+/* Metnin kendisi düz kalsın */
+.section-home.v5 .highlight-block span {
+    display: inline-block;
+    transform: skew(10deg); /* Eğikliği tersine çevir */
 }
 </style>
 
