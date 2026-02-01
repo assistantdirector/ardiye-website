@@ -212,12 +212,57 @@
     </header>
 
     <main>
-        <section id="home" class="section-home">
-            <h1 class="hero-title uppercase">
-                Stored Ideas,<br>
-                <span class="highlight">Raw Productions.</span>
-            </h1>
-        </section>
+        <section id="home" class="section-home v1">
+    <h1 class="hero-title uppercase">
+        <span class="line-top">Stored Ideas,</span><br>
+        <span class="highlight-v1">Raw Productions.</span>
+    </h1>
+</section>
+
+<style>
+/* CSS: VARYASYON 1 */
+.section-home.v1 .hero-title {
+    /* Diğer stiller korunuyor */
+}
+
+.section-home.v1 .line-top {
+    font-weight: 300;
+    color: #E0E0E0;
+    position: relative;
+    display: inline-block;
+}
+
+/* İnce üst çizgi */
+.section-home.v1 .line-top::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(255,255,255,0.1);
+}
+
+/* Kalın alt vurgu */
+.section-home.v1 .highlight-v1 {
+    font-weight: 700;
+    color: #FFF;
+    position: relative;
+    display: inline-block;
+    margin-top: 15px; /* Üst satırla arayı açalım */
+}
+
+.section-home.v1 .highlight-v1::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px; /* Metnin biraz altına */
+    width: 100%;
+    height: 6px; /* Kalın bir çizgi */
+    background-color: var(--accent); /* Ardiye Sarısı */
+    opacity: 0.8;
+}
+</style>
 
         <section id="narrative">
             <div class="section-header-wrapper uppercase">
