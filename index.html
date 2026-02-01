@@ -212,34 +212,73 @@
     </header>
 
     <main>
-       <section id="home" class="section-home v5">
+    <section id="home" class="section-home v3">
     <h1 class="hero-title uppercase">
-        Stored Ideas,<br>
-        <span class="highlight-block">Raw Productions.</span>
+        <span class="top-line">Stored Ideas,</span><br>
+        <span class="highlight-gradient">Raw Productions.</span>
     </h1>
 </section>
 
 <style>
-/* CSS: VARYASYON 5 */
-.section-home.v5 .highlight-block {
-    font-weight: 700;
-    color: #1f0b05; /* Metin rengi koyu */
-    background-color: var(--accent); /* Arka plan sarı */
+/* --- CSS: VARYASYON 3 (REVIZE EDİLMİŞ BOYUTLAR) --- */
+
+/* 1. Ana Başlık Kapsayıcısı için yeni ayarlar */
+.section-home.v3 .hero-title {
+    /* Orijinal devasa vw (viewport width) boyutunu eziyoruz */
+    font-size: unset; 
     
-    /* Kutuyu metnin etrafına sarmala */
-    display: inline-block; 
-    padding: 0.1em 0.3em; /* Biraz nefes payı */
-    margin-top: 0.1em;
-    
-    /* Hafif eğiklik ve gölge ile derinlik */
-    transform: skew(-10deg);
-    box-shadow: 10px 10px 0px rgba(222, 189, 0, 0.2);
+    /* Daha zarif bir başlangıç noktası */
+    text-align: center;
+    margin-bottom: 40px;
 }
 
-/* Metnin kendisi düz kalsın */
-.section-home.v5 .highlight-block span {
-    display: inline-block;
-    transform: skew(10deg); /* Eğikliği tersine çevir */
+/* 2. Üst Satır (Stored Ideas,) - Daha küçük ve sönük */
+.section-home.v3 .top-line {
+    font-size: 1.5rem; /* Desktop için zarif boyut */
+    font-weight: 300;
+    color: var(--text-muted); /* Gri ton */
+    letter-spacing: 0.1em; /* Harf aralığını açarak ferahlık verelim */
+    line-height: 1.4;
+}
+
+/* 3. Vurgulu Alt Satır (Raw Productions.) - Efektli ve daha büyük */
+.section-home.v3 .highlight-gradient {
+    display: block; /* Kendi satırına al */
+    font-size: 3rem; /* Üst satırın 2 katı büyüklükte */
+    font-weight: 700;
+    margin-top: 5px; /* Üst satırla aradaki mesafe */
+    letter-spacing: 0; /* Kalın fontta harf aralığını sıfırlayalım */
+    line-height: 1.1;
+
+    /* --- GRADYAN EFEKTİ (Aynı kalıyor) --- */
+    /* Sarı -> Parlak Sarı -> Sarı geçişi */
+    background: linear-gradient(to right, var(--accent), #FFFFAA, var(--accent));
+    background-size: 200% auto;
+    
+    /* Metni maske olarak kullan */
+    -webkit-background-clip: text;
+    background-clip: text;
+    
+    /* Metnin içini şeffaf yap */
+    -webkit-text-fill-color: transparent;
+    
+    /* Akış animasyonu */
+    animation: shine 5s linear infinite;
+}
+
+/* Animasyon Keyframe */
+@keyframes shine {
+    to { background-position: 200% center; }
+}
+
+/* --- MOBİL UYUM (Responsive Downscale) --- */
+@media (max-width: 768px) {
+    .section-home.v3 .top-line {
+        font-size: 1.2rem; /* Mobilde daha küçük */
+    }
+    .section-home.v3 .highlight-gradient {
+        font-size: 2.2rem; /* Mobilde daha küçük ama hala vurgulu */
+    }
 }
 </style>
 
