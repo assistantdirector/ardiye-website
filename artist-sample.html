@@ -32,16 +32,17 @@
 
         a { text-decoration: none; color: inherit; transition: all 0.3s ease; cursor: none; }
 
-        /* GHOST CURSOR */
+        /* OPTIMIZED CURSOR */
         .cursor-outline {
-            position: fixed; top: 0; left: 0;
-            transform: translate(-50%, -50%); border-radius: 50%;
-            z-index: 9999; pointer-events: none;
-            width: 30px; height: 30px;
-            border: 1px solid rgba(235, 203, 75, 0.6);
+            position: fixed; top: 0; left: 0; width: 30px; height: 30px;
+            border: 1px solid rgba(235, 203, 75, 0.6); border-radius: 50%;
+            pointer-events: none; z-index: 9999; will-change: transform;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
         }
-        body:hover .cursor-outline { opacity: 1; }
-        a:hover ~ .cursor-outline { transform: translate(-50%, -50%) scale(1.8); background-color: rgba(235, 203, 75, 0.1); border-color: var(--accent); }
+        body.hovering .cursor-outline {
+            width: 60px; height: 60px; background-color: rgba(235, 203, 75, 0.1); border-color: var(--accent);
+        }
 
         /* HEADER */
         .main-header {
@@ -70,7 +71,6 @@
 
         .artist-profile { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start; }
         
-        /* 1:1 RATIO */
         .artist-portrait {
             width: 100%; aspect-ratio: 1/1; 
             background-color: #1c100c;
@@ -105,7 +105,6 @@
             .artist-name { font-size: 3.5rem; }
             .artist-profile { grid-template-columns: 1fr; gap: 40px; }
             .work-list-mini { grid-template-columns: 1fr; gap: 20px; }
-            
             * { cursor: auto; }
             .cursor-outline { display: none; }
         }
@@ -163,11 +162,24 @@
 
     <script>
         const cursorOutline = document.querySelector('.cursor-outline');
-        window.addEventListener('mousemove', function(e) {
-            const posX = e.clientX;
-            const posY = e.clientY;
-            cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
+        const hoverTargets = document.querySelectorAll('a, button');
+        let mouseX = 0, mouseY = 0, outlineX = 0, outlineY = 0;
+
+        window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+        hoverTargets.forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
         });
+
+        function animateCursor() {
+            let speed = 0.15;
+            outlineX += (mouseX - outlineX) * speed;
+            outlineY += (mouseY - outlineY) * speed;
+            cursorOutline.style.left = `${outlineX}px`;
+            cursorOutline.style.top = `${outlineY}px`;
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
     </script>
 </body>
 </html>
