@@ -125,34 +125,43 @@
         .work-desc { font-size: 1rem; color: var(--text-muted); max-width: 400px; }
         .work-item:nth-child(even) .work-desc { margin-left: auto; }
 
-        /* --- 9. CONTACT (REFACTORED) --- */
-        .section-contact { min-height: 50vh; display: flex; flex-direction: column; justify-content: space-between; }
+        /* --- 9. CONTACT (FINAL UI) --- */
+        .section-contact { min-height: 60vh; display: flex; flex-direction: column; justify-content: space-between; }
         
-        .contact-content { display: flex; flex-direction: column; gap: 40px; align-items: flex-start; max-width: 600px; }
+        /* Container aligned left but with spacing */
+        .contact-content { 
+            display: flex; flex-direction: column; 
+            gap: 40px; 
+            align-items: flex-start; /* Sola yaslı */
+            max-width: 600px; 
+            margin-top: 40px; /* Üstten boşluk */
+        }
         
-        /* Email Button */
+        /* Elegant Email Button */
         .mail-btn {
             display: inline-block;
-            padding: 10px 0;
-            font-size: 1.8rem;
-            font-weight: 300;
+            border: 1px solid rgba(255,255,255,0.3); /* İnce Çerçeve */
+            padding: 18px 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
             color: var(--text-main);
-            letter-spacing: 2px;
+            letter-spacing: 4px;
             text-transform: uppercase;
             transition: all 0.4s ease;
-            border-bottom: 1px solid transparent;
         }
         .mail-btn:hover { 
-            color: var(--accent);
-            padding-left: 15px; 
+            color: #1f0b05; /* Yazı koyu */
+            background-color: var(--accent); /* Arkaplan Sarı */
+            border-color: var(--accent);
         }
 
-        /* NEW SOCIAL ROW (Inside Contact) */
+        /* Social Row under the button */
         .social-row {
-            display: flex; gap: 30px; margin-top: -10px; /* Slight pull up closer to email */
+            display: flex; gap: 30px; 
+            padding-left: 5px; /* Hafif girinti */
         }
         .social-link {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -161,11 +170,9 @@
         }
         .social-link:hover { color: var(--accent); }
 
-        .address-text { color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; margin-top: 10px; }
-
         .copyright {
-            margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.05);
-            display: flex; justify-content: flex-start; 
+            margin-top: 80px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex; justify-content: flex-end; /* Sağ alt köşe */
             font-size: 0.8rem; color: #555;
         }
 
@@ -183,8 +190,9 @@
             .work-img-container { height: 350px; }
             .work-title { font-size: 2.5rem; }
             
-            .mail-btn { font-size: 1.5rem; } 
+            .mail-btn { font-size: 1rem; padding: 15px 40px;} 
             .social-row { gap: 20px; flex-wrap: wrap; }
+            .copyright { justify-content: center; }
         }
     </style>
 </head>
@@ -219,7 +227,7 @@
             
             <div class="narrative-content">
                 <div class="narrative-lead">
-                    ardiye is an initiative that believes in collective art production and aims to express itself through the unifying power of art.
+                    ardiyé an initiative that believes in collective art production and aims to express itself through the unifying power of art.
                 </div>
                 <div class="narrative-text">
                     <p>Ardiye functions as an archive for projects that were never meant to end. We provide a space where the process is valued over the result.</p>
