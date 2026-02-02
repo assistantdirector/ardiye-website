@@ -7,10 +7,10 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
-        /* --- GOLDEN STANDARD CONFIG (FROM PROJECT SAMPLE) --- */
+        /* --- GOLDEN STANDARD CONFIG --- */
         :root {
             --bg-color: #120a08; --bg-card: #1c100c; --text-main: #EEEEEE;
             --text-muted: #888; --accent: #EBCB4B; --pad-side: 60px;
@@ -40,7 +40,7 @@
         h1, h2, h3 { font-weight: normal; margin: 0; font-family: var(--font-head); text-transform: uppercase; }
         .uppercase { text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- TRACKER (EXACT COPY FROM PROJECT SAMPLE) --- */
+        /* --- TRACKER (SMOOTH & OUTLINE ONLY) --- */
         .cursor-outline {
             position: fixed; top: 0; left: 0; width: 30px; height: 30px;
             border: 1px solid rgba(235, 203, 75, 0.5); border-radius: 50%;
@@ -75,10 +75,9 @@
         section:first-of-type { border-top: none; padding-top: 0; }
 
         .section-header-wrapper { margin-bottom: 60px; display: flex; align-items: baseline; }
-        /* Font size reduced slightly per request */
         .section-title { font-family: var(--font-head); font-size: 2.8rem; color: var(--text-main); line-height: 1; font-weight: 600; text-transform: uppercase; }
 
-        /* HERO (BALANCED) */
+        /* HERO (RAW FLUX) */
         .section-home {
             height: 60vh; display: flex; flex-direction: column; 
             align-items: center; justify-content: center; text-align: center;
@@ -87,8 +86,9 @@
         
         .highlight-gradient {
             display: block; font-family: var(--font-head); 
-            font-size: 6.5rem; /* Balanced size */
-            line-height: 1; letter-spacing: -1px; font-weight: 800; text-transform: uppercase;
+            /* Kelime kısaldığı için biraz daha büyütebiliriz */
+            font-size: 9vw; 
+            line-height: 1; letter-spacing: -2px; font-weight: 800; text-transform: uppercase;
             background: linear-gradient(135deg, #888 0%, #FFF 30%, #EBCB4B 50%, #FFF 70%, #888 100%);
             background-size: 200% auto; -webkit-background-clip: text; background-clip: text;
             -webkit-text-fill-color: transparent; animation: shine 4s linear infinite;
@@ -167,7 +167,7 @@
             :root { --pad-side: 20px; }
             .main-header { height: 80px; }
             .nav-menu { display: none; }
-            .highlight-gradient { font-size: 14vw; }
+            .highlight-gradient { font-size: 16vw; } /* Mobilde daha büyük */
             .section-home { height: 40vh; padding-top: 100px; }
             .narrative-content { grid-template-columns: 1fr; gap: 40px; }
             .artists-grid { grid-template-columns: 1fr; gap: 60px; }
@@ -178,6 +178,7 @@
             .work-title { font-size: 3rem; }
             .mail-btn { font-size: 1.5rem; padding: 12px 30px;} 
             .copyright { justify-content: center; }
+            * { cursor: auto; }
             .cursor-outline { display: none; }
         }
     </style>
@@ -201,7 +202,7 @@
     <main>
         <section id="home" class="section-home">
             <h1 class="hero-title uppercase">
-                <span class="highlight-gradient">Raw Productions.</span>
+                <span class="highlight-gradient">RAW FLUX.</span>
             </h1>
         </section>
 
@@ -298,7 +299,6 @@
         let mouseX = 0, mouseY = 0, outlineX = 0, outlineY = 0;
 
         window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
-        
         hoverTargets.forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
