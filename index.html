@@ -7,23 +7,28 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
     <style>
-        /* --- CONFIG --- */
+        /* --- GOLDEN STANDARD CONFIG (FROM PROJECT SAMPLE) --- */
         :root {
             --bg-color: #120a08; --bg-card: #1c100c; --text-main: #EEEEEE;
             --text-muted: #888; --accent: #EBCB4B; --pad-side: 60px;
             --font-head: 'Barlow Condensed', sans-serif; --font-body: 'Inter', sans-serif;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; cursor: none; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         
+        /* DEFAULT CURSOR */
+        html, body, a { cursor: default; }
+        a { cursor: pointer; }
+
         html { scroll-behavior: smooth; }
         body {
             background-color: var(--bg-color); color: var(--text-main);
             font-family: var(--font-body); font-weight: 300; line-height: 1.6;
-            -webkit-font-smoothing: antialiased; overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
         ::-webkit-scrollbar { width: 6px; }
@@ -31,15 +36,16 @@
         ::-webkit-scrollbar-thumb { background: #333; }
         ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-        a { text-decoration: none; color: inherit; transition: all 0.3s ease; cursor: none; }
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        h1, h2, h3 { font-weight: normal; margin: 0; font-family: var(--font-head); text-transform: uppercase; }
+        .uppercase { text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- FIXED TRACKER (PROJECT STYLE) --- */
+        /* --- TRACKER (EXACT COPY FROM PROJECT SAMPLE) --- */
         .cursor-outline {
             position: fixed; top: 0; left: 0; width: 30px; height: 30px;
-            border: 1px solid rgba(235, 203, 75, 0.6); border-radius: 50%;
+            border: 1px solid rgba(235, 203, 75, 0.5); border-radius: 50%;
             pointer-events: none; z-index: 9999; will-change: transform;
             transform: translate(-50%, -50%);
-            /* Sadece boyut ve renk değişimi CSS ile, hareket JS ile */
             transition: width 0.3s, height 0.3s, background-color 0.3s;
         }
         body.hovering .cursor-outline {
@@ -69,20 +75,19 @@
         section:first-of-type { border-top: none; padding-top: 0; }
 
         .section-header-wrapper { margin-bottom: 60px; display: flex; align-items: baseline; }
-        .section-title { font-family: var(--font-head); font-size: 3rem; color: var(--text-main); line-height: 1; font-weight: 600; text-transform: uppercase; }
+        /* Font size reduced slightly per request */
+        .section-title { font-family: var(--font-head); font-size: 2.8rem; color: var(--text-main); line-height: 1; font-weight: 600; text-transform: uppercase; }
 
-        /* --- HERO (REFACTORED SIZE) --- */
+        /* HERO (BALANCED) */
         .section-home {
-            height: 60vh; /* Daha dengeli yükseklik */
-            display: flex; flex-direction: column; 
+            height: 60vh; display: flex; flex-direction: column; 
             align-items: center; justify-content: center; text-align: center;
             padding-top: 100px;
         }
         
         .highlight-gradient {
             display: block; font-family: var(--font-head); 
-            /* Project sayfası başlıklarıyla uyumlu max boyut */
-            font-size: 6rem; 
+            font-size: 6.5rem; /* Balanced size */
             line-height: 1; letter-spacing: -1px; font-weight: 800; text-transform: uppercase;
             background: linear-gradient(135deg, #888 0%, #FFF 30%, #EBCB4B 50%, #FFF 70%, #888 100%);
             background-size: 200% auto; -webkit-background-clip: text; background-clip: text;
@@ -92,14 +97,13 @@
         
         /* NARRATIVE */
         .narrative-content { display: grid; grid-template-columns: 1.1fr 1fr; gap: 80px; align-items: start; }
-        .narrative-lead { font-family: var(--font-head); font-size: 2.2rem; color: #FFF; line-height: 1.2; font-weight: 600; }
+        .narrative-lead { font-family: var(--font-head); font-size: 2rem; color: #FFF; line-height: 1.2; font-weight: 600; }
         .narrative-text { font-size: 1rem; color: var(--text-muted); font-weight: 300; line-height: 1.7; }
         .narrative-text p { margin-bottom: 20px; }
 
         /* ARTISTS */
         .artists-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4rem; }
-        .artist-card { group: hover; cursor: none; }
-        
+        .artist-card { group: hover; cursor: pointer; }
         .artist-img-box {
             width: 100%; aspect-ratio: 1 / 1; background-color: var(--bg-card);
             margin-bottom: 20px; overflow: hidden; position: relative;
@@ -119,7 +123,7 @@
         .works-list { display: flex; flex-direction: column; gap: 120px; }
         .work-item {
             display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; align-items: center;
-            cursor: none; opacity: 0.85; transition: opacity 0.3s;
+            cursor: pointer; opacity: 0.85; transition: opacity 0.3s;
         }
         .work-item:hover { opacity: 1; }
         .work-item:nth-child(even) { direction: rtl; }
@@ -163,7 +167,7 @@
             :root { --pad-side: 20px; }
             .main-header { height: 80px; }
             .nav-menu { display: none; }
-            .highlight-gradient { font-size: 12vw; } /* Mobilde optimize */
+            .highlight-gradient { font-size: 14vw; }
             .section-home { height: 40vh; padding-top: 100px; }
             .narrative-content { grid-template-columns: 1fr; gap: 40px; }
             .artists-grid { grid-template-columns: 1fr; gap: 60px; }
@@ -174,7 +178,6 @@
             .work-title { font-size: 3rem; }
             .mail-btn { font-size: 1.5rem; padding: 12px 30px;} 
             .copyright { justify-content: center; }
-            * { cursor: auto; }
             .cursor-outline { display: none; }
         }
     </style>
@@ -295,13 +298,14 @@
         let mouseX = 0, mouseY = 0, outlineX = 0, outlineY = 0;
 
         window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+        
         hoverTargets.forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
         });
 
         function animateCursor() {
-            let speed = 0.15; // Smooth Lag
+            let speed = 0.2; 
             outlineX += (mouseX - outlineX) * speed;
             outlineY += (mouseY - outlineY) * speed;
             cursorOutline.style.left = `${outlineX}px`;
