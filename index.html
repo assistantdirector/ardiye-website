@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
         /* --- 1. THEME CONFIG --- */
@@ -23,12 +23,8 @@
         }
 
         /* --- 2. BASE --- */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; cursor: none; }
         
-        /* DEFAULT CURSOR RESTORED */
-        html, body, a { cursor: default; }
-        a { cursor: pointer; }
-
         html { scroll-behavior: smooth; }
         
         body {
@@ -43,44 +39,42 @@
         ::-webkit-scrollbar-thumb { background: #333; }
         ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; cursor: none; }
         h1, h2, h3 { font-weight: normal; margin: 0; font-family: var(--font-head); text-transform: uppercase; }
         .uppercase { text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- GHOST CURSOR (MATCHING PROJECT PAGE) --- */
+        /* --- GHOST CURSOR (VISUAL ONLY) --- */
         .cursor-outline {
-            position: fixed; top: 0; left: 0; 
+            position: fixed; top: 0; left: 0;
             width: 30px; height: 30px;
-            border: 1px solid rgba(235, 203, 75, 0.5); 
+            border: 1px solid rgba(235, 203, 75, 0.6);
             border-radius: 50%;
-            pointer-events: none; z-index: 9999; 
+            pointer-events: none; z-index: 9999;
             will-change: transform; 
             transform: translate(-50%, -50%);
             transition: width 0.3s, height 0.3s, background-color 0.3s;
         }
-        
         body.hovering .cursor-outline {
-            width: 50px; height: 50px; 
-            background-color: rgba(235, 203, 75, 0.05); 
+            width: 50px; height: 50px;
             border-color: var(--accent);
+            background-color: rgba(235, 203, 75, 0.05);
         }
 
         /* --- 3. HEADER --- */
         .main-header {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100px;
+            position: fixed; top: 0; left: 0; width: 100%; height: 90px; /* Biraz küçüldü */
             padding: 0 var(--pad-side); display: flex; justify-content: space-between; align-items: center;
             z-index: 1000; background: rgba(18, 10, 8, 0.95); backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-        .logo-container img { width: 120px; display: block; opacity: 1; }
+        .logo-container img { width: 110px; display: block; opacity: 1; } /* Logo küçüldü */
         
         .nav-menu { display: flex; gap: 40px; }
         
-        /* BOLD NAV STYLE */
         .nav-link {
             font-family: var(--font-head); 
-            font-size: 1.25rem; 
-            font-weight: 700;   
+            font-size: 1.1rem; /* Küçüldü */
+            font-weight: 600;   
             color: #888; 
             position: relative; 
             padding: 5px 0; 
@@ -88,29 +82,28 @@
             text-transform: uppercase;
             transition: color 0.3s ease;
         }
-        .nav-link span { color: var(--accent); margin-right: 5px; opacity: 0.6; font-weight: 400; }
         .nav-link:hover { color: #FFF; }
-        .nav-link:hover span { opacity: 1; }
 
         /* --- 4. LAYOUT --- */
         main { padding: 0 var(--pad-side); max-width: 1600px; margin: 0 auto; }
-        section { padding: 120px 0; border-top: 1px solid rgba(255,255,255,0.05); }
+        section { padding: 100px 0; border-top: 1px solid rgba(255,255,255,0.05); }
         section:first-of-type { border-top: none; padding-top: 0; }
 
-        .section-header-wrapper { margin-bottom: 60px; display: flex; align-items: baseline; gap: 15px; }
-        .section-number { font-family: var(--font-head); color: var(--accent); font-size: 1.5rem; font-weight: 600; opacity: 0.8; }
-        .section-title { font-family: var(--font-head); font-size: 3rem; color: var(--text-main); line-height: 1; letter-spacing: 1px; font-weight: 600; }
+        /* NO NUMBERS - Just Title */
+        .section-header-wrapper { margin-bottom: 50px; display: flex; align-items: baseline; }
+        .section-title { font-family: var(--font-head); font-size: 2.5rem; color: var(--text-main); line-height: 1; letter-spacing: 1px; font-weight: 600; }
 
         /* --- 5. HERO --- */
         .section-home {
             height: 50vh; display: flex; flex-direction: column; 
             align-items: center; justify-content: center; text-align: center;
-            padding-top: 120px;
+            padding-top: 100px;
         }
         
         .highlight-gradient {
             display: block; font-family: var(--font-head); 
-            font-size: 8vw; line-height: 0.9; letter-spacing: -2px; font-weight: 800; text-transform: uppercase;
+            font-size: 7vw; /* Küçüldü (önceki 8vw) */
+            line-height: 0.9; letter-spacing: -1px; font-weight: 700; text-transform: uppercase;
             background: linear-gradient(135deg, #888 0%, #FFF 30%, #EBCB4B 50%, #FFF 70%, #888 100%);
             background-size: 200% auto; -webkit-background-clip: text; background-clip: text;
             -webkit-text-fill-color: transparent; animation: shine 4s linear infinite;
@@ -119,60 +112,63 @@
         
         /* --- 6. NARRATIVE --- */
         .narrative-content { display: grid; grid-template-columns: 1.1fr 1fr; gap: 80px; align-items: start; }
-        .narrative-lead { font-family: var(--font-head); font-size: 2.2rem; color: #FFF; line-height: 1.2; font-weight: 600; }
-        .narrative-text { font-size: 1rem; color: var(--text-muted); font-weight: 300; line-height: 1.7; }
+        .narrative-lead { font-family: var(--font-head); font-size: 2rem; color: #FFF; line-height: 1.3; font-weight: 600; }
+        .narrative-text { font-size: 0.95rem; color: var(--text-muted); font-weight: 300; line-height: 1.7; }
         .narrative-text p { margin-bottom: 20px; }
 
         /* --- 7. ARTISTS GRID --- */
         .artists-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4rem; }
-        .artist-card { group: hover; cursor: pointer; }
+        .artist-card { group: hover; cursor: none; }
+        
         .artist-img-box {
             width: 100%; aspect-ratio: 1 / 1; background-color: var(--bg-card);
             margin-bottom: 20px; overflow: hidden; position: relative;
         }
         .artist-placeholder {
             width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
-            color: #444; font-family: var(--font-head); font-size: 1.5rem; letter-spacing: 2px;
+            color: #444; font-family: var(--font-head); font-size: 1.2rem; letter-spacing: 2px;
             transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
         }
         .artist-card:hover .artist-placeholder { transform: scale(1.05); }
-        .artist-meta { border-left: 2px solid transparent; padding-left: 15px; transition: 0.3s;}
+        
+        .artist-meta { border-left: 1px solid transparent; padding-left: 15px; transition: 0.3s;}
         .artist-card:hover .artist-meta { border-left-color: var(--accent); }
-        .artist-name { font-family: var(--font-head); font-size: 2rem; letter-spacing: 1px; font-weight: 600; color: #FFF; margin-bottom: 0; }
-        .artist-role { font-family: var(--font-body); font-size: 0.85rem; color: var(--text-muted); letter-spacing: 1px; }
+        
+        .artist-name { font-family: var(--font-head); font-size: 1.8rem; letter-spacing: 1px; font-weight: 600; color: #FFF; margin-bottom: 0; }
+        .artist-role { font-family: var(--font-body); font-size: 0.8rem; color: var(--text-muted); letter-spacing: 1px; }
 
         /* --- 8. WORKS LIST --- */
-        .works-list { display: flex; flex-direction: column; gap: 120px; }
+        .works-list { display: flex; flex-direction: column; gap: 100px; }
         .work-item {
             display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; align-items: center;
-            cursor: pointer; opacity: 0.85; transition: opacity 0.3s;
+            cursor: none; opacity: 0.85; transition: opacity 0.3s;
         }
         .work-item:hover { opacity: 1; }
         .work-item:nth-child(even) { direction: rtl; }
         .work-item:nth-child(even) .work-info { direction: ltr; text-align: right; }
-        .work-img-container { width: 100%; height: 500px; overflow: hidden; background-color: var(--bg-card); }
+        .work-img-container { width: 100%; height: 450px; overflow: hidden; background-color: var(--bg-card); }
         .work-placeholder {
             width: 100%; height: 100%; background-color: #1a0f0c;
             filter: grayscale(100%); transition: all 0.6s ease;
         }
         .work-item:hover .work-placeholder { filter: grayscale(0%); transform: scale(1.02); }
-        .work-title { font-family: var(--font-head); font-size: 4rem; line-height: 0.9; margin-bottom: 20px; font-weight: 600; }
+        .work-title { font-family: var(--font-head); font-size: 3.5rem; line-height: 1; margin-bottom: 15px; font-weight: 600; }
         .work-meta { color: var(--accent); font-family: var(--font-body); font-weight: 600; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 20px; display: block; }
-        .work-desc { font-size: 1rem; color: var(--text-muted); max-width: 450px; line-height: 1.6; }
+        .work-desc { font-size: 0.95rem; color: var(--text-muted); max-width: 450px; line-height: 1.6; }
         .work-item:nth-child(even) .work-desc { margin-left: auto; }
 
         /* --- 9. CONTACT --- */
         .section-contact { min-height: 40vh; display: flex; flex-direction: column; padding-bottom: 60px; }
-        .contact-content { display: flex; flex-direction: column; gap: 25px; align-items: flex-start; max-width: 600px; margin-top: 0; }
+        .contact-content { display: flex; flex-direction: column; gap: 20px; align-items: flex-start; max-width: 600px; margin-top: 0; }
         
         .mail-btn {
-            display: inline-block; border: 1px solid rgba(255,255,255,0.3); padding: 12px 40px;
-            font-family: var(--font-head); font-size: 1.8rem; font-weight: 600; color: var(--text-main);
+            display: inline-block; border: 1px solid rgba(255,255,255,0.3); padding: 12px 35px;
+            font-family: var(--font-head); font-size: 1.5rem; font-weight: 600; color: var(--text-main);
             letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s ease;
         }
         .mail-btn:hover { background-color: var(--accent); color: #000; border-color: var(--accent); }
 
-        .social-row { display: flex; gap: 30px; padding-left: 2px; }
+        .social-row { display: flex; gap: 25px; padding-left: 2px; }
         .social-link {
             font-family: var(--font-body); font-size: 0.8rem; font-weight: 500; 
             text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); transition: color 0.3s ease;
@@ -181,7 +177,7 @@
 
         .copyright {
             margin-top: auto; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05);
-            display: flex; justify-content: flex-end; font-size: 0.8rem; color: #444;
+            display: flex; justify-content: flex-end; font-size: 0.75rem; color: #444;
         }
 
         /* --- RESPONSIVE --- */
@@ -197,10 +193,9 @@
             .work-item:nth-child(even) { direction: ltr; }
             .work-item:nth-child(even) .work-info { text-align: left; }
             .work-img-container { height: 350px; }
-            .work-title { font-size: 3rem; }
-            .mail-btn { font-size: 1.5rem; padding: 12px 30px;} 
+            .work-title { font-size: 2.5rem; }
+            .mail-btn { font-size: 1.2rem; padding: 12px 30px;} 
             .copyright { justify-content: center; }
-            
             .cursor-outline { display: none; }
         }
     </style>
@@ -214,10 +209,10 @@
         </a>
         <nav class="nav-menu">
             <a href="#home" class="nav-link">Home</a>
-            <a href="#narrative" class="nav-link"><span>01</span> Narrative</a>
-            <a href="#artists" class="nav-link"><span>02</span> Artists</a>
-            <a href="#works" class="nav-link"><span>03</span> Works</a>
-            <a href="#contact" class="nav-link"><span>04</span> Contact</a>
+            <a href="#narrative" class="nav-link">Narrative</a>
+            <a href="#artists" class="nav-link">Artists</a>
+            <a href="#works" class="nav-link">Works</a>
+            <a href="#contact" class="nav-link">Contact</a>
         </nav>
     </header>
 
@@ -230,7 +225,6 @@
 
         <section id="narrative">
             <div class="section-header-wrapper">
-                <span class="section-number">01</span>
                 <h2 class="section-title">Narrative</h2>
             </div>
             <div class="narrative-content">
@@ -246,7 +240,6 @@
 
         <section id="artists">
             <div class="section-header-wrapper">
-                <span class="section-number">02</span>
                 <h2 class="section-title">Residents</h2>
             </div>
             <div class="artists-grid">
@@ -273,7 +266,6 @@
 
         <section id="works">
             <div class="section-header-wrapper">
-                <span class="section-number">03</span>
                 <h2 class="section-title">Selection</h2>
             </div>
             <div class="works-list">
@@ -302,7 +294,6 @@
 
         <section id="contact" class="section-contact">
             <div class="section-header-wrapper">
-                <span class="section-number">04</span>
                 <h2 class="section-title">Contact</h2>
             </div>
             <div class="contact-content">
@@ -325,8 +316,6 @@
         let mouseX = 0, mouseY = 0, outlineX = 0, outlineY = 0;
 
         window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
-        
-        // Add hover effects
         hoverTargets.forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
