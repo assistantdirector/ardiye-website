@@ -23,8 +23,12 @@
         }
 
         /* --- 2. BASE --- */
-        * { box-sizing: border-box; margin: 0; padding: 0; cursor: none; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         
+        /* DEFAULT CURSOR RESTORED */
+        html, body, a { cursor: default; }
+        a { cursor: pointer; }
+
         html { scroll-behavior: smooth; }
         
         body {
@@ -39,25 +43,26 @@
         ::-webkit-scrollbar-thumb { background: #333; }
         ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-        a { text-decoration: none; color: inherit; transition: all 0.3s ease; cursor: none; }
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
         h1, h2, h3 { font-weight: normal; margin: 0; font-family: var(--font-head); text-transform: uppercase; }
         .uppercase { text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- GHOST CURSOR (Outline Only) --- */
+        /* --- GHOST CURSOR (MATCHING PROJECT PAGE) --- */
         .cursor-outline {
-            position: fixed; top: 0; left: 0;
+            position: fixed; top: 0; left: 0; 
             width: 30px; height: 30px;
-            border: 1px solid rgba(235, 203, 75, 0.6);
+            border: 1px solid rgba(235, 203, 75, 0.5); 
             border-radius: 50%;
-            pointer-events: none; z-index: 9999;
+            pointer-events: none; z-index: 9999; 
             will-change: transform; 
             transform: translate(-50%, -50%);
             transition: width 0.3s, height 0.3s, background-color 0.3s;
         }
+        
         body.hovering .cursor-outline {
-            width: 50px; height: 50px;
+            width: 50px; height: 50px; 
+            background-color: rgba(235, 203, 75, 0.05); 
             border-color: var(--accent);
-            background-color: rgba(235, 203, 75, 0.05);
         }
 
         /* --- 3. HEADER --- */
@@ -71,11 +76,11 @@
         
         .nav-menu { display: flex; gap: 40px; }
         
-        /* UPDATED NAV LINK: Bold, Numbered, Industrial */
+        /* BOLD NAV STYLE */
         .nav-link {
             font-family: var(--font-head); 
-            font-size: 1.25rem; /* Larger */
-            font-weight: 700;   /* Bold */
+            font-size: 1.25rem; 
+            font-weight: 700;   
             color: #888; 
             position: relative; 
             padding: 5px 0; 
@@ -96,7 +101,7 @@
         .section-number { font-family: var(--font-head); color: var(--accent); font-size: 1.5rem; font-weight: 600; opacity: 0.8; }
         .section-title { font-family: var(--font-head); font-size: 3rem; color: var(--text-main); line-height: 1; letter-spacing: 1px; font-weight: 600; }
 
-        /* --- 5. HERO (Raw Productions) --- */
+        /* --- 5. HERO --- */
         .section-home {
             height: 50vh; display: flex; flex-direction: column; 
             align-items: center; justify-content: center; text-align: center;
@@ -120,7 +125,7 @@
 
         /* --- 7. ARTISTS GRID --- */
         .artists-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4rem; }
-        .artist-card { group: hover; cursor: none; }
+        .artist-card { group: hover; cursor: pointer; }
         .artist-img-box {
             width: 100%; aspect-ratio: 1 / 1; background-color: var(--bg-card);
             margin-bottom: 20px; overflow: hidden; position: relative;
@@ -140,7 +145,7 @@
         .works-list { display: flex; flex-direction: column; gap: 120px; }
         .work-item {
             display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; align-items: center;
-            cursor: none; opacity: 0.85; transition: opacity 0.3s;
+            cursor: pointer; opacity: 0.85; transition: opacity 0.3s;
         }
         .work-item:hover { opacity: 1; }
         .work-item:nth-child(even) { direction: rtl; }
@@ -195,7 +200,7 @@
             .work-title { font-size: 3rem; }
             .mail-btn { font-size: 1.5rem; padding: 12px 30px;} 
             .copyright { justify-content: center; }
-            * { cursor: auto; }
+            
             .cursor-outline { display: none; }
         }
     </style>
@@ -320,6 +325,8 @@
         let mouseX = 0, mouseY = 0, outlineX = 0, outlineY = 0;
 
         window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+        
+        // Add hover effects
         hoverTargets.forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
