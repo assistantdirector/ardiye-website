@@ -17,7 +17,6 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        
         html, body, a { cursor: default; }
         a { cursor: pointer; }
 
@@ -52,7 +51,7 @@
             z-index: 1000; background: rgba(18, 10, 8, 0.95); backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-        .logo-container img { width: 120px; display: block; opacity: 0.9; }
+        .logo-container img { width: 120px; display: block; opacity: 1; }
         .nav-menu { display: flex; gap: 40px; }
         
         .nav-link {
@@ -60,9 +59,7 @@
             position: relative; padding: 5px 0; letter-spacing: 1px; text-transform: uppercase;
             transition: color 0.3s ease;
         }
-        .nav-link span { color: var(--accent); margin-right: 5px; opacity: 0.6; font-weight: 400; }
         .nav-link:hover { color: #FFF; }
-        .nav-link:hover span { opacity: 1; }
 
         main { padding: 160px var(--pad-side) 80px var(--pad-side); max-width: 1400px; margin: 0 auto; }
 
@@ -114,14 +111,14 @@
 
     <header class="main-header">
         <a href="index.html" class="logo-container">
-            <img src="https://placehold.co/400x150/1f0b05/DEBD00?text=ARDIYE" alt="Ardiye Logo">
+            <img src="images/logo.png" alt="Ardiye Logo">
         </a>
         <nav class="nav-menu uppercase">
             <a href="index.html" class="nav-link">Home</a>
-            <a href="index.html#narrative" class="nav-link"><span>01</span> Narrative</a>
-            <a href="index.html#artists" class="nav-link"><span>02</span> Artists</a>
-            <a href="index.html#works" class="nav-link"><span>03</span> Works</a>
-            <a href="index.html#contact" class="nav-link"><span>04</span> Contact</a>
+            <a href="index.html#narrative" class="nav-link">Narrative</a>
+            <a href="index.html#artists" class="nav-link">Artists</a>
+            <a href="index.html#works" class="nav-link">Works</a>
+            <a href="index.html#contact" class="nav-link">Contact</a>
         </nav>
     </header>
 
