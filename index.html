@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
     <style>
-        /* --- CONFIG --- */
+        /* --- GOLDEN STANDARD CONFIG --- */
         :root {
             --bg-color: #120a08; --bg-card: #1c100c; --text-main: #EEEEEE;
             --text-muted: #888; --accent: #EBCB4B; --pad-side: 60px;
@@ -19,6 +19,7 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
+        /* DEFAULT CURSOR */
         html, body, a { cursor: default; }
         a { cursor: pointer; }
 
@@ -26,7 +27,8 @@
         body {
             background-color: var(--bg-color); color: var(--text-main);
             font-family: var(--font-body); font-weight: 300; line-height: 1.6;
-            -webkit-font-smoothing: antialiased; overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
         ::-webkit-scrollbar { width: 6px; }
@@ -35,11 +37,13 @@
         ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
         a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        h1, h2, h3 { font-weight: normal; margin: 0; font-family: var(--font-head); text-transform: uppercase; }
+        .uppercase { text-transform: uppercase; letter-spacing: 1px; }
 
         /* --- TRACKER --- */
         .cursor-outline {
             position: fixed; top: 0; left: 0; width: 30px; height: 30px;
-            border: 1px solid rgba(235, 203, 75, 0.6); border-radius: 50%;
+            border: 1px solid rgba(235, 203, 75, 0.5); border-radius: 50%;
             pointer-events: none; z-index: 9999; will-change: transform;
             transform: translate(-50%, -50%);
             transition: width 0.3s, height 0.3s, background-color 0.3s;
@@ -55,11 +59,20 @@
             z-index: 1000; background: rgba(18, 10, 8, 0.95); backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-        .logo-container img { 
-            width: 120px; /* Logo boyutunu buradan ayarla */
-            display: block; 
-            opacity: 1; 
+        
+        /* --- CUSTOM LOGO (INDUSTRIAL PATH) --- */
+        .logo-container {
+            display: flex; flex-direction: column; align-items: flex-start;
         }
+        .custom-logo-name {
+            font-family: var(--font-head); font-size: 2.2rem; font-weight: 700; color: var(--accent);
+            text-transform: uppercase; letter-spacing: 1px; line-height: 1;
+        }
+        .custom-logo-sub {
+            font-family: var(--font-body); font-size: 0.6rem; font-weight: 400; color: #FFF;
+            text-transform: uppercase; letter-spacing: 2px; line-height: 1.2; margin-top: 5px; margin-left: 2px;
+        }
+
         .nav-menu { display: flex; gap: 40px; }
         
         .nav-link {
@@ -69,100 +82,57 @@
         }
         .nav-link:hover { color: #FFF; }
 
-        /* LAYOUT */
+        /* LAYOUT, HERO, NARRATIVE, ARTISTS, WORKS, CONTACT (REMAINS) */
         main { padding: 0 var(--pad-side); max-width: 1600px; margin: 0 auto; }
         section { padding: 120px 0; border-top: 1px solid rgba(255,255,255,0.05); }
         section:first-of-type { border-top: none; padding-top: 0; }
-
         .section-header-wrapper { margin-bottom: 60px; display: flex; align-items: baseline; }
         .section-title { font-family: var(--font-head); font-size: 2.8rem; color: var(--text-main); line-height: 1; font-weight: 600; text-transform: uppercase; }
-
-        /* HERO */
-        .section-home {
-            height: 60vh; display: flex; flex-direction: column; 
-            align-items: center; justify-content: center; text-align: center;
-            padding-top: 100px;
-        }
-        
-        .highlight-gradient {
-            display: block; font-family: var(--font-head); 
-            font-size: 9vw; 
-            line-height: 1; letter-spacing: -2px; font-weight: 800; text-transform: uppercase;
-            background: linear-gradient(135deg, #888 0%, #FFF 30%, #EBCB4B 50%, #FFF 70%, #888 100%);
-            background-size: 200% auto; -webkit-background-clip: text; background-clip: text;
-            -webkit-text-fill-color: transparent; animation: shine 4s linear infinite;
-        }
+        .section-home { height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding-top: 100px; }
+        .highlight-gradient { display: block; font-family: var(--font-head); font-size: 9vw; line-height: 1; letter-spacing: -2px; font-weight: 800; text-transform: uppercase; background: linear-gradient(135deg, #888 0%, #FFF 30%, #EBCB4B 50%, #FFF 70%, #888 100%); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: shine 4s linear infinite; }
         @keyframes shine { to { background-position: 200% center; } }
-        
-        /* CONTENT STYLES */
         .narrative-content { display: grid; grid-template-columns: 1.1fr 1fr; gap: 80px; align-items: start; }
         .narrative-lead { font-family: var(--font-head); font-size: 2rem; color: #FFF; line-height: 1.2; font-weight: 600; }
         .narrative-text { font-size: 1rem; color: var(--text-muted); font-weight: 300; line-height: 1.7; }
         .narrative-text p { margin-bottom: 20px; }
-
         .artists-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4rem; }
         .artist-card { group: hover; cursor: pointer; }
-        .artist-img-box {
-            width: 100%; aspect-ratio: 1 / 1; background-color: var(--bg-card);
-            margin-bottom: 20px; overflow: hidden; position: relative;
-        }
-        .artist-placeholder {
-            width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
-            color: #444; font-family: var(--font-head); font-size: 1.5rem; letter-spacing: 2px;
-            transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-        }
+        .artist-img-box { width: 100%; aspect-ratio: 1 / 1; background-color: var(--bg-card); margin-bottom: 20px; overflow: hidden; position: relative; }
+        .artist-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #444; font-family: var(--font-head); font-size: 1.5rem; letter-spacing: 2px; transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1); }
         .artist-card:hover .artist-placeholder { transform: scale(1.05); }
         .artist-meta { border-left: 2px solid transparent; padding-left: 15px; transition: 0.3s;}
         .artist-card:hover .artist-meta { border-left-color: var(--accent); }
         .artist-name { font-family: var(--font-head); font-size: 2rem; letter-spacing: 1px; font-weight: 600; color: #FFF; margin-bottom: 0; }
         .artist-role { font-family: var(--font-body); font-size: 0.85rem; color: var(--text-muted); letter-spacing: 1px; }
-
         .works-list { display: flex; flex-direction: column; gap: 120px; }
-        .work-item {
-            display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; align-items: center;
-            cursor: pointer; opacity: 0.85; transition: opacity 0.3s;
-        }
+        .work-item { display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; align-items: center; cursor: pointer; opacity: 0.85; transition: opacity 0.3s; }
         .work-item:hover { opacity: 1; }
         .work-item:nth-child(even) { direction: rtl; }
         .work-item:nth-child(even) .work-info { direction: ltr; text-align: right; }
         .work-img-container { width: 100%; height: 500px; overflow: hidden; background-color: var(--bg-card); }
-        .work-placeholder {
-            width: 100%; height: 100%; background-color: #1a0f0c;
-            filter: grayscale(100%); transition: all 0.6s ease;
-        }
+        .work-placeholder { width: 100%; height: 100%; background-color: #1a0f0c; filter: grayscale(100%); transition: all 0.6s ease; }
         .work-item:hover .work-placeholder { filter: grayscale(0%); transform: scale(1.02); }
         .work-title { font-family: var(--font-head); font-size: 4rem; line-height: 0.9; margin-bottom: 20px; font-weight: 600; }
         .work-meta { color: var(--accent); font-family: var(--font-body); font-weight: 600; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 20px; display: block; }
         .work-desc { font-size: 1rem; color: var(--text-muted); max-width: 450px; line-height: 1.6; }
         .work-item:nth-child(even) .work-desc { margin-left: auto; }
-
         .section-contact { min-height: 40vh; display: flex; flex-direction: column; padding-bottom: 60px; }
         .contact-content { display: flex; flex-direction: column; gap: 25px; align-items: flex-start; max-width: 600px; margin-top: 0; }
-        
-        .mail-btn {
-            display: inline-block; border: 1px solid rgba(255,255,255,0.3); padding: 12px 40px;
-            font-family: var(--font-head); font-size: 1.8rem; font-weight: 600; color: var(--text-main);
-            letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s ease;
-        }
+        .mail-btn { display: inline-block; border: 1px solid rgba(255,255,255,0.3); padding: 12px 40px; font-family: var(--font-head); font-size: 1.8rem; font-weight: 600; color: var(--text-main); letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s ease; }
         .mail-btn:hover { background-color: var(--accent); color: #000; border-color: var(--accent); }
-
         .social-row { display: flex; gap: 30px; padding-left: 2px; }
-        .social-link {
-            font-family: var(--font-body); font-size: 0.8rem; font-weight: 500; 
-            text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); transition: color 0.3s ease;
-        }
+        .social-link { font-family: var(--font-body); font-size: 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); transition: color 0.3s ease; }
         .social-link:hover { color: var(--accent); }
+        .copyright { margin-top: auto; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: flex-end; font-size: 0.8rem; color: #444; }
 
-        .copyright {
-            margin-top: auto; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05);
-            display: flex; justify-content: flex-end; font-size: 0.8rem; color: #444;
-        }
-
+        /* RESPONSIVE */
         @media (max-width: 768px) {
             :root { --pad-side: 20px; }
             .main-header { height: 80px; }
             .nav-menu { display: none; }
-            .highlight-gradient { font-size: 16vw; }
+            .custom-logo-name { font-size: 1.8rem; } /* Mobilde logo küçüldü */
+            .custom-logo-sub { font-size: 0.5rem; }
+            .highlight-gradient { font-size: 14vw; }
             .section-home { height: 40vh; padding-top: 100px; }
             .narrative-content { grid-template-columns: 1fr; gap: 40px; }
             .artists-grid { grid-template-columns: 1fr; gap: 60px; }
@@ -182,7 +152,8 @@
 
     <header class="main-header">
         <a href="#home" class="logo-container">
-            <img src="images/logo.png" alt="Ardiye Logo">
+            <div class="custom-logo-name">ardiye<span style="opacity: 0.8; color: var(--accent);">.</span></div>
+            <div class="custom-logo-sub">Art Initiative</div>
         </a>
         <nav class="nav-menu">
             <a href="#home" class="nav-link">Home</a>
@@ -293,19 +264,13 @@
         let mouseX = 0, mouseY = 0, outlineX = 0, outlineY = 0;
 
         window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
-        
         hoverTargets.forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
         });
 
         function animateCursor() {
-            let speed = 0.2; 
-            outlineX += (mouseX - outlineX) * speed;
-            outlineY += (mouseY - outlineY) * speed;
-            cursorOutline.style.left = `${outlineX}px`;
-            cursorOutline.style.top = `${outlineY}px`;
-            requestAnimationFrame(animateCursor);
+            let speed = 0.2; outlineX += (mouseX - outlineX) * speed; outlineY += (mouseY - outlineY) * speed; cursorOutline.style.left = `${outlineX}px`; cursorOutline.style.top = `${outlineY}px`; requestAnimationFrame(animateCursor);
         }
         animateCursor();
     </script>
