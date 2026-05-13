@@ -1,0 +1,204 @@
+/* base.css — Ardiye shared design system */
+
+/* ─── DESIGN TOKENS ─────────────────────────────── */
+:root {
+  --bg-color:    #120a08;
+  --bg-card:     #1c100c;
+  --text-main:   #EEEEEE;
+  --text-muted:  #888888;
+  --accent:      #EBCB4B;
+  --pad-side:    60px;
+  --font-head:   'Barlow Condensed', sans-serif;
+  --font-body:   'Inter', sans-serif;
+  --header-h:    100px;
+  --transition:  0.3s ease;
+}
+
+/* ─── RESET ─────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+a { text-decoration: none; color: inherit; transition: all var(--transition); cursor: pointer; }
+h1, h2, h3 { font-family: var(--font-head); font-weight: normal; margin: 0; text-transform: uppercase; }
+
+/* ─── SCROLLBAR ──────────────────────────────────── */
+::-webkit-scrollbar         { width: 6px; }
+::-webkit-scrollbar-track   { background: var(--bg-color); }
+::-webkit-scrollbar-thumb   { background: #333; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ─── CURSOR TRACKER ─────────────────────────────── */
+.cursor-outline {
+  position: fixed;
+  top: 0; left: 0;
+  width: 30px; height: 30px;
+  border: 1px solid rgba(235, 203, 75, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  /* transform is set by cursor.js — GPU composited, no reflow */
+  transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
+}
+body.hovering .cursor-outline {
+  width: 50px; height: 50px;
+  background-color: rgba(235, 203, 75, 0.05);
+  border-color: var(--accent);
+}
+
+/* ─── HEADER ─────────────────────────────────────── */
+.main-header {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: var(--header-h);
+  padding: 0 var(--pad-side);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  background: rgba(18, 10, 8, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Logo — CSS-rendered, no image dependency */
+.logo-container { display: flex; flex-direction: column; align-items: flex-start; }
+.logo-name {
+  font-family: var(--font-head);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+.logo-name .dot { opacity: 0.8; }
+.logo-sub {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 400;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 5px;
+  margin-left: 2px;
+}
+
+/* Nav */
+.nav-menu { display: flex; gap: 40px; }
+.nav-link {
+  font-family: var(--font-head);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  padding: 5px 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: color var(--transition);
+}
+.nav-link:hover { color: #fff; }
+
+/* Hamburger — hidden on desktop */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+.nav-toggle span {
+  display: block;
+  width: 24px; height: 2px;
+  background: var(--text-main);
+  transition: all 0.3s ease;
+}
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile nav drawer */
+.nav-drawer {
+  display: none;
+  position: fixed;
+  top: var(--header-h);
+  left: 0; right: 0;
+  background: rgba(18, 10, 8, 0.97);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding: 24px var(--pad-side);
+  flex-direction: column;
+  gap: 20px;
+  z-index: 999;
+}
+.nav-drawer.open { display: flex; }
+.nav-drawer .nav-link { font-size: 1.6rem; color: var(--text-muted); }
+
+/* ─── LAYOUT HELPERS ─────────────────────────────── */
+.uppercase { text-transform: uppercase; letter-spacing: 1px; }
+
+.section-header-wrapper {
+  margin-bottom: 60px;
+  display: flex;
+  align-items: baseline;
+}
+.section-title {
+  font-family: var(--font-head);
+  font-size: 2.8rem;
+  color: var(--text-main);
+  line-height: 1;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Back / footer nav */
+.footer-nav {
+  margin-top: 100px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.back-link {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color var(--transition);
+}
+.back-link:hover { color: var(--accent); }
+
+/* Social links */
+.social-link {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  transition: color var(--transition);
+}
+.social-link:hover { color: var(--accent); }
+
+/* ─── RESPONSIVE ─────────────────────────────────── */
+@media (max-width: 768px) {
+  :root { --pad-side: 20px; --header-h: 80px; }
+  .nav-menu    { display: none; }
+  .nav-toggle  { display: flex; }
+  .cursor-outline { display: none; }
+  .logo-name   { font-size: 1.8rem; }
+  .logo-sub    { font-size: 0.5rem; }
+}

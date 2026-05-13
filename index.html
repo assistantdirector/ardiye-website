@@ -1,278 +1,359 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARDIYE | Art Initiative</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARDIYE | Art Initiative</title>
 
-    <style>
-        /* --- GOLDEN STANDARD CONFIG --- */
-        :root {
-            --bg-color: #120a08; --bg-card: #1c100c; --text-main: #EEEEEE;
-            --text-muted: #888; --accent: #EBCB4B; --pad-side: 60px;
-            --font-head: 'Barlow Condensed', sans-serif; --font-body: 'Inter', sans-serif;
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="base.css">
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        /* DEFAULT CURSOR */
-        html, body, a { cursor: default; }
-        a { cursor: pointer; }
+  <style>
+    /* ─── PAGE-SPECIFIC STYLES ───────────────────── */
+    main {
+      padding: 0 var(--pad-side);
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+    section {
+      padding: 120px 0;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    section:first-of-type { border-top: none; padding-top: 0; }
 
-        html { scroll-behavior: smooth; }
-        body {
-            background-color: var(--bg-color); color: var(--text-main);
-            font-family: var(--font-body); font-weight: 300; line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
-        }
+    /* ── Hero ── */
+    .section-home {
+      height: 60vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-top: var(--header-h);
+    }
+    .highlight-gradient {
+      display: block;
+      font-family: var(--font-head);
+      font-size: 9vw;
+      line-height: 1;
+      letter-spacing: -2px;
+      font-weight: 800;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #888 0%, #FFF 30%, #EBCB4B 50%, #FFF 70%, #888 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      will-change: background-position; /* hint to browser for animation */
+      animation: shine 4s linear infinite;
+    }
+    @keyframes shine { to { background-position: 200% center; } }
 
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg-color); }
-        ::-webkit-scrollbar-thumb { background: #333; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+    /* ── Narrative ── */
+    .narrative-content {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .narrative-lead {
+      font-family: var(--font-head);
+      font-size: 2rem;
+      color: #fff;
+      line-height: 1.2;
+      font-weight: 600;
+    }
+    .narrative-text { font-size: 1rem; color: var(--text-muted); font-weight: 300; line-height: 1.7; }
+    .narrative-text p { margin-bottom: 20px; }
 
-        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
-        h1, h2, h3 { font-weight: normal; margin: 0; font-family: var(--font-head); text-transform: uppercase; }
-        .uppercase { text-transform: uppercase; letter-spacing: 1px; }
+    /* ── Artists ── */
+    .artists-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4rem; }
 
-        /* --- TRACKER --- */
-        .cursor-outline {
-            position: fixed; top: 0; left: 0; width: 30px; height: 30px;
-            border: 1px solid rgba(235, 203, 75, 0.5); border-radius: 50%;
-            pointer-events: none; z-index: 9999; will-change: transform;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s, background-color 0.3s;
-        }
-        body.hovering .cursor-outline {
-            width: 50px; height: 50px; background-color: rgba(235, 203, 75, 0.05); border-color: var(--accent);
-        }
+    .artist-card { display: block; cursor: pointer; }
 
-        /* HEADER */
-        .main-header {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100px;
-            padding: 0 var(--pad-side); display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000; background: rgba(18, 10, 8, 0.95); backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        /* --- CUSTOM LOGO (INDUSTRIAL PATH) --- */
-        .logo-container {
-            display: flex; flex-direction: column; align-items: flex-start;
-        }
-        .custom-logo-name {
-            font-family: var(--font-head); font-size: 2.2rem; font-weight: 700; color: var(--accent);
-            text-transform: uppercase; letter-spacing: 1px; line-height: 1;
-        }
-        .custom-logo-sub {
-            font-family: var(--font-body); font-size: 0.6rem; font-weight: 400; color: #FFF;
-            text-transform: uppercase; letter-spacing: 2px; line-height: 1.2; margin-top: 5px; margin-left: 2px;
-        }
+    .artist-img-box {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background-color: var(--bg-card);
+      margin-bottom: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+    .artist-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #444;
+      font-family: var(--font-head);
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    /* FIX: was `group: hover` (invalid). Use sibling/parent selector properly. */
+    .artist-card:hover .artist-placeholder { transform: scale(1.05); }
 
-        .nav-menu { display: flex; gap: 40px; }
-        
-        .nav-link {
-            font-family: var(--font-head); font-size: 1.25rem; font-weight: 700; color: #888;
-            position: relative; padding: 5px 0; letter-spacing: 1px; text-transform: uppercase;
-            transition: color 0.3s ease;
-        }
-        .nav-link:hover { color: #FFF; }
+    .artist-meta {
+      border-left: 2px solid transparent;
+      padding-left: 15px;
+      transition: border-color 0.3s;
+    }
+    .artist-card:hover .artist-meta { border-left-color: var(--accent); }
 
-        /* LAYOUT, HERO, NARRATIVE, ARTISTS, WORKS, CONTACT (REMAINS) */
-        main { padding: 0 var(--pad-side); max-width: 1600px; margin: 0 auto; }
-        section { padding: 120px 0; border-top: 1px solid rgba(255,255,255,0.05); }
-        section:first-of-type { border-top: none; padding-top: 0; }
-        .section-header-wrapper { margin-bottom: 60px; display: flex; align-items: baseline; }
-        .section-title { font-family: var(--font-head); font-size: 2.8rem; color: var(--text-main); line-height: 1; font-weight: 600; text-transform: uppercase; }
-        .section-home { height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding-top: 100px; }
-        .highlight-gradient { display: block; font-family: var(--font-head); font-size: 9vw; line-height: 1; letter-spacing: -2px; font-weight: 800; text-transform: uppercase; background: linear-gradient(135deg, #888 0%, #FFF 30%, #EBCB4B 50%, #FFF 70%, #888 100%); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: shine 4s linear infinite; }
-        @keyframes shine { to { background-position: 200% center; } }
-        .narrative-content { display: grid; grid-template-columns: 1.1fr 1fr; gap: 80px; align-items: start; }
-        .narrative-lead { font-family: var(--font-head); font-size: 2rem; color: #FFF; line-height: 1.2; font-weight: 600; }
-        .narrative-text { font-size: 1rem; color: var(--text-muted); font-weight: 300; line-height: 1.7; }
-        .narrative-text p { margin-bottom: 20px; }
-        .artists-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4rem; }
-        .artist-card { group: hover; cursor: pointer; }
-        .artist-img-box { width: 100%; aspect-ratio: 1 / 1; background-color: var(--bg-card); margin-bottom: 20px; overflow: hidden; position: relative; }
-        .artist-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #444; font-family: var(--font-head); font-size: 1.5rem; letter-spacing: 2px; transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1); }
-        .artist-card:hover .artist-placeholder { transform: scale(1.05); }
-        .artist-meta { border-left: 2px solid transparent; padding-left: 15px; transition: 0.3s;}
-        .artist-card:hover .artist-meta { border-left-color: var(--accent); }
-        .artist-name { font-family: var(--font-head); font-size: 2rem; letter-spacing: 1px; font-weight: 600; color: #FFF; margin-bottom: 0; }
-        .artist-role { font-family: var(--font-body); font-size: 0.85rem; color: var(--text-muted); letter-spacing: 1px; }
-        .works-list { display: flex; flex-direction: column; gap: 120px; }
-        .work-item { display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; align-items: center; cursor: pointer; opacity: 0.85; transition: opacity 0.3s; }
-        .work-item:hover { opacity: 1; }
-        .work-item:nth-child(even) { direction: rtl; }
-        .work-item:nth-child(even) .work-info { direction: ltr; text-align: right; }
-        .work-img-container { width: 100%; height: 500px; overflow: hidden; background-color: var(--bg-card); }
-        .work-placeholder { width: 100%; height: 100%; background-color: #1a0f0c; filter: grayscale(100%); transition: all 0.6s ease; }
-        .work-item:hover .work-placeholder { filter: grayscale(0%); transform: scale(1.02); }
-        .work-title { font-family: var(--font-head); font-size: 4rem; line-height: 0.9; margin-bottom: 20px; font-weight: 600; }
-        .work-meta { color: var(--accent); font-family: var(--font-body); font-weight: 600; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 20px; display: block; }
-        .work-desc { font-size: 1rem; color: var(--text-muted); max-width: 450px; line-height: 1.6; }
-        .work-item:nth-child(even) .work-desc { margin-left: auto; }
-        .section-contact { min-height: 40vh; display: flex; flex-direction: column; padding-bottom: 60px; }
-        .contact-content { display: flex; flex-direction: column; gap: 25px; align-items: flex-start; max-width: 600px; margin-top: 0; }
-        .mail-btn { display: inline-block; border: 1px solid rgba(255,255,255,0.3); padding: 12px 40px; font-family: var(--font-head); font-size: 1.8rem; font-weight: 600; color: var(--text-main); letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s ease; }
-        .mail-btn:hover { background-color: var(--accent); color: #000; border-color: var(--accent); }
-        .social-row { display: flex; gap: 30px; padding-left: 2px; }
-        .social-link { font-family: var(--font-body); font-size: 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); transition: color 0.3s ease; }
-        .social-link:hover { color: var(--accent); }
-        .copyright { margin-top: auto; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: flex-end; font-size: 0.8rem; color: #444; }
+    .artist-name {
+      font-family: var(--font-head);
+      font-size: 2rem;
+      letter-spacing: 1px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0;
+    }
+    .artist-role { font-size: 0.85rem; color: var(--text-muted); letter-spacing: 1px; }
 
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            :root { --pad-side: 20px; }
-            .main-header { height: 80px; }
-            .nav-menu { display: none; }
-            .custom-logo-name { font-size: 1.8rem; } /* Mobilde logo küçüldü */
-            .custom-logo-sub { font-size: 0.5rem; }
-            .highlight-gradient { font-size: 14vw; }
-            .section-home { height: 40vh; padding-top: 100px; }
-            .narrative-content { grid-template-columns: 1fr; gap: 40px; }
-            .artists-grid { grid-template-columns: 1fr; gap: 60px; }
-            .work-item { grid-template-columns: 1fr; gap: 40px; }
-            .work-item:nth-child(even) { direction: ltr; }
-            .work-item:nth-child(even) .work-info { text-align: left; }
-            .work-img-container { height: 350px; }
-            .work-title { font-size: 3rem; }
-            .mail-btn { font-size: 1.5rem; padding: 12px 30px;} 
-            .copyright { justify-content: center; }
-            .cursor-outline { display: none; }
-        }
-    </style>
+    /* ── Works ── */
+    .works-list { display: flex; flex-direction: column; gap: 120px; }
+
+    .work-item {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 60px;
+      align-items: center;
+      cursor: pointer;
+      opacity: 0.85;
+      transition: opacity 0.3s;
+    }
+    .work-item:hover { opacity: 1; }
+
+    /* FIX: replaced `direction: rtl` (text property misuse) with flex order reversal */
+    .work-item:nth-child(even) { grid-template-columns: 1fr 1.5fr; }
+    .work-item:nth-child(even) .work-img-container { order: 2; }
+    .work-item:nth-child(even) .work-info { order: 1; text-align: right; }
+
+    .work-img-container { width: 100%; height: 500px; overflow: hidden; background-color: var(--bg-card); }
+    .work-placeholder {
+      width: 100%; height: 100%;
+      background-color: #1a0f0c;
+      filter: grayscale(100%);
+      transition: all 0.6s ease;
+    }
+    .work-item:hover .work-placeholder { filter: grayscale(0%); transform: scale(1.02); }
+
+    .work-title {
+      font-family: var(--font-head);
+      font-size: 4rem;
+      line-height: 0.9;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+    .work-meta {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .work-desc { font-size: 1rem; color: var(--text-muted); max-width: 450px; line-height: 1.6; }
+    .work-item:nth-child(even) .work-desc { margin-left: auto; }
+
+    /* ── Contact ── */
+    .section-contact { min-height: 40vh; display: flex; flex-direction: column; padding-bottom: 60px; }
+    .contact-content { display: flex; flex-direction: column; gap: 25px; align-items: flex-start; max-width: 600px; }
+    .social-row { display: flex; gap: 30px; padding-left: 2px; }
+
+    .mail-btn {
+      display: inline-block;
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 12px 40px;
+      font-family: var(--font-head);
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--text-main);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+    .mail-btn:hover { background-color: var(--accent); color: #000; border-color: var(--accent); }
+
+    .copyright {
+      margin-top: auto;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      justify-content: flex-end;
+      font-size: 0.8rem;
+      color: #444;
+    }
+
+    /* ─── RESPONSIVE OVERRIDES ─── */
+    @media (max-width: 768px) {
+      .highlight-gradient  { font-size: 14vw; }
+      .section-home        { height: 40vh; padding-top: var(--header-h); }
+      .narrative-content   { grid-template-columns: 1fr; gap: 40px; }
+      .artists-grid        { grid-template-columns: 1fr; gap: 60px; }
+
+      .work-item           { grid-template-columns: 1fr; gap: 40px; }
+      /* Reset even-item overrides on mobile */
+      .work-item:nth-child(even) { grid-template-columns: 1fr; }
+      .work-item:nth-child(even) .work-img-container { order: unset; }
+      .work-item:nth-child(even) .work-info { order: unset; text-align: left; }
+
+      .work-img-container  { height: 350px; }
+      .work-title          { font-size: 3rem; }
+      .mail-btn            { font-size: 1.5rem; padding: 12px 30px; }
+      .copyright           { justify-content: center; }
+    }
+  </style>
 </head>
 <body>
-    <div class="cursor-outline"></div>
+  <div class="cursor-outline" aria-hidden="true"></div>
 
-    <header class="main-header">
-        <a href="#home" class="logo-container">
-            <div class="custom-logo-name">ardiye<span style="opacity: 0.8; color: var(--accent);">.</span></div>
-            <div class="custom-logo-sub">Art Initiative</div>
+  <header class="main-header">
+    <a href="#home" class="logo-container" aria-label="Ardiye — Home">
+      <div class="logo-name">ardiye<span class="dot" style="color: var(--accent);">.</span></div>
+      <div class="logo-sub">Art Initiative</div>
+    </a>
+
+    <nav class="nav-menu" aria-label="Main navigation">
+      <a href="#home"      class="nav-link">Home</a>
+      <a href="#narrative" class="nav-link">Narrative</a>
+      <a href="#artists"   class="nav-link">Artists</a>
+      <a href="#works"     class="nav-link">Works</a>
+      <a href="#contact"   class="nav-link">Contact</a>
+    </nav>
+
+    <!-- FIX: mobile hamburger menu added -->
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-drawer">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- Mobile nav drawer -->
+  <nav class="nav-drawer" id="nav-drawer" aria-label="Mobile navigation">
+    <a href="#home"      class="nav-link">Home</a>
+    <a href="#narrative" class="nav-link">Narrative</a>
+    <a href="#artists"   class="nav-link">Artists</a>
+    <a href="#works"     class="nav-link">Works</a>
+    <a href="#contact"   class="nav-link">Contact</a>
+  </nav>
+
+  <main>
+    <section id="home" class="section-home">
+      <!-- FIX: aria-label on h1 so screen readers announce meaningful text -->
+      <h1 aria-label="Raw Flux — Ardiye Art Initiative">
+        <span class="highlight-gradient" aria-hidden="true">RAW FLUX.</span>
+      </h1>
+    </section>
+
+    <section id="narrative">
+      <div class="section-header-wrapper">
+        <h2 class="section-title">Narrative</h2>
+      </div>
+      <div class="narrative-content">
+        <p class="narrative-lead">
+          Ardiye is not a gallery. We are a storage unit for the incomplete. We collect the raw, the unpolished, and the forgotten.
+        </p>
+        <div class="narrative-text">
+          <p>Ardiye functions as an archive for projects that were never meant to end. We provide a space where the process is valued over the result.</p>
+          <p>Our residents do not aim for perfection; they aim for documentation. Here, every scratch, glitch, and noise is part of the inventory.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="artists">
+      <div class="section-header-wrapper">
+        <h2 class="section-title">Residents</h2>
+      </div>
+      <div class="artists-grid">
+        <a href="artist-sample.html" class="artist-card">
+          <div class="artist-img-box">
+            <div class="artist-placeholder" aria-hidden="true">PORTRAIT</div>
+          </div>
+          <div class="artist-meta">
+            <div class="artist-name">Cemre Yılmaz</div>
+            <div class="artist-role">Visual Artist</div>
+          </div>
         </a>
-        <nav class="nav-menu">
-            <a href="#home" class="nav-link">Home</a>
-            <a href="#narrative" class="nav-link">Narrative</a>
-            <a href="#artists" class="nav-link">Artists</a>
-            <a href="#works" class="nav-link">Works</a>
-            <a href="#contact" class="nav-link">Contact</a>
-        </nav>
-    </header>
+        <div class="artist-card" role="article">
+          <div class="artist-img-box">
+            <div class="artist-placeholder" aria-hidden="true">PORTRAIT</div>
+          </div>
+          <div class="artist-meta">
+            <div class="artist-name">Deniz Eren</div>
+            <div class="artist-role">Filmmaker</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <main>
-        <section id="home" class="section-home">
-            <h1 class="hero-title uppercase">
-                <span class="highlight-gradient">RAW FLUX.</span>
-            </h1>
-        </section>
+    <section id="works">
+      <div class="section-header-wrapper">
+        <h2 class="section-title">Selection</h2>
+      </div>
+      <div class="works-list">
+        <a href="project-sample.html" class="work-item">
+          <div class="work-img-container">
+            <div class="work-placeholder"></div>
+          </div>
+          <div class="work-info">
+            <span class="work-meta">Video Art — 2024</span>
+            <h3 class="work-title">Lost Frequency</h3>
+            <p class="work-desc">An exploration of the unseen noise in the urban landscape. Recorded over 40 days in abandoned industrial zones.</p>
+          </div>
+        </a>
+        <div class="work-item" role="article">
+          <div class="work-img-container">
+            <div class="work-placeholder"></div>
+          </div>
+          <div class="work-info">
+            <span class="work-meta">Installation — 2025</span>
+            <h3 class="work-title">Surface Tension</h3>
+            <p class="work-desc">Mixed media installation focusing on the texture of decay. Using rust, concrete, and organic materials found in the warehouse.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <section id="narrative">
-            <div class="section-header-wrapper">
-                <h2 class="section-title">Narrative</h2>
-            </div>
-            <div class="narrative-content">
-                <div class="narrative-lead">
-                    Ardiye is not a gallery. We are a storage unit for the incomplete. We collect the raw, the unpolished, and the forgotten.
-                </div>
-                <div class="narrative-text">
-                    <p>Ardiye functions as an archive for projects that were never meant to end. We provide a space where the process is valued over the result.</p>
-                    <p>Our residents do not aim for perfection; they aim for documentation. Here, every scratch, glitch, and noise is part of the inventory.</p>
-                </div>
-            </div>
-        </section>
+    <section id="contact" class="section-contact">
+      <div class="section-header-wrapper">
+        <h2 class="section-title">Contact</h2>
+      </div>
+      <div class="contact-content">
+        <a href="mailto:info@ardiye.art" class="mail-btn">Email Us</a>
+        <div class="social-row">
+          <a href="#" class="social-link">Instagram</a>
+          <a href="#" class="social-link">Vimeo</a>
+          <a href="#" class="social-link">LinkedIn</a>
+        </div>
+      </div>
+      <div class="copyright uppercase">
+        <span>&copy; 2026 Ardiye Art Initiative</span>
+      </div>
+    </section>
+  </main>
 
-        <section id="artists">
-            <div class="section-header-wrapper">
-                <h2 class="section-title">Residents</h2>
-            </div>
-            <div class="artists-grid">
-                <a href="artist-sample.html" class="artist-card">
-                    <div class="artist-img-box">
-                        <div class="artist-placeholder">PORTRAIT</div>
-                    </div>
-                    <div class="artist-meta">
-                        <div class="artist-name">Cemre Yılmaz</div>
-                        <div class="artist-role">Visual Artist</div>
-                    </div>
-                </a>
-                <div class="artist-card">
-                    <div class="artist-img-box">
-                        <div class="artist-placeholder">PORTRAIT</div>
-                    </div>
-                    <div class="artist-meta">
-                        <div class="artist-name">Deniz Eren</div>
-                        <div class="artist-role">Filmmaker</div>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <script src="cursor.js"></script>
+  <script>
+    // Mobile hamburger toggle
+    const toggle = document.querySelector('.nav-toggle');
+    const drawer = document.querySelector('.nav-drawer');
 
-        <section id="works">
-            <div class="section-header-wrapper">
-                <h2 class="section-title">Selection</h2>
-            </div>
-            <div class="works-list">
-                <a href="project-sample.html" class="work-item">
-                    <div class="work-img-container">
-                        <div class="work-placeholder"></div>
-                    </div>
-                    <div class="work-info">
-                        <span class="work-meta">Video Art — 2024</span>
-                        <h3 class="work-title">Lost Frequency</h3>
-                        <p class="work-desc">An exploration of the unseen noise in the urban landscape. Recorded over 40 days in abandoned industrial zones.</p>
-                    </div>
-                </a>
-                <div class="work-item">
-                    <div class="work-img-container">
-                        <div class="work-placeholder"></div>
-                    </div>
-                    <div class="work-info">
-                        <span class="work-meta">Installation — 2025</span>
-                        <h3 class="work-title">Surface Tension</h3>
-                        <p class="work-desc">Mixed media installation focusing on the texture of decay. Using rust, concrete, and organic materials found in the warehouse.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    toggle.addEventListener('click', () => {
+      const isOpen = drawer.classList.toggle('open');
+      toggle.classList.toggle('open', isOpen);
+      toggle.setAttribute('aria-expanded', isOpen);
+    });
 
-        <section id="contact" class="section-contact">
-            <div class="section-header-wrapper">
-                <h2 class="section-title">Contact</h2>
-            </div>
-            <div class="contact-content">
-                <a href="mailto:info@ardiye.art" class="mail-btn">Email Us</a>
-                <div class="social-row">
-                    <a href="#" class="social-link">Instagram</a>
-                    <a href="#" class="social-link">Vimeo</a>
-                    <a href="#" class="social-link">LinkedIn</a>
-                </div>
-            </div>
-            <div class="copyright uppercase">
-                <span>&copy; 2026 Ardiye Art Initiative</span>
-            </div>
-        </section>
-    </main>
-
-    <script>
-        const cursorOutline = document.querySelector('.cursor-outline');
-        const hoverTargets = document.querySelectorAll('a, button');
-        let mouseX = 0, mouseY = 0, outlineX = 0, outlineY = 0;
-
-        window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
-        hoverTargets.forEach(el => {
-            el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
-            el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
-        });
-
-        function animateCursor() {
-            let speed = 0.2; outlineX += (mouseX - outlineX) * speed; outlineY += (mouseY - outlineY) * speed; cursorOutline.style.left = `${outlineX}px`; cursorOutline.style.top = `${outlineY}px`; requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
-    </script>
+    // Close drawer when a link is clicked
+    drawer.querySelectorAll('.nav-link').forEach((link) => {
+      link.addEventListener('click', () => {
+        drawer.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
 </body>
 </html>
