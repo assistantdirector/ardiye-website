@@ -8,121 +8,39 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --bg-color: #120a08; --bg-card: #1c100c; --text-main: #EEEEEE;
-            --text-muted: #888; --accent: #EBCB4B; --pad-side: 60px;
-            --font-head: 'Barlow Condensed', sans-serif; --font-body: 'Inter', sans-serif;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html, body, a { cursor: default; }
-        a { cursor: pointer; }
-
-        html { scroll-behavior: smooth; }
-        body {
-            background-color: var(--bg-color); color: var(--text-main);
-            font-family: var(--font-body); font-weight: 300; line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg-color); }
-        ::-webkit-scrollbar-thumb { background: #333; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
-
-        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
-
-        .cursor-outline {
-            position: fixed; top: 0; left: 0; width: 30px; height: 30px;
-            border: 1px solid rgba(235, 203, 75, 0.5); border-radius: 50%;
-            pointer-events: none; z-index: 9999; will-change: transform;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s, background-color 0.3s;
-        }
-        body.hovering .cursor-outline {
-            width: 50px; height: 50px; background-color: rgba(235, 203, 75, 0.05); border-color: var(--accent);
-        }
-
-        .main-header {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100px;
-            padding: 0 var(--pad-side); display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000; background: rgba(18, 10, 8, 0.95); backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .logo-container img { width: 120px; display: block; opacity: 1; }
-        .nav-menu { display: flex; gap: 40px; }
-        
-        .nav-link {
-            font-family: var(--font-head); font-size: 1.25rem; font-weight: 700; color: #888;
-            position: relative; padding: 5px 0; letter-spacing: 1px; text-transform: uppercase;
-            transition: color 0.3s ease;
-        }
-        .nav-link:hover { color: #FFF; }
-
-        main { padding: 160px var(--pad-side) 80px var(--pad-side); max-width: 1400px; margin: 0 auto; }
-
-        .project-header { margin-bottom: 60px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 40px; }
-        .project-title {
-            font-family: var(--font-head); font-size: 4.5rem; margin: 0; line-height: 1; color: var(--text-main); font-weight: 600; text-transform: uppercase;
-        }
-        .project-meta {
-            margin-top: 30px; display: flex; gap: 40px; font-family: var(--font-body);
-            font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;
-        }
-        .meta-item span { color: var(--accent); font-weight: 600; margin-right: 8px; }
-
-        .project-media {
-            width: 100%; height: 60vh; background-color: #1c100c;
-            margin-bottom: 80px; display: flex; align-items: center; justify-content: center; overflow: hidden;
-        }
-        .media-placeholder { color: #444; letter-spacing: 2px; }
-
-        .project-content { display: grid; grid-template-columns: 1fr 2fr; gap: 80px; }
-        .content-text { font-size: 1.1rem; color: #CCC; font-weight: 300; line-height: 1.7; }
-        .credits-box { padding-right: 20px; }
-        .credit-row {
-            display: flex; justify-content: space-between; margin-bottom: 15px; 
-            border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 5px; font-size: 0.9rem;
-        }
-        .credit-label { color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-size: 0.75rem; }
-
-        .project-footer {
-            margin-top: 120px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05);
-            display: flex; justify-content: space-between;
-        }
-        .back-link { font-family: var(--font-body); font-size: 1rem; font-weight: 400; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
-        .back-link:hover { color: var(--accent); }
-
-        @media (max-width: 768px) {
-            :root { --pad-side: 20px; }
-            .main-header { height: 80px; padding: 0 20px; }
-            .nav-menu { display: none; }
-            .project-title { font-size: 3rem; }
-            .project-content { grid-template-columns: 1fr; gap: 40px; }
-            .project-media { height: 35vh; }
-            .cursor-outline { display: none; }
-        }
-    </style>
+    <link rel="stylesheet" href="base.css">
 </head>
 <body>
-    <div class="cursor-outline"></div>
+    <div class="cursor-outline" aria-hidden="true"></div>
 
     <header class="main-header">
-        <a href="index.html" class="logo-container">
-            <img src="images/logo.png" alt="Ardiye Logo">
+        <a href="index.html" class="logo-container" aria-label="Ardiye — Home">
+          <div class="logo-name">ardiye<span class="dot" style="color: var(--accent);">.</span></div>
+          <div class="logo-sub">Art Initiative</div>
         </a>
-        <nav class="nav-menu uppercase">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="index.html#narrative" class="nav-link">Narrative</a>
-            <a href="index.html#artists" class="nav-link">Artists</a>
-            <a href="index.html#works" class="nav-link">Works</a>
-            <a href="index.html#contact" class="nav-link">Contact</a>
+    
+        <nav class="nav-menu" aria-label="Main navigation">
+          <a href="index.html#home"      class="nav-link">Home</a>
+          <a href="index.html#narrative" class="nav-link">Narrative</a>
+          <a href="index.html#artists"   class="nav-link">Artists</a>
+          <a href="index.html#works"     class="nav-link">Works</a>
+          <a href="index.html#contact"   class="nav-link">Contact</a>
         </nav>
+    
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-drawer">
+          <span></span><span></span><span></span>
+        </button>
     </header>
 
-    <main>
+    <nav class="nav-drawer" id="nav-drawer" aria-label="Mobile navigation">
+        <a href="index.html#home"      class="nav-link">Home</a>
+        <a href="index.html#narrative" class="nav-link">Narrative</a>
+        <a href="index.html#artists"   class="nav-link">Artists</a>
+        <a href="index.html#works"     class="nav-link">Works</a>
+        <a href="index.html#contact"   class="nav-link">Contact</a>
+    </nav>
+
+    <main class="page-offset">
         <div class="project-header">
             <h1 class="project-title">Lost Frequency</h1>
             <div class="project-meta">
@@ -148,31 +66,20 @@
             </div>
         </div>
 
-        <div class="project-footer">
+        <div class="footer-nav">
             <a href="index.html#works" class="back-link">← Back to Selection</a>
         </div>
     </main>
 
+    <script src="cursor.js"></script>
     <script>
-        const cursorOutline = document.querySelector('.cursor-outline');
-        const hoverTargets = document.querySelectorAll('a, button');
-        let mouseX = 0, mouseY = 0, outlineX = 0, outlineY = 0;
-
-        window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
-        hoverTargets.forEach(el => {
-            el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
-            el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+        const toggle = document.querySelector('.nav-toggle');
+        const drawer = document.querySelector('.nav-drawer');
+        toggle.addEventListener('click', () => {
+            const isOpen = drawer.classList.toggle('open');
+            toggle.classList.toggle('open', isOpen);
+            toggle.setAttribute('aria-expanded', isOpen);
         });
-
-        function animateCursor() {
-            let speed = 0.2; 
-            outlineX += (mouseX - outlineX) * speed;
-            outlineY += (mouseY - outlineY) * speed;
-            cursorOutline.style.left = `${outlineX}px`;
-            cursorOutline.style.top = `${outlineY}px`;
-            requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
     </script>
 </body>
 </html>
