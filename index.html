@@ -9,203 +9,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="base.css">
-
-  <style>
-    /* ─── PAGE-SPECIFIC STYLES ───────────────────── */
-    main {
-      padding: 0 var(--pad-side);
-      max-width: 1600px;
-      margin: 0 auto;
-    }
-    section {
-      padding: 120px 0;
-      border-top: 1px solid rgba(255,255,255,0.05);
-    }
-    section:first-of-type { border-top: none; padding-top: 0; }
-
-    /* ── Hero ── */
-    .section-home {
-      height: 60vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding-top: var(--header-h);
-    }
-    .highlight-gradient {
-      display: block;
-      font-family: var(--font-head);
-      font-size: 9vw;
-      line-height: 1;
-      letter-spacing: -2px;
-      font-weight: 800;
-      text-transform: uppercase;
-      background: linear-gradient(135deg, #888 0%, #FFF 30%, #EBCB4B 50%, #FFF 70%, #888 100%);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      will-change: background-position; /* hint to browser for animation */
-      animation: shine 4s linear infinite;
-    }
-    @keyframes shine { to { background-position: 200% center; } }
-
-    /* ── Narrative ── */
-    .narrative-content {
-      display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 80px;
-      align-items: start;
-    }
-    .narrative-lead {
-      font-family: var(--font-head);
-      font-size: 2rem;
-      color: #fff;
-      line-height: 1.2;
-      font-weight: 600;
-    }
-    .narrative-text { font-size: 1rem; color: var(--text-muted); font-weight: 300; line-height: 1.7; }
-    .narrative-text p { margin-bottom: 20px; }
-
-    /* ── Artists ── */
-    .artists-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4rem; }
-
-    .artist-card { display: block; cursor: pointer; }
-
-    .artist-img-box {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      background-color: var(--bg-card);
-      margin-bottom: 20px;
-      overflow: hidden;
-      position: relative;
-    }
-    .artist-placeholder {
-      width: 100%; height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #444;
-      font-family: var(--font-head);
-      font-size: 1.5rem;
-      letter-spacing: 2px;
-      transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-    }
-    /* FIX: was `group: hover` (invalid). Use sibling/parent selector properly. */
-    .artist-card:hover .artist-placeholder { transform: scale(1.05); }
-
-    .artist-meta {
-      border-left: 2px solid transparent;
-      padding-left: 15px;
-      transition: border-color 0.3s;
-    }
-    .artist-card:hover .artist-meta { border-left-color: var(--accent); }
-
-    .artist-name {
-      font-family: var(--font-head);
-      font-size: 2rem;
-      letter-spacing: 1px;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 0;
-    }
-    .artist-role { font-size: 0.85rem; color: var(--text-muted); letter-spacing: 1px; }
-
-    /* ── Works ── */
-    .works-list { display: flex; flex-direction: column; gap: 120px; }
-
-    .work-item {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr;
-      gap: 60px;
-      align-items: center;
-      cursor: pointer;
-      opacity: 0.85;
-      transition: opacity 0.3s;
-    }
-    .work-item:hover { opacity: 1; }
-
-    /* FIX: replaced `direction: rtl` (text property misuse) with flex order reversal */
-    .work-item:nth-child(even) { grid-template-columns: 1fr 1.5fr; }
-    .work-item:nth-child(even) .work-img-container { order: 2; }
-    .work-item:nth-child(even) .work-info { order: 1; text-align: right; }
-
-    .work-img-container { width: 100%; height: 500px; overflow: hidden; background-color: var(--bg-card); }
-    .work-placeholder {
-      width: 100%; height: 100%;
-      background-color: #1a0f0c;
-      filter: grayscale(100%);
-      transition: all 0.6s ease;
-    }
-    .work-item:hover .work-placeholder { filter: grayscale(0%); transform: scale(1.02); }
-
-    .work-title {
-      font-family: var(--font-head);
-      font-size: 4rem;
-      line-height: 0.9;
-      margin-bottom: 20px;
-      font-weight: 600;
-    }
-    .work-meta {
-      color: var(--accent);
-      font-weight: 600;
-      font-size: 0.8rem;
-      letter-spacing: 2px;
-      margin-bottom: 20px;
-      display: block;
-    }
-    .work-desc { font-size: 1rem; color: var(--text-muted); max-width: 450px; line-height: 1.6; }
-    .work-item:nth-child(even) .work-desc { margin-left: auto; }
-
-    /* ── Contact ── */
-    .section-contact { min-height: 40vh; display: flex; flex-direction: column; padding-bottom: 60px; }
-    .contact-content { display: flex; flex-direction: column; gap: 25px; align-items: flex-start; max-width: 600px; }
-    .social-row { display: flex; gap: 30px; padding-left: 2px; }
-
-    .mail-btn {
-      display: inline-block;
-      border: 1px solid rgba(255,255,255,0.3);
-      padding: 12px 40px;
-      font-family: var(--font-head);
-      font-size: 1.8rem;
-      font-weight: 600;
-      color: var(--text-main);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      transition: all 0.3s ease;
-    }
-    .mail-btn:hover { background-color: var(--accent); color: #000; border-color: var(--accent); }
-
-    .copyright {
-      margin-top: auto;
-      padding-top: 40px;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      display: flex;
-      justify-content: flex-end;
-      font-size: 0.8rem;
-      color: #444;
-    }
-
-    /* ─── RESPONSIVE OVERRIDES ─── */
-    @media (max-width: 768px) {
-      .highlight-gradient  { font-size: 14vw; }
-      .section-home        { height: 40vh; padding-top: var(--header-h); }
-      .narrative-content   { grid-template-columns: 1fr; gap: 40px; }
-      .artists-grid        { grid-template-columns: 1fr; gap: 60px; }
-
-      .work-item           { grid-template-columns: 1fr; gap: 40px; }
-      /* Reset even-item overrides on mobile */
-      .work-item:nth-child(even) { grid-template-columns: 1fr; }
-      .work-item:nth-child(even) .work-img-container { order: unset; }
-      .work-item:nth-child(even) .work-info { order: unset; text-align: left; }
-
-      .work-img-container  { height: 350px; }
-      .work-title          { font-size: 3rem; }
-      .mail-btn            { font-size: 1.5rem; padding: 12px 30px; }
-      .copyright           { justify-content: center; }
-    }
-  </style>
 </head>
 <body>
   <div class="cursor-outline" aria-hidden="true"></div>
@@ -224,13 +27,11 @@
       <a href="#contact"   class="nav-link">Contact</a>
     </nav>
 
-    <!-- FIX: mobile hamburger menu added -->
     <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-drawer">
       <span></span><span></span><span></span>
     </button>
   </header>
 
-  <!-- Mobile nav drawer -->
   <nav class="nav-drawer" id="nav-drawer" aria-label="Mobile navigation">
     <a href="#home"      class="nav-link">Home</a>
     <a href="#narrative" class="nav-link">Narrative</a>
@@ -241,7 +42,6 @@
 
   <main>
     <section id="home" class="section-home">
-      <!-- FIX: aria-label on h1 so screen readers announce meaningful text -->
       <h1 aria-label="Raw Flux — Ardiye Art Initiative">
         <span class="highlight-gradient" aria-hidden="true">RAW FLUX.</span>
       </h1>
@@ -336,17 +136,13 @@
 
   <script src="cursor.js"></script>
   <script>
-    // Mobile hamburger toggle
     const toggle = document.querySelector('.nav-toggle');
     const drawer = document.querySelector('.nav-drawer');
-
     toggle.addEventListener('click', () => {
       const isOpen = drawer.classList.toggle('open');
       toggle.classList.toggle('open', isOpen);
       toggle.setAttribute('aria-expanded', isOpen);
     });
-
-    // Close drawer when a link is clicked
     drawer.querySelectorAll('.nav-link').forEach((link) => {
       link.addEventListener('click', () => {
         drawer.classList.remove('open');
