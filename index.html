@@ -15,38 +15,34 @@
   
   <div class="cursor-outline" aria-hidden="true"></div>
 
-  <!-- Header -->
   <header class="main-header">
-    <a href="#home" class="logo-container" aria-label="Ardiye — Home">
+    <a href="index.html#home" class="logo-container" aria-label="Ardiye — Home">
       <div class="logo-name">ardiye<span class="dot" style="color: var(--accent);">.</span></div>
       <div class="logo-sub">Art Initiative</div>
     </a>
 
     <nav class="nav-menu" aria-label="Main navigation">
-      <a href="#home"      class="nav-link">Home</a>
-      <a href="#narrative" class="nav-link">Narrative</a>
-      <a href="#artists"   class="nav-link">Residents</a>
-      <a href="#works"     class="nav-link">Works</a>
-      <a href="#contact"   class="nav-link">Contact</a>
+      <a href="index.html#home"      class="nav-link">Home</a>
+      <a href="index.html#narrative" class="nav-link">Narrative</a>
+      <a href="index.html#artists"   class="nav-link">Residents</a>
+      <a href="index.html#works"     class="nav-link">Works</a>
+      <a href="index.html#contact"   class="nav-link">Contact</a>
     </nav>
 
-    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-drawer">
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </header>
 
-  <!-- Mobile Nav -->
-  <nav class="nav-drawer" id="nav-drawer" aria-label="Mobile navigation">
-    <a href="#home"      class="nav-link">Home</a>
-    <a href="#narrative" class="nav-link">Narrative</a>
-    <a href="#artists"   class="nav-link">Residents</a>
-    <a href="#works"     class="nav-link">Works</a>
-    <a href="#contact"   class="nav-link">Contact</a>
+  <nav class="nav-drawer" id="nav-drawer">
+    <a href="index.html#home"      class="nav-link">Home</a>
+    <a href="index.html#narrative" class="nav-link">Narrative</a>
+    <a href="index.html#artists"   class="nav-link">Residents</a>
+    <a href="index.html#works"     class="nav-link">Works</a>
+    <a href="index.html#contact"   class="nav-link">Contact</a>
   </nav>
 
-  <!-- Main Content -->
   <main>
-    
     <section id="home" class="section-home">
       <h1 aria-label="Raw Flux — Ardiye Art Initiative">
         <span class="highlight-gradient" aria-hidden="true">RAW FLUX.</span>
@@ -68,65 +64,62 @@
       </div>
     </section>
 
-    <!-- Artists (Clickable Cards) -->
     <section id="artists">
       <div class="section-header-wrapper">
         <h2 class="section-title">Residents</h2>
       </div>
       <div class="artists-grid">
         
-        <button class="artist-card" onclick="openModal('modal-nazim')">
+        <a href="artist-nazim.html" class="artist-card">
           <h3 class="artist-name">Nazım Kahramantürk</h3>
-          <div class="artist-role">Producer</div>
+          <div class="artist-role">Filmmaker / Director / Editor</div>
           <div class="artist-bio">
-            <p>Nazım Kahramantürk is a filmmaker and editor. As a co-founder of the 'ardiyé' collective, his practice focuses on raw cinematography.</p>
+            <p>Nazım Kahramantürk is a filmmaker and editor. As a co-founder of the 'ardiyé' collective, his practice focuses on raw cinematography. Click to view detailed profile and background.</p>
           </div>
-        </button>
+        </a>
 
-        <button class="artist-card" onclick="openModal('modal-necef')">
+        <a href="artist-necef.html" class="artist-card">
           <h3 class="artist-name">Necef Mengüverdi</h3>
           <div class="artist-role">Visual Artist</div>
           <div class="artist-bio">
-            <p>Necef Mengüverdi is a visual artist whose practice explores the intersection of spatial memory, raw materials, and fragmented narratives.</p>
+            <p>Necef Mengüverdi is a visual artist whose practice explores the intersection of spatial memory, raw materials, and fragmented narratives. Click to view profile.</p>
           </div>
-        </button>
+        </a>
 
       </div>
     </section>
 
-    <!-- Works (Clickable Cards) -->
     <section id="works">
       <div class="section-header-wrapper">
         <h2 class="section-title">Selection</h2>
       </div>
       <div class="works-list">
         
-        <button class="work-item" onclick="openModal('modal-novaqua')">
+        <a href="project-novaqua.html" class="work-item">
           <div class="work-img-container">
             <div class="work-placeholder" aria-hidden="true">[ MACRO FEED: CHEMICAL REACTION ]</div>
           </div>
           <div class="work-info">
             <span class="work-meta">Mixed Media Installation — 2026</span>
             <h3 class="work-title">Protocol: NovAqua</h3>
-            <p class="work-desc">A continuous chemical reaction utilizing commercial water conditioner to create a synthetic slime coat over submerged industrial debris.</p>
+            <p class="work-desc">A continuous chemical reaction utilizing commercial water conditioner to create a synthetic slime coat over submerged industrial debris. Click to view full installation details.</p>
           </div>
-        </button>
+        </a>
 
-        <button class="work-item" onclick="openModal('modal-ambient')">
+        <a href="project-ambient.html" class="work-item">
           <div class="work-img-container">
             <div class="work-placeholder" aria-hidden="true">[ AUDIO WAVEFORM ]</div>
           </div>
           <div class="work-info">
             <span class="work-meta">A/V Installation — 2025</span>
             <h3 class="work-title">Ambient Architecture</h3>
-            <p class="work-desc">A study of how sound shapes empty spaces. Layered ambient drones and slow guitar loops are mapped onto raw, uncolor-graded industrial footage.</p>
+            <p class="work-desc">A study of how sound shapes empty spaces. Layered ambient drones and slow guitar loops are mapped onto raw, uncolor-graded industrial footage. Click to view project specifics.</p>
           </div>
-        </button>
+        </a>
 
       </div>
     </section>
 
-    <!-- Contact -->
     <section id="contact" class="section-contact">
       <div class="section-header-wrapper">
         <h2 class="section-title">Contact</h2>
@@ -145,93 +138,6 @@
     </section>
 
   </main>
-
-  <!-- ==========================================
-       SPA MODALS (The "Pages")
-       ========================================== -->
-
-  <!-- NAZIM PROFILE -->
-  <div id="modal-nazim" class="overlay">
-    <div class="overlay-content">
-      <button class="close-btn" onclick="closeModal('modal-nazim')">← Back to Residents</button>
-      <div class="detail-header">
-        <h1 class="detail-title">Nazım Kahramantürk</h1>
-        <div class="detail-role">Filmmaker / Director / Editor</div>
-      </div>
-      <div class="detail-profile">
-        <div class="detail-portrait">[ PORTRAIT ]</div>
-        <div class="detail-text">
-          <p>Nazım Kahramantürk is a filmmaker, director, and film editor. As a co-founder of the 'ardiyé' collective art space, his practice focuses on raw cinematography.</p>
-          <p>Currently continuing his studies at Dokuz Eylül University's Fine Arts Faculty in Film Design and Direction, his academic research is heavily anchored by his ongoing thesis. This theoretical foundation informs his contemporary installations, exploring how digital speed fractures spatial reality.</p>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- NECEF PROFILE -->
-  <div id="modal-necef" class="overlay">
-    <div class="overlay-content">
-      <button class="close-btn" onclick="closeModal('modal-necef')">← Back to Residents</button>
-      <div class="detail-header">
-        <h1 class="detail-title">Necef Mengüverdi</h1>
-        <div class="detail-role">Visual Artist</div>
-      </div>
-      <div class="detail-profile">
-        <div class="detail-portrait">[ PORTRAIT ]</div>
-        <div class="detail-text">
-          <p>Necef Mengüverdi is a visual artist whose practice explores the intersection of spatial memory, raw materials, and fragmented narratives. Contributing to the 'ardiyé' initiative, her work challenges traditional curatorial boundaries through experimental media.</p>
-          <p>She focuses on the latent textures within industrial environments, bringing forward the unseen layers of decay and transition. Her projects often remain in a deliberate state of flux, allowing the environment itself to continually shape the outcome of the work.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PROJECT: NOVAQUA -->
-  <div id="modal-novaqua" class="overlay">
-    <div class="overlay-content">
-      <button class="close-btn" onclick="closeModal('modal-novaqua')">← Back to Selection</button>
-      <div class="detail-header">
-        <h1 class="detail-title">Protocol: NovAqua</h1>
-        <div class="detail-role">Mixed Media Installation / 2026</div>
-      </div>
-      <div class="detail-media">[ WIDE WAREHOUSE SHOT ]</div>
-      <div class="credits-grid">
-        <div class="credits-box">
-          <div class="credit-row"><span class="credit-label">Medium</span> <span>Water, NovAqua, Rusted Steel</span></div>
-          <div class="credit-row"><span class="credit-label">Live Feed</span> <span>APS-C Macro Observation</span></div>
-          <div class="credit-row"><span class="credit-label">Artist</span> <span>Nazım Kahramantürk</span></div>
-        </div>
-        <div class="detail-text">
-          <p><strong>Protocol: NovAqua</strong> repurposes a commercial water conditioner—typically used to neutralize heavy metals and provide a synthetic slime coat for aquatic life—as an agent of artificial preservation.</p>
-          <p>Over the course of the exhibition, NovAqua is introduced into industrial basins via a slow-drip mechanical system. Instead of sustaining organic life, the chemical binds to the heavy metals of the rusting steel, forming a visible, synthetic mucous layer over the decay. The chemical entropy is continuously monitored by a fixed macro lens on an APS-C sensor.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PROJECT: AMBIENT ARCHITECTURE -->
-  <div id="modal-ambient" class="overlay">
-    <div class="overlay-content">
-      <button class="close-btn" onclick="closeModal('modal-ambient')">← Back to Selection</button>
-      <div class="detail-header">
-        <h1 class="detail-title">Ambient Architecture</h1>
-        <div class="detail-role">A/V Installation / 2025</div>
-      </div>
-      <div class="detail-media">[ INDUSTRIAL WIDE SHOT ]</div>
-      <div class="credits-grid">
-        <div class="credits-box">
-          <div class="credit-row"><span class="credit-label">Cinematography</span> <span>Nazım Kahramantürk</span></div>
-          <div class="credit-row"><span class="credit-label">Format</span> <span>Uncolor-graded / S-Log3</span></div>
-          <div class="credit-row"><span class="credit-label">Sound</span> <span>Drone / Post-Rock Loops</span></div>
-        </div>
-        <div class="detail-text">
-          <p><strong>Ambient Architecture</strong> is a study of how low-frequency sound and sustained visual observation shape our perception of empty, decaying spaces. Moving away from the hyper-speed of modern digital montage, the installation forces the viewer to confront the raw physical scale of abandoned structures.</p>
-          <p>The visual foundation relies on extended, static takes that bypass any polished color grading processes, preserving the native noise. Acoustically, the space is defined by heavy, slow guitar loops and thick ambient drones that mimic the spatial memory of the architecture.</p>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <script src="app.js"></script>
 </body>
