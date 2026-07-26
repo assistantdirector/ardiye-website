@@ -21,10 +21,9 @@ body {
   font-family: var(--font-body); font-weight: 300; line-height: 1.6;
   -webkit-font-smoothing: antialiased; overflow-x: hidden; cursor: default;
 }
-body.modal-open { overflow: hidden; }
 
 a, button { text-decoration: none; color: inherit; transition: all var(--transition); cursor: pointer; outline: none; }
-button { font-family: inherit; }
+button { font-family: inherit; background: none; border: none; }
 h1, h2, h3 { font-family: var(--font-head); font-weight: normal; margin: 0; text-transform: uppercase; }
 .uppercase { text-transform: uppercase; letter-spacing: 1px; }
 
@@ -65,7 +64,7 @@ body.hovering .cursor-outline {
 .nav-link { font-family: var(--font-head); font-size: 1.25rem; font-weight: 700; color: var(--text-muted); padding: 5px 0; letter-spacing: 1px; text-transform: uppercase; transition: color var(--transition); }
 .nav-link:hover { color: #fff; }
 
-.nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; }
+.nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
 .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--text-main); transition: all 0.3s ease; }
 .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav-toggle.open span:nth-child(2) { opacity: 0; }
@@ -80,7 +79,7 @@ body.hovering .cursor-outline {
 .nav-drawer .nav-link { font-size: 1.6rem; color: var(--text-muted); }
 
 /* ==========================================
-   MAIN LAYOUT & HOME
+   INDEX LAYOUT
    ========================================== */
 main { padding: 0 var(--pad-side); max-width: 1600px; margin: 0 auto; }
 section { padding: 120px 0; border-top: 1px solid rgba(255,255,255,0.05); }
@@ -98,9 +97,7 @@ section:first-of-type { border-top: none; padding-top: 0; }
 .narrative-text { font-size: 1rem; color: var(--text-muted); font-weight: 300; line-height: 1.7; }
 .narrative-text p { margin-bottom: 20px; }
 
-/* ==========================================
-   ARTISTS & WORKS CARDS (Clickable)
-   ========================================== */
+/* Artists & Works Cards */
 .artists-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4rem; }
 .artist-card { display: block; background: var(--bg-card); border: 1px solid rgba(255,255,255,0.05); padding: 40px; transition: border-color 0.3s; text-align: left; }
 .artist-card:hover { border-color: var(--accent); }
@@ -110,7 +107,7 @@ section:first-of-type { border-top: none; padding-top: 0; }
 .artist-bio { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
 
 .works-list { display: flex; flex-direction: column; gap: 120px; }
-.work-item { display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; align-items: center; opacity: 0.85; transition: opacity 0.3s; background: none; border: none; text-align: left; }
+.work-item { display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; align-items: center; opacity: 0.85; transition: opacity 0.3s; text-align: left; }
 .work-item:hover { opacity: 1; }
 .work-item:nth-child(even) { grid-template-columns: 1fr 1.5fr; }
 .work-item:nth-child(even) .work-img-container { order: 2; }
@@ -135,24 +132,11 @@ section:first-of-type { border-top: none; padding-top: 0; }
 .copyright { margin-top: auto; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: flex-end; font-size: 0.8rem; color: #444; }
 
 /* ==========================================
-   FULLSCREEN OVERLAY (SPA Pages)
+   DETAIL PAGES (Sub-pages Layout)
    ========================================== */
-.overlay {
-  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-  background-color: var(--bg-color); z-index: 2000;
-  opacity: 0; visibility: hidden; overflow-y: auto;
-  transition: opacity 0.4s ease, visibility 0.4s ease;
-  padding: 120px var(--pad-side) 80px var(--pad-side);
-}
-.overlay.active { opacity: 1; visibility: visible; }
-.overlay-content { max-width: 1400px; margin: 0 auto; position: relative; }
-
-.close-btn {
-  background: none; border: none; color: var(--text-muted);
-  font-family: var(--font-body); font-size: 1rem; font-weight: 400; text-transform: uppercase;
-  letter-spacing: 1px; margin-bottom: 60px; display: inline-block;
-}
-.close-btn:hover { color: var(--accent); }
+.detail-container { padding: calc(var(--header-h) + 60px) var(--pad-side) 120px var(--pad-side); max-width: 1400px; margin: 0 auto; }
+.back-btn { font-family: var(--font-body); font-size: 1rem; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); display: inline-block; margin-bottom: 60px; transition: color 0.3s; }
+.back-btn:hover { color: var(--accent); }
 
 .detail-header { margin-bottom: 60px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 40px; }
 .detail-title { font-family: var(--font-head); font-size: 4.5rem; margin: 0; line-height: 1; color: #FFF; font-weight: 800; text-transform: uppercase; }
@@ -179,7 +163,6 @@ section:first-of-type { border-top: none; padding-top: 0; }
   .nav-toggle { display: flex; }
   .cursor-outline { display: none; }
   .logo-name { font-size: 1.8rem; }
-  .logo-sub { font-size: 0.5rem; }
   
   .highlight-gradient { font-size: 14vw; }
   .section-home { height: 40vh; }
@@ -193,5 +176,5 @@ section:first-of-type { border-top: none; padding-top: 0; }
   .work-title, .detail-title { font-size: 3rem; }
   .mail-btn { font-size: 1.5rem; padding: 12px 30px; }
   .copyright { justify-content: center; }
-  .overlay { padding-top: 100px; }
+  .detail-container { padding-top: 100px; }
 }
