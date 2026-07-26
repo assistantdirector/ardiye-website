@@ -51,7 +51,9 @@ body.hovering .cursor-outline {
    ========================================== */
 .main-header {
   position: fixed; top: 0; left: 0; width: 100%; height: var(--header-h);
-  padding: 0 var(--pad-side); display: flex; justify-content: space-between; align-items: center;
+  /* DÜZELTME: Geniş ekranlarda Header'ın 1600px ana limite milimetrik kilitlenmesi için dinamik hesaplama */
+  padding: 0 max(var(--pad-side), calc((100vw - 1600px) / 2 + var(--pad-side)));
+  display: flex; justify-content: space-between; align-items: center;
   z-index: 1000; background: rgba(18, 10, 8, 0.95); backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -87,7 +89,8 @@ section:first-of-type { border-top: none; padding-top: 0; }
 .section-header-wrapper { margin-bottom: 60px; display: flex; align-items: baseline; }
 .section-title { font-family: var(--font-head); font-size: 2.8rem; color: var(--text-main); line-height: 1; font-weight: 600; text-transform: uppercase; }
 
-.section-home { height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding-top: var(--header-h); }
+/* DÜZELTME: Yükseklik 60vh'den 100vh'ye çıkarıldı ve merkezleme güçlendirildi */
+.section-home { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding-top: var(--header-h); }
 .highlight-gradient { display: block; font-family: var(--font-head); font-size: 9vw; line-height: 1; letter-spacing: -2px; font-weight: 800; text-transform: uppercase; background: linear-gradient(135deg, #888 0%, #FFF 30%, #EBCB4B 50%, #FFF 70%, #888 100%); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: shine 4s linear infinite; }
 @keyframes shine { to { background-position: 200% center; } }
 
@@ -134,7 +137,8 @@ section:first-of-type { border-top: none; padding-top: 0; }
 /* ==========================================
    DETAIL PAGES (Sub-pages Layout)
    ========================================== */
-.detail-container { padding: calc(var(--header-h) + 60px) var(--pad-side) 120px var(--pad-side); max-width: 1400px; margin: 0 auto; }
+/* DÜZELTME: Detail sayfa sınırlarını da 1600px grid'ine tam oturtuyoruz */
+.detail-container { padding: calc(var(--header-h) + 60px) var(--pad-side) 120px var(--pad-side); max-width: 1600px; margin: 0 auto; }
 .back-btn { font-family: var(--font-body); font-size: 1rem; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); display: inline-block; margin-bottom: 60px; transition: color 0.3s; }
 .back-btn:hover { color: var(--accent); }
 
