@@ -1,16 +1,17 @@
 /* ==========================================
-   GLOBAL SPA MODAL FUNCTIONS
+   GLOBAL SPA MODAL FUNCTIONS (History API / Hash Based)
    ========================================== */
 window.openModal = function(id) {
-  const modal = document.getElementById(id);
-  if (modal) {
-    modal.classList.add('active');
-    document.body.classList.add('modal-open');
-    modal.scrollTop = 0; // Reset scroll on open
-  }
+  // Sadece modalı açmak yerine URL'ye hash ekliyoruz. 
+  // Bu, tarayıcının geçmişine kayıt düşer ve "Geri" tuşunu aktif eder.
+  window.location.hash = id;
 };
 
 window.closeModal = function(id) {
+  // Ekranın en tepesine zıplamadan URL'deki hash'i temizler.
+  history.replaceState(null, null, ' '); 
+  
+  // İlgili modalı manuel olarak kapatır
   const modal = document.getElementById(id);
   if (modal) {
     modal.classList.remove('active');
@@ -74,5 +75,32 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  // 3. Browser Back Button & Direct Link Logic (Hashchange Listener)
+  function handleHashChange() {
+    const hash = window.location.hash.substring(1); // Baştaki '#' işaretini siler
+    
+    // Öncelikle açık olan tüm modalları gizle
+    document.querySelectorAll('.overlay').forEach(modal => {
+      modal.classList.remove('active');
+    });
+    document.body.classList.remove('modal-open');
+
+    // Eğer URL'deki hash bir modal ID'si ise, onu aç
+    if (hash && hash.startsWith('modal-')) {
+      const modal = document.getElementById(hash);
+      if (modal) {
+        modal.classList.add('active');
+        document.body.classList.add('modal-open');
+        modal.scrollTop = 0; // Modalı en tepeden başlat
+      }
+    }
+  }
+
+  // Kullanıcı farenin/tarayıcının "Geri" veya "İleri" tuşuna bastığında tetiklenir
+  window.addEventListener('hashchange', handleHashChange);
+
+  // Site ilk yüklendiğinde çalıştır (Birisinin doğrudan modal linkiyle gelme ihtimaline karşı)
+  handleHashChange();
 
 });
