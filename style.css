@@ -14,7 +14,7 @@
   --font-head:   'Barlow Condensed', system-ui, -apple-system, sans-serif;
   --font-body:   'Inter', system-ui, -apple-system, sans-serif;
   --font-mono:   'JetBrains Mono', monospace;
-  --header-h:    90px;
+  --header-h:    110px; /* Büyük logoya alan açmak için header yüksekliğini artırdık */
   --transition:  0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
@@ -55,7 +55,7 @@ body.hovering .cursor-outline {
 }
 
 /* ==========================================
-   HEADER & LOGO IMAGE (İDEAL BOYUTA GETİRİLDİ)
+   HEADER & LOGO IMAGE (MAKSIMUM BOYUT)
    ========================================== */
 .main-header {
   position: fixed; top: 0; left: 0; width: 100%; height: var(--header-h);
@@ -71,8 +71,8 @@ body.hovering .cursor-outline {
   height: 100%;
 }
 .logo-img {
-  height: 48px; /* Logoyu görünür ve keskin olacak şekilde büyüttük */
-  max-height: 75px;
+  height: 96px; /* Eski haline göre en az 4 kat büyütüldü */
+  max-height: 90px;
   width: auto;
   display: block;
   transition: opacity var(--transition);
@@ -254,7 +254,7 @@ section { padding: 120px 0; border-bottom: 1px solid var(--border-line); }
 }
 
 @media (max-width: 768px) {
-  :root { --pad-side: 20px; --header-h: 75px; }
+  :root { --pad-side: 20px; --header-h: 85px; }
   .nav-menu { display: none; }
   .nav-toggle { display: flex; }
   .cursor-outline { display: none; }
@@ -273,5 +273,5 @@ section { padding: 120px 0; border-bottom: 1px solid var(--border-line); }
   .detail-text, .credits-box { padding: 40px 20px; }
   .detail-header { padding-bottom: 40px; margin-bottom: 40px; }
   
-  .logo-img { height: 36px; } 
+  .logo-img { height: 55px; } 
 }
