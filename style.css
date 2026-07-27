@@ -55,7 +55,7 @@ body.hovering .cursor-outline {
 }
 
 /* ==========================================
-   HEADER
+   HEADER & LOGO IMAGE
    ========================================== */
 .main-header {
   position: fixed; top: 0; left: 0; width: 100%; height: var(--header-h);
@@ -70,16 +70,15 @@ body.hovering .cursor-outline {
   justify-content: center;
   height: 100%;
 }
-.logo-name { 
-  font-family: var(--font-head); 
-  font-size: 2.5rem; 
-  font-weight: 800; 
-  color: #fff; 
-  text-transform: lowercase; 
-  letter-spacing: -1px; 
-  transition: color var(--transition); 
+.logo-img {
+  height: 28px; /* Header yüksekliğine göre logo boyutu */
+  width: auto;
+  display: block;
+  transition: opacity var(--transition);
 }
-.logo-container:hover .logo-name { color: var(--accent); }
+.logo-container:hover .logo-img {
+  opacity: 0.8;
+}
 
 .nav-menu { display: flex; gap: 40px; }
 .nav-link { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 400; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
@@ -273,5 +272,5 @@ section { padding: 120px 0; border-bottom: 1px solid var(--border-line); }
   .detail-text, .credits-box { padding: 40px 20px; }
   .detail-header { padding-bottom: 40px; margin-bottom: 40px; }
   
-  .logo-name { font-size: 2rem; }
+  .logo-img { height: 24px; } /* Mobilde logoyu biraz küçült */
 }
