@@ -1,7 +1,7 @@
 /* ==========================================
-   UI OVERHAUL: STRUCTURAL MINIMALISM + REC HOVER + CHROMATIC ABERRATION
+   UI OVERHAUL: STRUCTURAL MINIMALISM + TURKISH SUPPORT
    ========================================== */
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@300;400;600&display=swap&subset=latin,latin-ext');
 
 :root {
   --bg-color:    #0a0a0a;
@@ -11,8 +11,8 @@
   --accent:      #D82126; /* Record Red */
   --border-line: #222222;
   --pad-side:    50px;
-  --font-head:   'Barlow Condensed', sans-serif;
-  --font-body:   'Inter', sans-serif;
+  --font-head:   'Barlow Condensed', system-ui, -apple-system, sans-serif;
+  --font-body:   'Inter', system-ui, -apple-system, sans-serif;
   --font-mono:   'JetBrains Mono', monospace;
   --header-h:    80px;
   --transition:  0.3s cubic-bezier(0.25, 1, 0.5, 1);
@@ -24,6 +24,7 @@ body {
   background-color: var(--bg-color); color: var(--text-main);
   font-family: var(--font-body); font-weight: 400; line-height: 1.6;
   -webkit-font-smoothing: antialiased; overflow-x: hidden; width: 100%;
+  text-rendering: optimizeLegibility;
 }
 
 a, button { text-decoration: none; color: inherit; transition: all var(--transition); outline: none; cursor: pointer;}
