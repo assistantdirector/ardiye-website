@@ -98,17 +98,44 @@ section { padding: 140px 0; border-bottom: 1px solid var(--border-line); }
 .section-header-wrapper::before { content: ''; display: block; width: 30px; height: 1px; background: var(--border-line); }
 .section-title { font-size: 1.5rem; color: var(--text-muted); letter-spacing: 2px; font-family: var(--font-mono); font-weight: 400; }
 
-/* Home Section */
-.section-home { height: 75vh; min-height: 500px; display: flex; align-items: flex-end; padding-bottom: 120px; border-bottom: 1px solid var(--border-line); }
-.highlight-gradient { display: block; font-size: clamp(4rem, 11vw, 12rem); color: #fff; letter-spacing: -2px; padding-left: 20px; border-left: 4px solid var(--border-line); line-height: 0.85; transition: border-color var(--transition); }
-.section-home:hover .highlight-gradient { border-color: var(--accent); }
+/* ==========================================
+   HOME SECTION (RAW FLUX FIX)
+   ========================================== */
+.section-home { 
+  height: 85vh; /* Ekranın büyük kısmını kaplar, çok daha ferah */
+  min-height: 500px; 
+  display: flex; 
+  flex-direction: column;
+  justify-content: center; /* Dikey eksende tam ortalar */
+  align-items: flex-start; /* Sola hizalı yapısal duruş */
+  padding-top: var(--header-h); /* Header'ın altında ezilmesini engeller */
+  padding-bottom: 0; 
+  border-bottom: 1px solid var(--border-line); 
+}
+.highlight-gradient { 
+  display: inline-block; 
+  font-size: clamp(4rem, 13vw, 14rem); /* Ekrana göre devasa veya ideal boyuta gelir */
+  color: #fff; 
+  letter-spacing: -4px; 
+  padding-left: 40px; 
+  border-left: 8px solid var(--border-line); /* Yapısal kalın sınır */
+  line-height: 0.85; 
+  transition: border-color 0.4s ease, padding-left 0.4s ease, color 0.4s ease; 
+}
+/* Etkileşim (Hover) Anında Sinematik Kayma ve REC Kırmızısı */
+.section-home:hover .highlight-gradient { 
+  border-color: var(--accent); 
+  padding-left: 70px; /* Fareyle üzerine gelince sağa doğru akıcı bir şekilde kayar */
+}
 
-/* Narrative */
+/* ==========================================
+   NARRATIVE & CARDS
+   ========================================== */
 .narrative-content { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; padding: 80px 60px; background: var(--bg-panel); border: 1px solid var(--border-line); }
 .narrative-lead { font-size: 2.5rem; line-height: 1.2; color: #fff; }
 .narrative-text { font-size: 1.05rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 20px; }
 
-/* Artists (Panel Grid) */
+/* Artists */
 .artists-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border-line); border: 1px solid var(--border-line); }
 .artist-card { background: var(--bg-panel); padding: 80px 60px; transition: background 0.3s; display: block; }
 .artist-card:hover { background: #181818; }
@@ -117,7 +144,7 @@ section { padding: 140px 0; border-bottom: 1px solid var(--border-line); }
 .artist-role { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 35px; display: inline-block; text-transform: uppercase; letter-spacing: 1px; }
 .artist-bio { font-size: 0.95rem; color: #888; max-width: 90%; line-height: 1.7; }
 
-/* Works (List Layout) */
+/* Works */
 .works-list { display: flex; flex-direction: column; gap: 1px; background: var(--border-line); border: 1px solid var(--border-line); }
 .work-item { display: grid; grid-template-columns: 1fr 1fr; background: var(--bg-panel); transition: background 0.3s; text-align: left; }
 .work-item:hover { background: #181818; }
@@ -130,7 +157,9 @@ section { padding: 140px 0; border-bottom: 1px solid var(--border-line); }
 .work-item:hover .work-title { color: var(--accent); }
 .work-desc { font-size: 1rem; color: #888; line-height: 1.7; max-width: 90%; }
 
-/* Contact Section (Optik Olarak Tam Ortalı) */
+/* ==========================================
+   CONTACT SECTION 
+   ========================================== */
 .section-contact { 
   border-bottom: none; 
   display: flex; 
@@ -144,50 +173,18 @@ section { padding: 140px 0; border-bottom: 1px solid var(--border-line); }
   width: 100%;
   margin-bottom: 50px;
 }
-.section-contact .section-header-wrapper::before {
-  display: none; /* Asimetrik çizgiyi gizle */
-}
+.section-contact .section-header-wrapper::before { display: none; }
 .contact-content { 
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
-  text-align: center; 
-  width: 100%; 
-  margin: 0 auto; 
+  display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%; margin: 0 auto; 
 }
 .mail-btn { 
-  font-size: clamp(2.5rem, 5vw, 4.5rem); 
-  color: #fff; 
-  margin-bottom: 40px; 
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.3s, color 0.3s; 
+  font-size: clamp(2.5rem, 5vw, 4.5rem); color: #fff; margin-bottom: 40px; display: inline-flex; align-items: center; justify-content: center; transition: transform 0.3s, color 0.3s; 
 }
-.mail-btn:hover { 
-  color: var(--accent); 
-  transform: scale(1.05);
-}
-.social-row { 
-  display: flex; 
-  gap: 50px; 
-  margin-bottom: 80px; 
-  flex-wrap: wrap; 
-  justify-content: center; 
-}
-.social-link { 
-  font-family: var(--font-mono); 
-  font-size: 0.9rem; 
-  color: var(--text-muted); 
-}
-.social-link:hover { 
-  color: var(--accent); 
-}
-.copyright { 
-  font-family: var(--font-mono); 
-  font-size: 0.75rem; 
-  color: #444; 
-}
+.mail-btn:hover { color: var(--accent); transform: scale(1.05); }
+.social-row { display: flex; gap: 50px; margin-bottom: 80px; flex-wrap: wrap; justify-content: center; }
+.social-link { font-family: var(--font-mono); font-size: 0.9rem; color: var(--text-muted); }
+.social-link:hover { color: var(--accent); }
+.copyright { font-family: var(--font-mono); font-size: 0.75rem; color: #444; }
 
 /* ==========================================
    DETAIL PAGES (Sub-pages Layout)
@@ -219,29 +216,29 @@ section { padding: 140px 0; border-bottom: 1px solid var(--border-line); }
    RESPONSIVE OVERRIDES
    ========================================== */
 
-/* Tablet & Küçük Ekranlar */
+/* Tablet */
 @media (max-width: 1024px) {
   :root { --pad-side: 30px; }
-  .artists-grid { grid-template-columns: 1fr; }
-  .work-item { grid-template-columns: 1fr; }
+  .artists-grid, .work-item, .detail-profile, .credits-grid { grid-template-columns: 1fr; }
   .work-img-container { height: 400px; border-right: none; border-bottom: 1px solid var(--border-line); }
-  .detail-profile, .credits-grid { grid-template-columns: 1fr; }
   .detail-portrait { aspect-ratio: 16/9; border-bottom: 1px solid var(--border-line); }
 }
 
-/* Mobil Ekranlar */
+/* Mobil */
 @media (max-width: 768px) {
   :root { --pad-side: 20px; --header-h: 70px; }
   .nav-menu { display: none; }
   .nav-toggle { display: flex; }
-  .cursor-outline { display: none; } /* Mobilde imleç gizlenir */
+  .cursor-outline { display: none; }
   
-  .section-home { height: auto; min-height: 50vh; padding-top: 100px; padding-bottom: 60px; }
+  .section-home { height: auto; min-height: 60vh; padding-top: 120px; padding-bottom: 80px; }
+  .highlight-gradient { padding-left: 20px; border-left-width: 4px; letter-spacing: -1px; }
+  .section-home:hover .highlight-gradient { padding-left: 30px; }
+
   .narrative-content { grid-template-columns: 1fr; padding: 50px 30px; gap: 40px; }
   .narrative-lead { font-size: 2rem; }
   
-  .artist-card { padding: 50px 30px; }
-  .work-info { padding: 50px 30px; }
+  .artist-card, .work-info { padding: 50px 30px; }
   .work-title { font-size: 2.5rem; }
   
   .detail-container { padding-top: calc(var(--header-h) + 40px); }
