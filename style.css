@@ -1,5 +1,5 @@
 /* ==========================================
-   UI OVERHAUL: STRUCTURAL MINIMALISM + REC HOVER
+   UI OVERHAUL: STRUCTURAL MINIMALISM + REC HOVER + CHROMATIC ABERRATION
    ========================================== */
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
 
@@ -37,7 +37,7 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 700; margin: 0; text-tr
 ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
 /* ==========================================
-   CURSOR TRACKER (Transforms to REC dot)
+   CURSOR TRACKER
    ========================================== */
 .cursor-outline {
   position: fixed; top: 0; left: 0; width: 24px; height: 24px;
@@ -54,7 +54,7 @@ body.hovering .cursor-outline {
 }
 
 /* ==========================================
-   HEADER (Structural Top Bar)
+   HEADER
    ========================================== */
 .main-header {
   position: fixed; top: 0; left: 0; width: 100%; height: var(--header-h);
@@ -93,69 +93,75 @@ body.hovering .cursor-outline {
    MAIN LAYOUT & GRID
    ========================================== */
 main { max-width: 1600px; margin: 0 auto; padding: 0 var(--pad-side); width: 100%; }
-section { padding: 140px 0; border-bottom: 1px solid var(--border-line); }
-.section-header-wrapper { margin-bottom: 60px; display: flex; align-items: center; gap: 20px; }
+section { padding: 120px 0; border-bottom: 1px solid var(--border-line); }
+.section-header-wrapper { margin-bottom: 50px; display: flex; align-items: center; gap: 20px; }
 .section-header-wrapper::before { content: ''; display: block; width: 30px; height: 1px; background: var(--border-line); }
 .section-title { font-size: 1.5rem; color: var(--text-muted); letter-spacing: 2px; font-family: var(--font-mono); font-weight: 400; }
 
 /* ==========================================
-   HOME SECTION (RAW FLUX FIX)
+   HOME SECTION (RAW FLUX + CHROMATIC ABERRATION)
    ========================================== */
 .section-home { 
-  height: 85vh; /* Ekranın büyük kısmını kaplar, çok daha ferah */
-  min-height: 500px; 
+  height: 85vh; 
+  min-height: 600px; 
   display: flex; 
   flex-direction: column;
-  justify-content: center; /* Dikey eksende tam ortalar */
-  align-items: flex-start; /* Sola hizalı yapısal duruş */
-  padding-top: var(--header-h); /* Header'ın altında ezilmesini engeller */
+  justify-content: center; 
+  align-items: flex-start; 
+  padding-top: var(--header-h); 
   padding-bottom: 0; 
   border-bottom: 1px solid var(--border-line); 
 }
 .highlight-gradient { 
   display: inline-block; 
-  font-size: clamp(4rem, 13vw, 14rem); /* Ekrana göre devasa veya ideal boyuta gelir */
+  font-size: clamp(4.5rem, 13vw, 15rem); 
   color: #fff; 
   letter-spacing: -4px; 
   padding-left: 40px; 
-  border-left: 8px solid var(--border-line); /* Yapısal kalın sınır */
+  border-left: 8px solid var(--border-line); 
   line-height: 0.85; 
-  transition: border-color 0.4s ease, padding-left 0.4s ease, color 0.4s ease; 
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1); 
+  position: relative;
 }
-/* Etkileşim (Hover) Anında Sinematik Kayma ve REC Kırmızısı */
+/* Entropi / Kromatik Bozulma Efekti */
 .section-home:hover .highlight-gradient { 
   border-color: var(--accent); 
-  padding-left: 70px; /* Fareyle üzerine gelince sağa doğru akıcı bir şekilde kayar */
+  padding-left: 80px; 
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 
+    -4px 0px 0px rgba(216, 33, 38, 0.8), /* Record Red Ayrışması */
+    4px 0px 0px rgba(0, 255, 255, 0.5);   /* Camgöbeği Ayrışması */
+  transform: scale(1.02); /* Optik Focus Pull Hissi */
 }
 
 /* ==========================================
    NARRATIVE & CARDS
    ========================================== */
-.narrative-content { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; padding: 80px 60px; background: var(--bg-panel); border: 1px solid var(--border-line); }
+.narrative-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; padding: 70px; background: var(--bg-panel); border: 1px solid var(--border-line); }
 .narrative-lead { font-size: 2.5rem; line-height: 1.2; color: #fff; }
 .narrative-text { font-size: 1.05rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 20px; }
 
 /* Artists */
 .artists-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border-line); border: 1px solid var(--border-line); }
-.artist-card { background: var(--bg-panel); padding: 80px 60px; transition: background 0.3s; display: block; }
+.artist-card { background: var(--bg-panel); padding: 70px; transition: background 0.3s; display: block; }
 .artist-card:hover { background: #181818; }
 .artist-name { font-size: 3rem; letter-spacing: -1px; margin-bottom: 15px; color: #fff; transition: color 0.3s; }
 .artist-card:hover .artist-name { color: var(--accent); }
 .artist-role { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 35px; display: inline-block; text-transform: uppercase; letter-spacing: 1px; }
-.artist-bio { font-size: 0.95rem; color: #888; max-width: 90%; line-height: 1.7; }
+.artist-bio { font-size: 0.95rem; color: #888; max-width: 95%; line-height: 1.7; }
 
 /* Works */
 .works-list { display: flex; flex-direction: column; gap: 1px; background: var(--border-line); border: 1px solid var(--border-line); }
 .work-item { display: grid; grid-template-columns: 1fr 1fr; background: var(--bg-panel); transition: background 0.3s; text-align: left; }
 .work-item:hover { background: #181818; }
-.work-img-container { height: 500px; border-right: 1px solid var(--border-line); display: flex; align-items: center; justify-content: center; overflow: hidden; background: #0a0a0a; }
+.work-img-container { height: 550px; border-right: 1px solid var(--border-line); display: flex; align-items: center; justify-content: center; overflow: hidden; background: #0a0a0a; }
 .work-placeholder { font-family: var(--font-mono); color: #333; letter-spacing: 2px; font-size: 0.9rem; transition: color 0.3s; }
 .work-item:hover .work-placeholder { color: var(--text-muted); }
-.work-info { padding: 80px 60px; display: flex; flex-direction: column; justify-content: center; }
+.work-info { padding: 70px; display: flex; flex-direction: column; justify-content: center; }
 .work-meta { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
 .work-title { font-size: 3.5rem; margin-bottom: 25px; letter-spacing: -1px; color: #fff; transition: color 0.3s; }
 .work-item:hover .work-title { color: var(--accent); }
-.work-desc { font-size: 1rem; color: #888; line-height: 1.7; max-width: 90%; }
+.work-desc { font-size: 1rem; color: #888; line-height: 1.7; max-width: 95%; }
 
 /* ==========================================
    CONTACT SECTION 
@@ -166,12 +172,12 @@ section { padding: 140px 0; border-bottom: 1px solid var(--border-line); }
   flex-direction: column; 
   align-items: center; 
   text-align: center; 
-  padding-bottom: 100px; 
+  padding-bottom: 80px; 
 }
 .section-contact .section-header-wrapper {
   justify-content: center;
   width: 100%;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
 }
 .section-contact .section-header-wrapper::before { display: none; }
 .contact-content { 
@@ -201,13 +207,13 @@ section { padding: 140px 0; border-bottom: 1px solid var(--border-line); }
 
 .detail-profile { display: grid; grid-template-columns: 1fr 2fr; gap: 1px; background: var(--border-line); border: 1px solid var(--border-line); }
 .detail-portrait { aspect-ratio: 3/4; background: var(--bg-color); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); color: #333; font-size: 0.9rem; letter-spacing: 2px; }
-.detail-text { background: var(--bg-panel); padding: 80px 60px; font-size: 1.1rem; color: #ccc; line-height: 1.8; }
+.detail-text { background: var(--bg-panel); padding: 70px; font-size: 1.1rem; color: #ccc; line-height: 1.8; }
 .detail-text p { margin-bottom: 24px; }
 
 .detail-media { width: 100%; aspect-ratio: 21/9; background: var(--bg-color); border: 1px solid var(--border-line); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); color: #333; margin-bottom: 80px; font-size: 0.9rem; letter-spacing: 2px; }
 
 .credits-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 1px; background: var(--border-line); border: 1px solid var(--border-line); }
-.credits-box { background: var(--bg-panel); padding: 80px 60px; }
+.credits-box { background: var(--bg-panel); padding: 70px; }
 .credit-row { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid var(--border-line); font-family: var(--font-mono); font-size: 0.85rem; }
 .credit-row:last-child { border-bottom: none; padding-bottom: 0; }
 .credit-label { color: var(--text-muted); }
@@ -235,13 +241,13 @@ section { padding: 140px 0; border-bottom: 1px solid var(--border-line); }
   .highlight-gradient { padding-left: 20px; border-left-width: 4px; letter-spacing: -1px; }
   .section-home:hover .highlight-gradient { padding-left: 30px; }
 
-  .narrative-content { grid-template-columns: 1fr; padding: 50px 30px; gap: 40px; }
+  .narrative-content { grid-template-columns: 1fr; padding: 40px 20px; gap: 40px; }
   .narrative-lead { font-size: 2rem; }
   
-  .artist-card, .work-info { padding: 50px 30px; }
+  .artist-card, .work-info { padding: 40px 20px; }
   .work-title { font-size: 2.5rem; }
   
   .detail-container { padding-top: calc(var(--header-h) + 40px); }
-  .detail-text, .credits-box { padding: 50px 30px; }
+  .detail-text, .credits-box { padding: 40px 20px; }
   .detail-header { padding-bottom: 40px; margin-bottom: 40px; }
 }
