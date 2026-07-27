@@ -95,7 +95,8 @@ body.hovering .cursor-outline {
 main { max-width: 1600px; margin: 0 auto; padding: 0 var(--pad-side); width: 100%; }
 section { padding: 120px 0; border-bottom: 1px solid var(--border-line); }
 .section-header-wrapper { margin-bottom: 50px; display: flex; align-items: center; gap: 20px; }
-.section-header-wrapper::before { content: ''; display: block; width: 30px; height: 1px; background: var(--border-line); }
+/* DÜZELTME: Bölüm başlığı ayracı kırmızı oldu */
+.section-header-wrapper::before { content: ''; display: block; width: 30px; height: 1px; background: var(--accent); }
 .section-title { font-size: 1.5rem; color: var(--text-muted); letter-spacing: 2px; font-family: var(--font-mono); font-weight: 400; }
 
 /* ==========================================
