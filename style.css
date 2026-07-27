@@ -1,5 +1,5 @@
 /* ==========================================
-   UI OVERHAUL: STRUCTURAL MINIMALISM + ORIGINAL LOGO
+   UI OVERHAUL: STRUCTURAL MINIMALISM + LOGOTYPE SCALE
    ========================================== */
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@300;400;600&display=swap&subset=latin,latin-ext');
 
@@ -14,7 +14,7 @@
   --font-head:   'Barlow Condensed', system-ui, -apple-system, sans-serif;
   --font-body:   'Inter', system-ui, -apple-system, sans-serif;
   --font-mono:   'JetBrains Mono', monospace;
-  --header-h:    80px;
+  --header-h:    95px; /* Logotype ve menü dengesi için header büyütüldü */
   --transition:  0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
@@ -55,7 +55,7 @@ body.hovering .cursor-outline {
 }
 
 /* ==========================================
-   HEADER & ORIGINAL TEXT LOGO
+   HEADER & LOGOTYPE
    ========================================== */
 .main-header {
   position: fixed; top: 0; left: 0; width: 100%; height: var(--header-h);
@@ -72,17 +72,18 @@ body.hovering .cursor-outline {
 }
 .logo-name { 
   font-family: var(--font-head); 
-  font-size: 2.5rem; 
+  font-size: 3.2rem; /* Logotype belirgin şekilde büyütüldü ve toklaştırıldı */
   font-weight: 800; 
   color: #fff; 
   text-transform: lowercase; 
-  letter-spacing: -1px; 
+  letter-spacing: -1.5px; 
   transition: color var(--transition); 
+  line-height: 1;
 }
 .logo-container:hover .logo-name { color: var(--accent); }
 
 .nav-menu { display: flex; gap: 40px; }
-.nav-link { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 400; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.nav-link { font-family: var(--font-mono); font-size: 0.85rem; font-weight: 400; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 .nav-link:hover { color: var(--accent); }
 
 .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; }
@@ -254,7 +255,7 @@ section { padding: 120px 0; border-bottom: 1px solid var(--border-line); }
 }
 
 @media (max-width: 768px) {
-  :root { --pad-side: 20px; --header-h: 70px; }
+  :root { --pad-side: 20px; --header-h: 80px; }
   .nav-menu { display: none; }
   .nav-toggle { display: flex; }
   .cursor-outline { display: none; }
@@ -273,5 +274,5 @@ section { padding: 120px 0; border-bottom: 1px solid var(--border-line); }
   .detail-text, .credits-box { padding: 40px 20px; }
   .detail-header { padding-bottom: 40px; margin-bottom: 40px; }
   
-  .logo-name { font-size: 2rem; }
+  .logo-name { font-size: 2.5rem; } 
 }
