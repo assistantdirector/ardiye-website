@@ -63,7 +63,6 @@ body.hovering .cursor-outline {
   z-index: 1000; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-line);
 }
-/* DÜZELTME: Logo büyütüldü ve tam ortalandı */
 .logo-container { 
   display: flex; 
   align-items: center; 
@@ -72,7 +71,7 @@ body.hovering .cursor-outline {
 }
 .logo-name { 
   font-family: var(--font-head); 
-  font-size: 2.5rem; /* Logo Upscale */
+  font-size: 2.5rem; 
   font-weight: 800; 
   color: #fff; 
   text-transform: lowercase; 
@@ -80,14 +79,6 @@ body.hovering .cursor-outline {
   transition: color var(--transition); 
 }
 .logo-container:hover .logo-name { color: var(--accent); }
-
-/* DÜZELTME: Kırmızı i noktası */
-.dot-i {
-  color: var(--accent);
-}
-.logo-container:hover .dot-i {
-  color: #fff; /* Hover anında renkler yer değiştirir (Invert Effect) */
-}
 
 .nav-menu { display: flex; gap: 40px; }
 .nav-link { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 400; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
@@ -118,7 +109,7 @@ section { padding: 120px 0; border-bottom: 1px solid var(--border-line); }
 .section-title { font-size: 1.5rem; color: var(--text-muted); letter-spacing: 2px; font-family: var(--font-mono); font-weight: 400; }
 
 /* ==========================================
-   HOME SECTION (RAW FLUX + CHROMATIC ABERRATION)
+   HOME SECTION
    ========================================== */
 .section-home { 
   height: 85vh; 
@@ -159,7 +150,6 @@ section { padding: 120px 0; border-bottom: 1px solid var(--border-line); }
 .narrative-lead { font-size: 2.5rem; line-height: 1.2; color: #fff; }
 .narrative-text { font-size: 1.05rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 20px; }
 
-/* Artists */
 .artists-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border-line); border: 1px solid var(--border-line); }
 .artist-card { background: var(--bg-panel); padding: 70px; transition: background 0.3s; display: block; }
 .artist-card:hover { background: #181818; }
@@ -168,13 +158,10 @@ section { padding: 120px 0; border-bottom: 1px solid var(--border-line); }
 .artist-role { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 35px; display: inline-block; text-transform: uppercase; letter-spacing: 1px; }
 .artist-bio { font-size: 0.95rem; color: #888; max-width: 95%; line-height: 1.7; }
 
-/* Works */
 .works-list { display: flex; flex-direction: column; gap: 1px; background: var(--border-line); border: 1px solid var(--border-line); }
 .work-item { display: grid; grid-template-columns: 1fr 1fr; background: var(--bg-panel); transition: background 0.3s; text-align: left; }
 .work-item:hover { background: #181818; }
 .work-img-container { height: 550px; border-right: 1px solid var(--border-line); display: flex; align-items: center; justify-content: center; overflow: hidden; background: #0a0a0a; }
-.work-placeholder { font-family: var(--font-mono); color: #333; letter-spacing: 2px; font-size: 0.9rem; transition: color 0.3s; }
-.work-item:hover .work-placeholder { color: var(--text-muted); }
 .work-info { padding: 70px; display: flex; flex-direction: column; justify-content: center; }
 .work-meta { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
 .work-title { font-size: 3.5rem; margin-bottom: 25px; letter-spacing: -1px; color: #fff; transition: color 0.3s; }
@@ -211,7 +198,7 @@ section { padding: 120px 0; border-bottom: 1px solid var(--border-line); }
 .copyright { font-family: var(--font-mono); font-size: 0.75rem; color: #444; }
 
 /* ==========================================
-   DETAIL PAGES (Sub-pages Layout)
+   DETAIL PAGES
    ========================================== */
 .detail-container { padding: calc(var(--header-h) + 80px) var(--pad-side) 140px var(--pad-side); max-width: 1600px; margin: 0 auto; width: 100%; }
 .back-btn { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 60px; display: inline-flex; align-items: center; gap: 10px; transition: color 0.3s; }
@@ -224,11 +211,11 @@ section { padding: 120px 0; border-bottom: 1px solid var(--border-line); }
 .detail-role { font-family: var(--font-mono); font-size: 1rem; color: var(--text-muted); margin-top: 25px; text-transform: uppercase; letter-spacing: 1px; }
 
 .detail-profile { display: grid; grid-template-columns: 1fr 2fr; gap: 1px; background: var(--border-line); border: 1px solid var(--border-line); }
-.detail-portrait { aspect-ratio: 3/4; background: var(--bg-color); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); color: #333; font-size: 0.9rem; letter-spacing: 2px; }
+.detail-portrait { aspect-ratio: 3/4; background: var(--bg-color); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); color: #333; font-size: 0.9rem; letter-spacing: 2px; overflow: hidden; }
 .detail-text { background: var(--bg-panel); padding: 70px; font-size: 1.1rem; color: #ccc; line-height: 1.8; }
 .detail-text p { margin-bottom: 24px; }
 
-.detail-media { width: 100%; aspect-ratio: 21/9; background: var(--bg-color); border: 1px solid var(--border-line); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); color: #333; margin-bottom: 80px; font-size: 0.9rem; letter-spacing: 2px; }
+.detail-media { width: 100%; aspect-ratio: 21/9; background: var(--bg-color); border: 1px solid var(--border-line); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); color: #333; margin-bottom: 80px; font-size: 0.9rem; letter-spacing: 2px; overflow: hidden; }
 
 .credits-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 1px; background: var(--border-line); border: 1px solid var(--border-line); }
 .credits-box { background: var(--bg-panel); padding: 70px; }
@@ -237,10 +224,27 @@ section { padding: 120px 0; border-bottom: 1px solid var(--border-line); }
 .credit-label { color: var(--text-muted); }
 
 /* ==========================================
+   IMAGE HANDLING (Responsive & Cinematic)
+   ========================================== */
+.work-img-container img, 
+.detail-portrait img, 
+.detail-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s;
+}
+
+.work-item:hover .work-img-container img {
+  transform: scale(1.03);
+  opacity: 0.9;
+}
+
+/* ==========================================
    RESPONSIVE OVERRIDES
    ========================================== */
-
-/* Tablet */
 @media (max-width: 1024px) {
   :root { --pad-side: 30px; }
   .artists-grid, .work-item, .detail-profile, .credits-grid { grid-template-columns: 1fr; }
@@ -248,7 +252,6 @@ section { padding: 120px 0; border-bottom: 1px solid var(--border-line); }
   .detail-portrait { aspect-ratio: 16/9; border-bottom: 1px solid var(--border-line); }
 }
 
-/* Mobil */
 @media (max-width: 768px) {
   :root { --pad-side: 20px; --header-h: 70px; }
   .nav-menu { display: none; }
@@ -269,5 +272,5 @@ section { padding: 120px 0; border-bottom: 1px solid var(--border-line); }
   .detail-text, .credits-box { padding: 40px 20px; }
   .detail-header { padding-bottom: 40px; margin-bottom: 40px; }
   
-  .logo-name { font-size: 2rem; } /* Mobilde logoyu biraz küçült */
+  .logo-name { font-size: 2rem; }
 }
