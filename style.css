@@ -63,12 +63,31 @@ body.hovering .cursor-outline {
   z-index: 1000; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-line);
 }
-.logo-container { display: flex; flex-direction: column; }
-.logo-name { font-family: var(--font-head); font-size: 2rem; font-weight: 800; color: #fff; text-transform: lowercase; letter-spacing: -1px; transition: color var(--transition); }
+/* DÜZELTME: Logo büyütüldü ve tam ortalandı */
+.logo-container { 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  height: 100%;
+}
+.logo-name { 
+  font-family: var(--font-head); 
+  font-size: 2.5rem; /* Logo Upscale */
+  font-weight: 800; 
+  color: #fff; 
+  text-transform: lowercase; 
+  letter-spacing: -1px; 
+  transition: color var(--transition); 
+}
 .logo-container:hover .logo-name { color: var(--accent); }
-.logo-name .dot { color: var(--text-muted); transition: color var(--transition); }
-.logo-container:hover .dot { color: var(--accent); }
-.logo-sub { font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+/* DÜZELTME: Kırmızı i noktası */
+.dot-i {
+  color: var(--accent);
+}
+.logo-container:hover .dot-i {
+  color: #fff; /* Hover anında renkler yer değiştirir (Invert Effect) */
+}
 
 .nav-menu { display: flex; gap: 40px; }
 .nav-link { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 400; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
@@ -95,7 +114,6 @@ body.hovering .cursor-outline {
 main { max-width: 1600px; margin: 0 auto; padding: 0 var(--pad-side); width: 100%; }
 section { padding: 120px 0; border-bottom: 1px solid var(--border-line); }
 .section-header-wrapper { margin-bottom: 50px; display: flex; align-items: center; gap: 20px; }
-/* DÜZELTME: Bölüm başlığı ayracı kırmızı oldu */
 .section-header-wrapper::before { content: ''; display: block; width: 30px; height: 1px; background: var(--accent); }
 .section-title { font-size: 1.5rem; color: var(--text-muted); letter-spacing: 2px; font-family: var(--font-mono); font-weight: 400; }
 
@@ -124,15 +142,14 @@ section { padding: 120px 0; border-bottom: 1px solid var(--border-line); }
   transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1); 
   position: relative;
 }
-/* Entropi / Kromatik Bozulma Efekti */
 .section-home:hover .highlight-gradient { 
   border-color: var(--accent); 
   padding-left: 80px; 
   color: rgba(255, 255, 255, 0.9);
   text-shadow: 
-    -4px 0px 0px rgba(216, 33, 38, 0.8), /* Record Red Ayrışması */
-    4px 0px 0px rgba(0, 255, 255, 0.5);   /* Camgöbeği Ayrışması */
-  transform: scale(1.02); /* Optik Focus Pull Hissi */
+    -4px 0px 0px rgba(216, 33, 38, 0.8), 
+    4px 0px 0px rgba(0, 255, 255, 0.5);   
+  transform: scale(1.02); 
 }
 
 /* ==========================================
@@ -251,4 +268,6 @@ section { padding: 120px 0; border-bottom: 1px solid var(--border-line); }
   .detail-container { padding-top: calc(var(--header-h) + 40px); }
   .detail-text, .credits-box { padding: 40px 20px; }
   .detail-header { padding-bottom: 40px; margin-bottom: 40px; }
+  
+  .logo-name { font-size: 2rem; } /* Mobilde logoyu biraz küçült */
 }
