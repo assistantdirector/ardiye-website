@@ -1,5 +1,5 @@
 /* ==========================================
-   UI OVERHAUL: STABLE HEADER & CLEAN LAYOUT
+   UI OVERHAUL: UPDATED MENU TYPOGRAPHY
    ========================================== */
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@300;400;600&display=swap&subset=latin,latin-ext');
 
@@ -82,7 +82,14 @@ body.hovering .cursor-outline {
 .logo-container:hover .logo-name { color: var(--accent); }
 
 .nav-menu { display: flex; gap: 40px; }
-.nav-link { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 400; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.nav-link { 
+  font-family: var(--font-mono); 
+  font-size: 0.95rem; /* Boyutu biraz büyütüldü */
+  font-weight: 600;   /* Kalınlaştırıldı */
+  color: var(--text-muted); 
+  text-transform: uppercase; 
+  letter-spacing: 1.5px; 
+}
 .nav-link:hover { color: var(--accent); }
 
 .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; }
@@ -110,7 +117,7 @@ section { padding: 120px 0; border-bottom: 1px solid var(--border-line); }
 .section-title { font-size: 1.5rem; color: var(--text-muted); letter-spacing: 2px; font-family: var(--font-mono); font-weight: 400; }
 
 /* ==========================================
-   HOME SECTION (ÇAKIŞMAYI ÖNLEYEN ÜST BOŞLUK)
+   HOME SECTION
    ========================================== */
 .section-home { 
   height: 85vh; 
