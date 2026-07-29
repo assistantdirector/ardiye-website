@@ -1,57 +1,42 @@
 /* ==========================================
-   DOM LOADED INTERACTIVITY
+   APP.JS - INTERACTIVITY & NAVIGATION DRAWER
    ========================================== */
 document.addEventListener('DOMContentLoaded', () => {
-  
-  // 1. Cursor Logic
-  const outline = document.querySelector('.cursor-outline');
-  if (outline) {
-    let mouseX = 0, mouseY = 0, outlineX = 0, outlineY = 0;
-    let raf;
-    
-    window.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
+  // Mobile Nav Toggle
+  const navToggle = document.querySelector('.nav-toggle');
+  const navDrawer = document.getElementById('nav-drawer');
+
+  if (navToggle && navDrawer) {
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('open');
+      navDrawer.classList.toggle('open');
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true' || false;
+      navToggle.setAttribute('aria-expanded', !expanded);
     });
-    
-    document.querySelectorAll('a, button').forEach((el) => {
-      el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
-      el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+
+    // Close drawer when clicking a link inside it
+    navDrawer.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navToggle.classList.remove('open');
+        navDrawer.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
     });
-    
-    function animate() {
-      const speed = 0.2;
-      outlineX += (mouseX - outlineX) * speed;
-      outlineY += (mouseY - outlineY) * speed;
-      outline.style.transform = `translate(calc(${outlineX}px - 50%), calc(${outlineY}px - 50%))`;
-      raf = requestAnimationFrame(animate);
-    }
-    
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) cancelAnimationFrame(raf);
-      else animate();
-    });
-    
-    animate();
   }
 
-  // 2. Mobile Menu Logic
-  const toggle = document.querySelector('.nav-toggle');
-  const drawer = document.querySelector('.nav-drawer');
-  
-  if (toggle && drawer) {
-    toggle.addEventListener('click', () => {
-      const isOpen = drawer.classList.toggle('open');
-      toggle.classList.toggle('open', isOpen);
-      toggle.setAttribute('aria-expanded', isOpen);
+  // Custom Cursor Outline Tracker
+  const cursor = document.querySelector('.cursor-outline');
+  if (cursor) {
+    window.addEventListener('mousemove', (e) => {
+      cursor.style.top = `${e.clientY}px`;
+      cursor.style.left = `${e.clientX}px`;
     });
-    
-    drawer.querySelectorAll('.nav-link').forEach((link) => {
-      link.addEventListener('click', () => {
-        drawer.classList.remove('open');
-        toggle.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-      });
+
+    // Hover effect for interactive elements
+    const interactables = document.querySelectorAll('a, button, .artist-card, .work-item');
+    interactables.forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
     });
   }
 });
