@@ -1,5 +1,5 @@
 /* ==========================================
-   UI OVERHAUL: STRUCTURAL MINIMALISM + LOGOTYPE SCALE
+   UI OVERHAUL: STRUCTURAL MINIMALISM + FIXED LOGOTYPE SCALE
    ========================================== */
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@300;400;600&display=swap&subset=latin,latin-ext');
 
@@ -14,7 +14,7 @@
   --font-head:   'Barlow Condensed', system-ui, -apple-system, sans-serif;
   --font-body:   'Inter', system-ui, -apple-system, sans-serif;
   --font-mono:   'JetBrains Mono', monospace;
-  --header-h:    95px; /* Logotype ve menü dengesi için header büyütüldü */
+  --header-h:    90px; /* Header yüksekliği ideal stabil seviyeye alındı */
   --transition:  0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
@@ -55,7 +55,7 @@ body.hovering .cursor-outline {
 }
 
 /* ==========================================
-   HEADER & LOGOTYPE
+   HEADER & FIXED LOGOTYPE
    ========================================== */
 .main-header {
   position: fixed; top: 0; left: 0; width: 100%; height: var(--header-h);
@@ -67,23 +67,23 @@ body.hovering .cursor-outline {
 .logo-container { 
   display: flex; 
   align-items: center; 
-  justify-content: center;
+  justify-content: flex-start;
   height: 100%;
 }
 .logo-name { 
   font-family: var(--font-head); 
-  font-size: 3.2rem; /* Logotype belirgin şekilde büyütüldü ve toklaştırıldı */
+  font-size: clamp(2rem, 3.5vw, 3rem); /* Ekran boyutuna göre güvenli ve büyük ölçek */
   font-weight: 800; 
   color: #fff; 
   text-transform: lowercase; 
-  letter-spacing: -1.5px; 
+  letter-spacing: -1px; 
   transition: color var(--transition); 
   line-height: 1;
 }
 .logo-container:hover .logo-name { color: var(--accent); }
 
 .nav-menu { display: flex; gap: 40px; }
-.nav-link { font-family: var(--font-mono); font-size: 0.85rem; font-weight: 400; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.nav-link { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 400; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 .nav-link:hover { color: var(--accent); }
 
 .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; }
@@ -111,7 +111,7 @@ section { padding: 120px 0; border-bottom: 1px solid var(--border-line); }
 .section-title { font-size: 1.5rem; color: var(--text-muted); letter-spacing: 2px; font-family: var(--font-mono); font-weight: 400; }
 
 /* ==========================================
-   HOME SECTION
+   HOME SECTION (PADDINGS FIXED)
    ========================================== */
 .section-home { 
   height: 85vh; 
@@ -120,13 +120,13 @@ section { padding: 120px 0; border-bottom: 1px solid var(--border-line); }
   flex-direction: column;
   justify-content: center; 
   align-items: flex-start; 
-  padding-top: var(--header-h); 
+  padding-top: calc(var(--header-h) + 20px); /* Header çakışması önlendi */
   padding-bottom: 0; 
   border-bottom: 1px solid var(--border-line); 
 }
 .highlight-gradient { 
   display: inline-block; 
-  font-size: clamp(4.5rem, 13vw, 15rem); 
+  font-size: clamp(4rem, 11vw, 13rem); /* Ekran taşması engellendi */
   color: #fff; 
   letter-spacing: -4px; 
   padding-left: 40px; 
@@ -255,7 +255,7 @@ section { padding: 120px 0; border-bottom: 1px solid var(--border-line); }
 }
 
 @media (max-width: 768px) {
-  :root { --pad-side: 20px; --header-h: 80px; }
+  :root { --pad-side: 20px; --header-h: 75px; }
   .nav-menu { display: none; }
   .nav-toggle { display: flex; }
   .cursor-outline { display: none; }
@@ -274,5 +274,5 @@ section { padding: 120px 0; border-bottom: 1px solid var(--border-line); }
   .detail-text, .credits-box { padding: 40px 20px; }
   .detail-header { padding-bottom: 40px; margin-bottom: 40px; }
   
-  .logo-name { font-size: 2.5rem; } 
+  .logo-name { font-size: 2.2rem; } 
 }
